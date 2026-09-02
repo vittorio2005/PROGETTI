@@ -1,0 +1,710 @@
+/* =========================================================
+   STADIO ARTURO COLLANA
+   ATTIVITÀ SPORTIVE
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   CONTENITORE PRINCIPALE
+   ========================================================= */
+
+#sports-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #000;
+}
+
+
+/* =========================================================
+   SEZIONI
+   ========================================================= */
+
+.sport-section {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-end;
+
+    overflow: hidden;
+
+    background: #000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+.sport-section.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   IMMAGINI DI SFONDO
+   ========================================================= */
+
+.sport-bg {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    filter:
+        blur(18px)
+        brightness(0.65)
+        contrast(1.12)
+        saturate(0.84);
+
+    transform: scale(1.06);
+
+    transition:
+        opacity 1.2s ease,
+        filter 1.2s ease,
+        transform 1.2s ease;
+}
+
+
+/* Immagine attiva */
+
+.sport-section.active .sport-bg {
+    opacity: 1;
+
+    filter:
+        blur(0)
+        brightness(0.82)
+        contrast(1.12)
+        saturate(0.90);
+
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   IMMAGINI
+   ========================================================= */
+
+.atletica-bg {
+    background-image: url("atletica.jpg");
+}
+
+.taekwondo-bg {
+    background-image: url("taekwondo.jpg");
+}
+
+.arti-bg {
+    background-image: url("arti-marziale.jpg");
+}
+
+.kickboxing-bg {
+    background-image: url("kickboxing.jpg");
+}
+
+.mma-bg {
+    background-image: url("mma.jpg");
+}
+
+.pugilato-bg {
+    background-image: url("pugilato.jpg");
+}
+
+.ginnastica-bg {
+    background-image: url("ginnastica.jpg");
+}
+
+.tennistavolo-bg {
+    background-image: url("tennistavolo.jpg");
+}
+
+.piscina-bg {
+    background-image: url("piscina.jpg");
+}
+
+.danza-bg {
+    background-image: url("danza.jpg");
+}
+
+
+/* =========================================================
+   OVERLAY CINEMATICO
+   ========================================================= */
+
+.overlay {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(0, 0, 0, 0.05) 0%,
+            rgba(0, 0, 0, 0.30) 55%,
+            rgba(0, 0, 0, 0.70) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.55) 32%,
+            rgba(0, 0, 0, 0.08) 70%,
+            rgba(0, 0, 0, 0.20) 100%
+        );
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   CONTENUTO
+   ========================================================= */
+
+.sport-content {
+    position: relative;
+    z-index: 3;
+
+    width: min(850px, 80%);
+
+    margin-left: 7%;
+    margin-bottom: 8%;
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 1s ease 0.25s,
+        transform 1s ease 0.25s;
+}
+
+.sport-section.active .sport-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITOLO
+   ========================================================= */
+
+.sport-content h1 {
+    margin-bottom: 18px;
+
+    font-size: clamp(48px, 6vw, 92px);
+
+    line-height: 0.95;
+
+    font-weight: 700;
+
+    letter-spacing: -2px;
+
+    color: #fff;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   DESCRIZIONE
+   ========================================================= */
+
+.sport-content p {
+    max-width: 650px;
+
+    margin-bottom: 32px;
+
+    font-size: clamp(17px, 1.6vw, 23px);
+
+    line-height: 1.5;
+
+    font-weight: 400;
+
+    color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* =========================================================
+   BOTTONE SCOPRI DI PIÙ
+   ========================================================= */
+
+.discover-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 0 0 10px 0;
+
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+
+    background: transparent;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        gap 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.discover-btn::after {
+    content: "→";
+
+    font-size: 24px;
+    font-weight: 300;
+
+    line-height: 12px;
+
+    transition: transform 0.3s ease;
+}
+
+.discover-btn:hover {
+    gap: 22px;
+
+    border-color: #fff;
+}
+
+.discover-btn:hover::after {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   NAVIGAZIONE LATERALE
+   ========================================================= */
+
+.dot-navigation {
+    position: fixed;
+
+    top: 50%;
+    right: 24px;
+
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* Pallini */
+
+.nav-dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    cursor: pointer;
+
+    transition:
+        width 0.3s ease,
+        height 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Pallino attivo */
+
+.nav-dot.active {
+    width: 14px;
+    height: 14px;
+
+    background: #fff;
+
+    transform: scale(1.05);
+}
+
+
+/* Hover */
+
+.nav-dot:hover {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+
+/* =========================================================
+   INDICATORE SCORRIMENTO
+   ========================================================= */
+
+.scroll-hint {
+    position: fixed;
+
+    left: 50%;
+    bottom: 28px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 8px;
+
+    pointer-events: none;
+
+    opacity: 0.7;
+}
+
+.scroll-hint span:first-child {
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 34px;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes scrollPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scaleY(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .sport-content {
+        width: 82%;
+        margin-left: 6%;
+        margin-bottom: 10%;
+    }
+
+    .sport-content h1 {
+        font-size: clamp(45px, 8vw, 75px);
+    }
+
+    .dot-navigation {
+        right: 18px;
+    }
+}
+
+
+/* =========================================================
+   SMARTPHONE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    #sports-container {
+        height: 100dvh;
+    }
+
+
+    /* -----------------------------------------
+       IMMAGINI
+       ----------------------------------------- */
+
+    .sport-bg {
+        background-size: cover;
+
+        transform: scale(1.08);
+    }
+
+    .sport-section.active .sport-bg {
+        transform: scale(1.02);
+    }
+
+
+    /* -----------------------------------------
+       INQUADRATURE PERSONALIZZATE MOBILE
+       ----------------------------------------- */
+
+    .kickboxing-bg {
+        background-position: 25% center;
+    }
+
+    .tennistavolo-bg {
+        background-position: 35% center;
+    }
+
+    .danza-bg {
+        background-position: 35% center;
+    }
+
+    .mma-bg {
+        background-position: center center;
+    }
+
+
+    /* -----------------------------------------
+       CONTENUTO
+       ----------------------------------------- */
+
+    .sport-content {
+        width: calc(100% - 80px);
+
+        margin-left: 40px;
+        margin-bottom: 95px;
+    }
+
+
+    /* -----------------------------------------
+       EYEBROW
+       ----------------------------------------- */
+
+    .eyebrow {
+        margin-bottom: 14px;
+
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+
+
+    /* -----------------------------------------
+       TITOLO
+       ----------------------------------------- */
+
+    .sport-content h1 {
+        margin-bottom: 14px;
+
+        font-size: clamp(42px, 12vw, 64px);
+
+        line-height: 0.95;
+
+        letter-spacing: -1px;
+    }
+
+
+    /* -----------------------------------------
+       DESCRIZIONE
+       ----------------------------------------- */
+
+    .sport-content p {
+        max-width: 100%;
+
+        margin-bottom: 25px;
+
+        font-size: 16px;
+
+        line-height: 1.45;
+    }
+
+
+    /* -----------------------------------------
+       BOTTONE
+       ----------------------------------------- */
+
+    .discover-btn {
+        font-size: 12px;
+
+        letter-spacing: 2.5px;
+    }
+
+    .discover-btn::after {
+        font-size: 21px;
+    }
+
+
+    /* -----------------------------------------
+       NAVIGAZIONE
+       ----------------------------------------- */
+
+    .dot-navigation {
+        right: 13px;
+
+        gap: 9px;
+    }
+
+    .nav-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .nav-dot.active {
+        width: 13px;
+        height: 13px;
+    }
+
+
+    /* -----------------------------------------
+       SCROLL HINT
+       ----------------------------------------- */
+
+    .scroll-hint {
+        bottom: 25px;
+    }
+
+    .scroll-hint span:first-child {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+    .scroll-line {
+        height: 27px;
+    }
+}
+
+
+/* =========================================================
+   SMARTPHONE PICCOLI
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .sport-content {
+        width: calc(100% - 65px);
+
+        margin-left: 32px;
+        margin-bottom: 85px;
+    }
+
+    .sport-content h1 {
+        font-size: 40px;
+    }
+
+    .sport-content p {
+        font-size: 15px;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+    }
+
+    .dot-navigation {
+        right: 9px;
+    }
+}
+
+
+/* =========================================================
+   SCHERMI MOLTO ALTI
+   ========================================================= */
+
+@media (min-height: 850px) and (max-width: 768px) {
+
+    .sport-content {
+        margin-bottom: 115px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITÀ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
