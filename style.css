@@ -1,10 +1,4 @@
 /* =========================================================
-   STADIO ARTURO COLLANA
-   ATTIVITÀ SPORTIVE
-   ========================================================= */
-
-
-/* =========================================================
    RESET
    ========================================================= */
 
@@ -14,33 +8,38 @@
     box-sizing: border-box;
 }
 
-html {
-    width: 100%;
-    height: 100%;
-    background: #000;
-    scroll-behavior: smooth;
-}
-
+html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background: #000;
+}
+
+body {
+    overflow: hidden;
+
     color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 
 /* =========================================================
-   CONTENITORE PRINCIPALE
+   CONTENITORE
    ========================================================= */
 
 #sports-container {
     position: relative;
+
     width: 100%;
     height: 100vh;
     height: 100dvh;
+
     overflow: hidden;
+
     background: #000;
 }
 
@@ -51,6 +50,7 @@ body {
 
 .sport-section {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -74,16 +74,18 @@ body {
 .sport-section.active {
     opacity: 1;
     visibility: visible;
+
     z-index: 2;
 }
 
 
 /* =========================================================
-   IMMAGINI DI SFONDO
+   SFONDO
    ========================================================= */
 
 .sport-bg {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -97,9 +99,9 @@ body {
 
     filter:
         blur(18px)
-        brightness(0.65)
+        brightness(.65)
         contrast(1.12)
-        saturate(0.84);
+        saturate(.84);
 
     transform: scale(1.06);
 
@@ -109,17 +111,14 @@ body {
         transform 1.2s ease;
 }
 
-
-/* Immagine attiva */
-
 .sport-section.active .sport-bg {
     opacity: 1;
 
     filter:
         blur(0)
-        brightness(0.82)
+        brightness(.82)
         contrast(1.12)
-        saturate(0.90);
+        saturate(.90);
 
     transform: scale(1);
 }
@@ -171,34 +170,33 @@ body {
 
 
 /* =========================================================
-   OVERLAY CINEMATICO
+   OVERLAY
    ========================================================= */
 
 .overlay {
     position: absolute;
+
     inset: 0;
 
-    width: 100%;
-    height: 100%;
+    z-index: 2;
 
     pointer-events: none;
 
     background:
         radial-gradient(
             circle at 50% 40%,
-            rgba(0, 0, 0, 0.05) 0%,
-            rgba(0, 0, 0, 0.30) 55%,
-            rgba(0, 0, 0, 0.70) 100%
+            rgba(0, 0, 0, .05) 0%,
+            rgba(0, 0, 0, .30) 55%,
+            rgba(0, 0, 0, .70) 100%
         ),
+
         linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.92) 0%,
-            rgba(0, 0, 0, 0.55) 32%,
-            rgba(0, 0, 0, 0.08) 70%,
-            rgba(0, 0, 0, 0.20) 100%
+            rgba(0, 0, 0, .92) 0%,
+            rgba(0, 0, 0, .55) 32%,
+            rgba(0, 0, 0, .08) 70%,
+            rgba(0, 0, 0, .20) 100%
         );
-
-    z-index: 2;
 }
 
 
@@ -208,6 +206,7 @@ body {
 
 .sport-content {
     position: relative;
+
     z-index: 3;
 
     width: min(850px, 80%);
@@ -216,15 +215,17 @@ body {
     margin-bottom: 8%;
 
     opacity: 0;
+
     transform: translateY(35px);
 
     transition:
-        opacity 1s ease 0.25s,
-        transform 1s ease 0.25s;
+        opacity 1s ease .25s,
+        transform 1s ease .25s;
 }
 
 .sport-section.active .sport-content {
     opacity: 1;
+
     transform: translateY(0);
 }
 
@@ -239,18 +240,19 @@ body {
     margin-bottom: 18px;
 
     font-size: 13px;
+
     font-weight: 600;
 
     letter-spacing: 5px;
 
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, .78);
 
     text-transform: uppercase;
 }
 
 
 /* =========================================================
-   TITOLO
+   TITOLI
    ========================================================= */
 
 .sport-content h1 {
@@ -258,7 +260,7 @@ body {
 
     font-size: clamp(48px, 6vw, 92px);
 
-    line-height: 0.95;
+    line-height: .95;
 
     font-weight: 700;
 
@@ -283,25 +285,26 @@ body {
 
     line-height: 1.5;
 
-    font-weight: 400;
-
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, .88);
 }
 
 
 /* =========================================================
-   BOTTONE SCOPRI DI PIÙ
+   BOTTONE
    ========================================================= */
 
 .discover-btn {
     display: inline-flex;
+
     align-items: center;
+
     gap: 14px;
 
-    padding: 0 0 10px 0;
+    padding: 0 0 10px;
 
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+
+    border-bottom: 1px solid rgba(255, 255, 255, .75);
 
     background: transparent;
 
@@ -310,6 +313,7 @@ body {
     font-family: inherit;
 
     font-size: 14px;
+
     font-weight: 700;
 
     letter-spacing: 3px;
@@ -319,19 +323,18 @@ body {
     cursor: pointer;
 
     transition:
-        gap 0.3s ease,
-        border-color 0.3s ease;
+        gap .3s ease,
+        border-color .3s ease;
 }
 
 .discover-btn::after {
     content: "→";
 
     font-size: 24px;
+
     font-weight: 300;
 
-    line-height: 12px;
-
-    transition: transform 0.3s ease;
+    transition: transform .3s ease;
 }
 
 .discover-btn:hover {
@@ -346,7 +349,7 @@ body {
 
 
 /* =========================================================
-   NAVIGAZIONE LATERALE
+   NAVIGAZIONE
    ========================================================= */
 
 .dot-navigation {
@@ -360,14 +363,13 @@ body {
     z-index: 20;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 11px;
 }
-
-
-/* Pallini */
 
 .nav-dot {
     width: 7px;
@@ -376,41 +378,29 @@ body {
     padding: 0;
 
     border: none;
+
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, .35);
 
     cursor: pointer;
 
     transition:
-        width 0.3s ease,
-        height 0.3s ease,
-        background 0.3s ease,
-        transform 0.3s ease;
+        width .3s ease,
+        height .3s ease,
+        background .3s ease;
 }
-
-
-/* Pallino attivo */
 
 .nav-dot.active {
     width: 14px;
     height: 14px;
 
     background: #fff;
-
-    transform: scale(1.05);
-}
-
-
-/* Hover */
-
-.nav-dot:hover {
-    background: rgba(255, 255, 255, 0.75);
 }
 
 
 /* =========================================================
-   INDICATORE SCORRIMENTO
+   SCROLL HINT
    ========================================================= */
 
 .scroll-hint {
@@ -424,18 +414,21 @@ body {
     z-index: 20;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 8px;
 
     pointer-events: none;
 
-    opacity: 0.7;
+    opacity: .7;
 }
 
 .scroll-hint span:first-child {
     font-size: 9px;
+
     font-weight: 600;
 
     letter-spacing: 4px;
@@ -445,18 +438,17 @@ body {
     width: 1px;
     height: 34px;
 
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, .65);
 
     animation: scrollPulse 2s ease-in-out infinite;
 }
-
 
 @keyframes scrollPulse {
 
     0%,
     100% {
-        opacity: 0.3;
-        transform: scaleY(0.7);
+        opacity: .3;
+        transform: scaleY(.7);
     }
 
     50% {
@@ -467,41 +459,283 @@ body {
 
 
 /* =========================================================
-   TABLET
+   MODAL DETTAGLI
    ========================================================= */
 
-@media (max-width: 1024px) {
+.details-modal {
+    position: fixed;
 
-    .sport-content {
-        width: 82%;
-        margin-left: 6%;
-        margin-bottom: 10%;
-    }
+    inset: 0;
 
-    .sport-content h1 {
-        font-size: clamp(45px, 8vw, 75px);
-    }
+    z-index: 100;
 
-    .dot-navigation {
-        right: 18px;
-    }
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.details-modal.open {
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* Sfondo dietro al pannello */
+
+.details-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, .68);
+
+    opacity: 0;
+
+    transition: opacity .45s ease;
+}
+
+.details-modal.open .details-backdrop {
+    opacity: 1;
 }
 
 
 /* =========================================================
-   SMARTPHONE
+   PANNELLO
+   ========================================================= */
+
+.details-panel {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(900px, 100%);
+
+    max-height: 88vh;
+    max-height: 88dvh;
+
+    overflow: hidden;
+
+    padding: 55px 60px 45px;
+
+    border-radius: 24px 24px 0 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25, 25, 25, .97),
+            rgba(8, 8, 8, .98)
+        );
+
+    box-shadow:
+        0 -20px 80px rgba(0, 0, 0, .65);
+
+    transform: translateY(100%);
+
+    transition:
+        transform .55s cubic-bezier(.22, 1, .36, 1);
+}
+
+.details-modal.open .details-panel {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   CHIUSURA
+   ========================================================= */
+
+.close-details {
+    position: absolute;
+
+    top: 18px;
+    right: 25px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .08);
+
+    color: #fff;
+
+    font-size: 30px;
+
+    font-weight: 200;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+}
+
+.close-details:hover {
+    background: rgba(255, 255, 255, .16);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   CONTEÚDO DO MODAL
+   ========================================================= */
+
+.details-content {
+    max-height: calc(88vh - 100px);
+    max-height: calc(88dvh - 100px);
+
+    overflow-y: auto;
+
+    padding-right: 12px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, .35)
+        transparent;
+}
+
+
+/* Titolo società */
+
+.details-content .company-name {
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    color: rgba(255, 255, 255, .55);
+
+    text-transform: uppercase;
+}
+
+
+/* Titolo attività */
+
+.details-content .details-title {
+    margin-bottom: 35px;
+
+    font-size: clamp(36px, 5vw, 60px);
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SINGOLO CORSO
+   ========================================================= */
+
+.course {
+    padding: 25px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.course:first-of-type {
+    border-top: none;
+}
+
+.course h3 {
+    margin-bottom: 15px;
+
+    font-size: 21px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.course p {
+    margin: 6px 0;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    color: rgba(255, 255, 255, .72);
+}
+
+.course strong {
+    color: #fff;
+}
+
+
+/* =========================================================
+   CONTATTI
+   ========================================================= */
+
+.contact {
+    margin-top: 12px;
+}
+
+.contact a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+.details-note {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, .055);
+
+    color: rgba(255, 255, 255, .75);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.details-note strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #fff;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
-
-    #sports-container {
-        height: 100dvh;
-    }
-
-
-    /* -----------------------------------------
-       IMMAGINI
-       ----------------------------------------- */
 
     .sport-bg {
         background-size: cover;
@@ -514,9 +748,7 @@ body {
     }
 
 
-    /* -----------------------------------------
-       INQUADRATURE PERSONALIZZATE MOBILE
-       ----------------------------------------- */
+    /* Inquadrature personalizzate */
 
     .kickboxing-bg {
         background-position: 25% center;
@@ -535,21 +767,15 @@ body {
     }
 
 
-    /* -----------------------------------------
-       CONTENUTO
-       ----------------------------------------- */
+    /* Contenuto */
 
     .sport-content {
         width: calc(100% - 80px);
 
         margin-left: 40px;
+
         margin-bottom: 95px;
     }
-
-
-    /* -----------------------------------------
-       EYEBROW
-       ----------------------------------------- */
 
     .eyebrow {
         margin-bottom: 14px;
@@ -559,55 +785,22 @@ body {
         letter-spacing: 3px;
     }
 
-
-    /* -----------------------------------------
-       TITOLO
-       ----------------------------------------- */
-
     .sport-content h1 {
         margin-bottom: 14px;
 
         font-size: clamp(42px, 12vw, 64px);
 
-        line-height: 0.95;
-
         letter-spacing: -1px;
     }
 
-
-    /* -----------------------------------------
-       DESCRIZIONE
-       ----------------------------------------- */
-
     .sport-content p {
-        max-width: 100%;
-
         margin-bottom: 25px;
 
         font-size: 16px;
-
-        line-height: 1.45;
     }
 
 
-    /* -----------------------------------------
-       BOTTONE
-       ----------------------------------------- */
-
-    .discover-btn {
-        font-size: 12px;
-
-        letter-spacing: 2.5px;
-    }
-
-    .discover-btn::after {
-        font-size: 21px;
-    }
-
-
-    /* -----------------------------------------
-       NAVIGAZIONE
-       ----------------------------------------- */
+    /* Navigazione */
 
     .dot-navigation {
         right: 13px;
@@ -626,22 +819,54 @@ body {
     }
 
 
-    /* -----------------------------------------
-       SCROLL HINT
-       ----------------------------------------- */
+    /* Modal */
+
+    .details-panel {
+        width: 100%;
+
+        max-height: 92vh;
+        max-height: 92dvh;
+
+        padding:
+            55px
+            25px
+            30px;
+
+        border-radius: 22px 22px 0 0;
+    }
+
+    .details-content {
+        max-height: calc(92vh - 80px);
+        max-height: calc(92dvh - 80px);
+
+        padding-right: 5px;
+    }
+
+    .details-content .details-title {
+        margin-bottom: 25px;
+
+        font-size: 40px;
+    }
+
+    .course {
+        padding: 22px 0;
+    }
+
+    .course h3 {
+        font-size: 18px;
+    }
+
+    .course p {
+        font-size: 14px;
+    }
+
+    .close-details {
+        top: 12px;
+        right: 15px;
+    }
 
     .scroll-hint {
         bottom: 25px;
-    }
-
-    .scroll-hint span:first-child {
-        font-size: 8px;
-
-        letter-spacing: 3px;
-    }
-
-    .scroll-line {
-        height: 27px;
     }
 }
 
@@ -656,6 +881,7 @@ body {
         width: calc(100% - 65px);
 
         margin-left: 32px;
+
         margin-bottom: 85px;
     }
 
@@ -669,42 +895,23 @@ body {
 
     .eyebrow {
         font-size: 9px;
+
         letter-spacing: 2.5px;
     }
-
-    .dot-navigation {
-        right: 9px;
-    }
 }
 
 
 /* =========================================================
-   SCHERMI MOLTO ALTI
-   ========================================================= */
-
-@media (min-height: 850px) and (max-width: 768px) {
-
-    .sport-content {
-        margin-bottom: 115px;
-    }
-}
-
-
-/* =========================================================
-   ACCESSIBILITÀ
+   RIDOTTA ANIMAZIONE
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    html {
-        scroll-behavior: auto;
-    }
-
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+
+        animation-duration: .01ms !important;
     }
 }
