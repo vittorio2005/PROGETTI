@@ -918,6 +918,241 @@ img {
 }
 
 
+.intro-section .section-copy {
+    max-width: 48%;
+
+    padding-right: 38px;
+}
+
+
+.intro-carousel {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 48%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #080808;
+}
+
+
+.intro-carousel-track {
+    position: absolute;
+
+    inset: 0;
+}
+
+
+.intro-slide {
+    position: absolute;
+
+    inset: 0;
+
+    margin: 0;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.75s ease,
+        visibility 0.75s ease;
+}
+
+
+.intro-slide.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.intro-slide img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    filter:
+        brightness(0.78)
+        contrast(1.05);
+
+    transform:
+        scale(1.015);
+
+    transition:
+        transform 5s ease;
+}
+
+
+.intro-slide.active img {
+    transform:
+        scale(1.045);
+}
+
+
+.intro-carousel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            90deg,
+            #050505 0%,
+            rgba(5, 5, 5, 0.78) 10%,
+            rgba(5, 5, 5, 0.30) 28%,
+            rgba(5, 5, 5, 0.05) 55%,
+            rgba(5, 5, 5, 0) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+.intro-carousel-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 4;
+
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.20);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.48);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    color: #fff;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    opacity: 0.82;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        opacity 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.intro-carousel-prev {
+    left: 18px;
+}
+
+
+.intro-carousel-next {
+    right: 18px;
+}
+
+
+.intro-carousel-arrow:hover {
+    opacity: 1;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+}
+
+
+.intro-carousel-prev:hover {
+    transform:
+        translateY(-50%)
+        translateX(-2px);
+}
+
+
+.intro-carousel-next:hover {
+    transform:
+        translateY(-50%)
+        translateX(2px);
+}
+
+
+.intro-carousel-dots {
+    position: absolute;
+
+    left: 50%;
+    bottom: 24px;
+
+    z-index: 4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transform:
+        translateX(-50%);
+}
+
+
+.intro-carousel-dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.38);
+
+    cursor: pointer;
+
+    transition:
+        width 0.25s ease,
+        border-radius 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.intro-carousel-dot.active {
+    width: 24px;
+
+    border-radius: 999px;
+
+    background: #fff;
+}
+
+
 /* =========================================================
    STORIA
 ========================================================= */
@@ -1988,4 +2223,280 @@ img {
         translateX(-8px);
 
     pointer-events: none;
+}
+
+/* =========================================================
+   MOBILE — POSIZIONE "TORNA ALLA HOME"
+   Il logo resta in alto a sinistra; il testo passa sotto
+   al logo per non sovrapporsi ai pulsanti di contatto.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .global-home-link {
+        top:
+            max(9px, env(safe-area-inset-top));
+
+        left:
+            max(9px, env(safe-area-inset-left));
+
+        width: 78px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 4px;
+    }
+
+
+    .global-home-link img {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .global-home-link span {
+        width: 78px;
+        max-width: 78px;
+
+        overflow: hidden;
+
+        font-size: 6.5px;
+
+        line-height: 1.15;
+
+        letter-spacing: 0.75px;
+
+        text-align: center;
+
+        white-space: nowrap;
+    }
+
+
+    .global-home-link.home-label-hidden {
+        gap: 0;
+    }
+
+
+    .global-home-link.home-label-hidden span {
+        width: 0;
+        max-width: 0;
+
+        opacity: 0;
+
+        transform:
+            translateY(-4px);
+
+        pointer-events: none;
+    }
+}
+
+/* =========================================================
+   MOBILE — HOME LINK COMPATTO
+   Evita qualsiasi sovrapposizione con i pulsanti contatto.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .global-home-link {
+        top:
+            max(8px, env(safe-area-inset-top));
+
+        left:
+            max(8px, env(safe-area-inset-left));
+
+        width: 46px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 3px;
+    }
+
+
+    .global-home-link img {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .global-home-link span {
+        width: 46px;
+        max-width: 46px;
+
+        overflow: hidden;
+
+        font-size: 6px;
+
+        line-height: 1.05;
+
+        letter-spacing: 0.45px;
+
+        text-align: center;
+
+        white-space: normal;
+
+        text-wrap: balance;
+    }
+
+
+    .global-home-link.home-label-hidden {
+        gap: 0;
+    }
+
+
+    .global-home-link.home-label-hidden span {
+        width: 0;
+        max-width: 0;
+
+        opacity: 0;
+
+        transform:
+            translateY(-3px);
+
+        pointer-events: none;
+    }
+}
+
+/* =========================================================
+   MOBILE — LOGHI ISTITUZIONALI STESSA DIMENSIONE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .institutional-partner-logo {
+        width:
+            min(255px, 82vw);
+
+        height: 116px;
+
+        padding:
+            8px 12px;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+
+        background: #fff;
+    }
+
+
+    .institutional-partner-logo img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+        object-position: center;
+
+        transform: none;
+    }
+
+
+    .institutional-partner:hover
+    .institutional-partner-logo img {
+        transform: none;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — FOTO "IL COLLANA OGGI"
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .intro-section {
+        display: block;
+
+        padding-bottom: 0;
+    }
+
+
+    .intro-section .section-copy {
+        max-width: 100%;
+
+        padding-right: 0;
+    }
+
+
+    .intro-carousel {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width:
+            calc(100% + 16vw);
+
+        height: 430px;
+
+        margin:
+            65px -8vw 0;
+    }
+
+
+    .intro-carousel::after {
+        background:
+            linear-gradient(
+                to bottom,
+                #050505 0%,
+                rgba(5, 5, 5, 0.22) 18%,
+                rgba(5, 5, 5, 0) 42%
+            );
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .intro-carousel {
+        height: 300px;
+
+        margin-top: 48px;
+    }
+
+
+    .intro-slide img {
+        object-position: center;
+    }
+
+
+    .intro-carousel-arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size: 26px;
+    }
+
+
+    .intro-carousel-prev {
+        left: 12px;
+    }
+
+
+    .intro-carousel-next {
+        right: 12px;
+    }
+
+
+    .intro-carousel-dots {
+        bottom: 16px;
+    }
+}
+
+/* =========================================================
+   MOBILE — NASCONDI NUMERI DI SEZIONE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .section-number {
+        display: none !important;
+    }
+
 }

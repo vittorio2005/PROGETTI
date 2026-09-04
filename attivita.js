@@ -15,6 +15,16 @@ const coursesBackground = document.querySelector(".courses-background");
 const title = document.getElementById("activity-title");
 const subtitle = document.getElementById("activity-subtitle");
 
+const activitySociety =
+    document.getElementById(
+        "activity-society"
+    );
+
+const activitySocietyName =
+    document.getElementById(
+        "activity-society-name"
+    );
+
 const descriptionTitle = document.getElementById(
     "activity-description-title"
 );
@@ -35,21 +45,30 @@ const peopleGrid = document.getElementById(
     "people-grid"
 );
 
-const stadiumPhoneLink = document.getElementById(
-    "stadium-phone-link"
-);
+const enrollmentContactName =
+    document.getElementById(
+        "enrollment-contact-name"
+    );
 
-const stadiumEmailLink = document.getElementById(
-    "stadium-email-link"
-);
+const enrollmentContactPhone =
+    document.getElementById(
+        "enrollment-contact-phone"
+    );
 
-const instagramLink = document.getElementById(
-    "instagram-link"
-);
+const activityContactEmail =
+    document.getElementById(
+        "activity-contact-email"
+    );
 
-const facebookLink = document.getElementById(
-    "facebook-link"
-);
+const activityContactInstagram =
+    document.getElementById(
+        "activity-contact-instagram"
+    );
+
+const activityContactFacebook =
+    document.getElementById(
+        "activity-contact-facebook"
+    );
 
 
 /* =========================================================
@@ -67,9 +86,29 @@ const sport = params.get("sport") || "arti";
    CONTATTI UFFICIALI STADIO ARTURO COLLANA
    ========================================================= */
 
-const stadiumContacts = {
+/*
+ * CONTATTI DI DEFAULT
+ *
+ * Questi campi vengono mostrati SEMPRE.
+ * Quando avrai i dati definitivi potrai inserirli
+ * direttamente dentro l'oggetto "contacts" della singola
+ * attività o della singola ASD/società.
+ *
+ * Esempio:
+ *
+ * contacts: {
+ *     enrollmentName: "Mario Rossi",
+ *     enrollmentPhone: "3331234567",
+ *     instagram: "https://instagram.com/...",
+ *     facebook: "https://facebook.com/..."
+ * }
+ */
 
-    phone: "+39 338 179 2654",
+const defaultActivityContacts = {
+
+    enrollmentName: "",
+
+    enrollmentPhone: "",
 
     email: "infostadiocollana@gmail.com",
 
@@ -255,6 +294,10 @@ const activities = {
     arti: {
 
         title: "Arti Marziali",
+
+        societyName:
+            "A.S.D. Il Garofano",
+
         subtitle: "Tecnica, disciplina e passione.",
         descriptionTitle: "Disciplina in movimento.",
         description:
@@ -263,6 +306,38 @@ const activities = {
         heroImage: "arti.jpg",
         storyImage: "arti.jpg",
         coursesImage: "arti.jpg",
+
+        /*
+         * CONTATTI A.S.D. IL GAROFANO
+         *
+         * I nomi delle pagine social sono già noti.
+         * I link esatti possono essere aggiunti in seguito
+         * senza modificare il layout.
+         */
+        contacts: {
+
+            enrollmentName:
+                "Ferdinando Pellegrino",
+
+            enrollmentPhone:
+                "3356834632",
+
+            email:
+                "nando.pellegrino61@libero.it",
+
+            instagram:
+                "https://www.instagram.com/camcollana?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==",
+
+            instagramLabel:
+                "Camcollana",
+
+            facebook:
+                "https://www.facebook.com/profile.php?id=100075899867655",
+
+            facebookLabel:
+                "Camcollana"
+
+        },
 
         courses: [
 
@@ -273,11 +348,11 @@ const activities = {
                 time: "20:30 – 22:30",
                 frequency: "Bisettimanale",
                 instructor: "Maestro Clemente Maria Del Gaudio",
-                phone: "3811835856",
+                phone: "3911835856",
                 technicalManager: "Maestro M. Dell'Aquila",
                 price: "€50 / mese",
                 registration: "€50 iscrizione, tesseramento e assicurazione",
-                extra: "Badge €5."
+                extra: "Badge €5. Certificato medico agonistico valido. Informazioni presso lo Stadio Collana dal lunedì al venerdì dalle 16:00."
             },
 
             {
@@ -290,8 +365,7 @@ const activities = {
                 phone: "3356834632",
                 technicalManager: "Maestro Vacca Corrado",
                 price: "€50 / mese",
-                registration: "€30 iscrizione",
-                extra: "Badge €5."
+                registration: "€30 iscrizione"
             },
 
             {
@@ -306,7 +380,6 @@ const activities = {
                 price: "€55 / mese",
                 allAccess: "€75 All Access",
                 registration: "€35 iscrizione",
-                extra: "Badge €5.",
                 scheduleLabel: "Scopri livelli e orari",
                 schedules: [
                     {
@@ -340,8 +413,7 @@ const activities = {
                 technicalPhone: "3793809389",
                 price: "€55 / mese",
                 allAccess: "€75 All Access",
-                registration: "€35 iscrizione",
-                extra: "Badge €5."
+                registration: "€35 iscrizione"
             },
 
             {
@@ -354,8 +426,7 @@ const activities = {
                 phone: "3356834632",
                 technicalManager: "Istruttore Responsabile Musella Luca",
                 price: "€55 / mese",
-                registration: "€30 iscrizione",
-                extra: "Badge €5."
+                registration: "€30 iscrizione"
             },
 
             {
@@ -369,7 +440,6 @@ const activities = {
                 price: "€60 / mese",
                 registration: "€60 iscrizione",
                 scheduleLabel: "Scopri gli orari per età",
-                extra: "Badge €5.",
                 schedules: [
                     {
                         label: "5–8 anni",
@@ -399,7 +469,6 @@ const activities = {
                 price: "€60 / mese",
                 registration: "€60 iscrizione",
                 scheduleLabel: "Scopri gli orari per età",
-                extra: "Badge €5.",
                 schedules: [
                     {
                         label: "5–7 anni",
@@ -934,13 +1003,13 @@ function cleanPhone(phone) {
 
 function phoneLink(phone) {
 
-    const cleaned = cleanPhone(phone);
+    /*
+     * Tutti i numeri presenti nelle schede attività
+     * (referenti, istruttori, tecnici, responsabili, ecc.)
+     * devono aprire direttamente una conversazione WhatsApp.
+     */
 
-    if (!cleaned) {
-        return "";
-    }
-
-    return `tel:${cleaned}`;
+    return whatsappLink(phone);
 }
 
 
@@ -980,7 +1049,10 @@ function renderPerson(person) {
         ? `
             <a
                 class="person-contact"
-                href="${phoneLink(person.phone)}">
+                href="${phoneLink(person.phone)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contatta ${escapeHTML(person.name || person.contactName || "il referente")} su WhatsApp">
                 ${escapeHTML(person.phone)}
             </a>
         `
@@ -1631,7 +1703,10 @@ function renderCourses(courses) {
                                             ? `
                                                 <a
                                                     href="${phoneLink(course.phone)}"
-                                                    class="course-phone">
+                                                    class="course-phone"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Contatta ${escapeHTML(course.instructor || "il referente")} su WhatsApp">
 
                                                     ${escapeHTML(course.phone)}
 
@@ -1664,7 +1739,10 @@ function renderCourses(courses) {
                                             ? `
                                                 <a
                                                     href="${phoneLink(course.technicalPhone)}"
-                                                    class="course-phone">
+                                                    class="course-phone"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Contatta ${escapeHTML(course.technicalManager || "il responsabile tecnico")} su WhatsApp">
 
                                                     ${escapeHTML(course.technicalPhone)}
 
@@ -2031,105 +2109,237 @@ function renderPrices(activity) {
    CONTATTI STADIO
    ========================================================= */
 
-function setupStadiumContacts() {
+function setOptionalContactLink(
+    element,
+    value,
+    label,
+    type = "url"
+) {
 
-    /*
-     * IMPORTANTE:
-     * qui utilizziamo esclusivamente i contatti
-     * ufficiali dello Stadio Arturo Collana.
-     *
-     * Non vengono più presi numeri dai referenti
-     * delle attività.
-     */
+    if (!element) {
+        return;
+    }
 
-    if (stadiumPhoneLink) {
 
-        if (stadiumContacts.phone) {
+    if (value) {
 
-            stadiumPhoneLink.href =
-                "https://wa.me/393381792654";
+        element.classList.remove(
+            "is-placeholder"
+        );
 
-            stadiumPhoneLink.target =
+        element.removeAttribute(
+            "aria-disabled"
+        );
+
+
+        if (type === "email") {
+
+            element.href =
+                `mailto:${value}`;
+
+        } else if (type === "whatsapp") {
+
+            element.href =
+                whatsappLink(value);
+
+            element.target =
                 "_blank";
 
-            stadiumPhoneLink.rel =
+            element.rel =
                 "noopener noreferrer";
 
-            stadiumPhoneLink.innerHTML = `
-                <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    width="18"
-                    height="18"
-                    style="margin-right: 8px; flex: 0 0 auto;"
-                    fill="#25D366">
-                    <path d="M12.04 2C6.55 2 2.09 6.45 2.09 11.94c0 1.75.46 3.46 1.33 4.97L2 22l5.22-1.37a9.93 9.93 0 0 0 4.82 1.23h.01c5.49 0 9.95-4.46 9.95-9.94A9.93 9.93 0 0 0 12.04 2Zm0 18.18h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.2 8.2 0 1 1 6.96 3.84Zm4.5-6.15c-.25-.12-1.46-.72-1.69-.8-.23-.08-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.16-.3.18-.55.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.3.37-.45.12-.14.16-.24.25-.41.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.25 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.67-1.17.21-.58.21-1.07.15-1.17-.06-.11-.23-.17-.48-.29Z"/>
-                </svg>
-                <span>${stadiumContacts.phone}</span>
-            `;
-
         } else {
 
-            stadiumPhoneLink.style.display =
-                "none";
+            element.href =
+                value;
+
+            element.target =
+                "_blank";
+
+            element.rel =
+                "noopener noreferrer";
+
+        }
+
+
+        element.textContent =
+            type === "whatsapp"
+                ? value
+                : label;
+
+    } else {
+
+        element.classList.add(
+            "is-placeholder"
+        );
+
+        element.href =
+            "#";
+
+        element.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+        element.removeAttribute(
+            "target"
+        );
+
+        element.removeAttribute(
+            "rel"
+        );
+
+        element.textContent =
+            label;
+
+    }
+
+}
+
+
+function getCurrentActivityContacts(
+    activity
+) {
+
+    /*
+     * Per l'Atletica, quando è selezionata una società,
+     * diamo priorità ai contatti della società.
+     */
+
+    let societyContacts = {};
+
+
+    if (
+        sport === "atletica" &&
+        Array.isArray(activity.societies)
+    ) {
+
+        const selectedSociety =
+            params.get("societa");
+
+
+        if (selectedSociety) {
+
+            const society =
+                activity.societies.find(
+                    item =>
+                        item.id ===
+                        selectedSociety
+                );
+
+
+            if (
+                society &&
+                society.contacts
+            ) {
+
+                societyContacts =
+                    society.contacts;
+
+            }
 
         }
 
     }
 
 
-    if (stadiumEmailLink) {
+    return {
+        ...defaultActivityContacts,
+        ...(activity.contacts || {}),
+        ...societyContacts
+    };
 
-        if (stadiumContacts.email) {
-
-            stadiumEmailLink.href =
-                `mailto:${stadiumContacts.email}`;
-
-            stadiumEmailLink.textContent =
-                stadiumContacts.email;
-
-        } else {
-
-            stadiumEmailLink.style.display =
-                "none";
-
-        }
-
-    }
+}
 
 
-    if (instagramLink) {
+function setupActivityContacts(
+    activity
+) {
 
-        if (stadiumContacts.instagram) {
+    const contacts =
+        getCurrentActivityContacts(
+            activity
+        );
 
-            instagramLink.href =
-                stadiumContacts.instagram;
 
-        } else {
+    /*
+     * REFERENTE ISCRIZIONI
+     */
 
-            instagramLink.style.display =
-                "none";
+    if (enrollmentContactName) {
 
-        }
+        enrollmentContactName.textContent =
+            contacts.enrollmentName ||
+            "Da inserire";
 
     }
 
 
-    if (facebookLink) {
+    setOptionalContactLink(
+        enrollmentContactPhone,
+        contacts.enrollmentPhone,
+        contacts.enrollmentPhone
+            ? contacts.enrollmentPhone
+            : "Numero da inserire",
+        "whatsapp"
+    );
 
-        if (stadiumContacts.facebook) {
 
-            facebookLink.href =
-                stadiumContacts.facebook;
+    /*
+     * EMAIL ISTITUZIONALE
+     * Rimane sempre visibile.
+     */
 
-        } else {
+    if (activityContactEmail) {
 
-            facebookLink.style.display =
-                "none";
+        const email =
+            contacts.email ||
+            defaultActivityContacts.email;
 
-        }
+        activityContactEmail.href =
+            `mailto:${email}`;
+
+        activityContactEmail.textContent =
+            email;
 
     }
+
+
+    /*
+     * SOCIAL
+     *
+     * Anche quando non abbiamo ancora il link,
+     * la card resta visibile con "Link da inserire".
+     */
+
+    setOptionalContactLink(
+        activityContactInstagram,
+        contacts.instagram,
+        contacts.instagram
+            ? (
+                contacts.instagramLabel ||
+                "Apri Instagram"
+            )
+            : (
+                contacts.instagramLabel ||
+                "Link da inserire"
+            )
+    );
+
+
+    setOptionalContactLink(
+        activityContactFacebook,
+        contacts.facebook,
+        contacts.facebook
+            ? (
+                contacts.facebookLabel ||
+                "Apri Facebook"
+            )
+            : (
+                contacts.facebookLabel ||
+                "Link da inserire"
+            )
+    );
 
 }
 
@@ -2137,6 +2347,9 @@ function setupStadiumContacts() {
 /* =========================================================
    PARALLAX
    ========================================================= */
+
+
+   /* ========================================================= */
 
 let ticking = false;
 
@@ -2347,6 +2560,36 @@ function initActivityPage() {
             activity.subtitle;
     }
 
+
+    /*
+     * Società sportiva nella HERO.
+     * Se l'attività non ha ancora una società assegnata,
+     * il blocco rimane nascosto.
+     */
+
+    if (
+        activitySociety &&
+        activitySocietyName
+    ) {
+
+        if (activity.societyName) {
+
+            activitySocietyName.textContent =
+                activity.societyName;
+
+            activitySociety.hidden =
+                false;
+
+        } else {
+
+            activitySociety.hidden =
+                true;
+
+        }
+
+    }
+
+
     if (descriptionTitle) {
         descriptionTitle.textContent =
             activity.descriptionTitle;
@@ -2472,10 +2715,15 @@ function initActivityPage() {
 
 
     /*
-     * Contatti ufficiali Collana
+     * Come contattarci
+     *
+     * Il blocco viene mostrato sempre, anche se alcuni
+     * dati non sono ancora disponibili.
      */
 
-    setupStadiumContacts();
+    setupActivityContacts(
+        activity
+    );
 
 
     /*

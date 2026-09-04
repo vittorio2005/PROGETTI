@@ -1881,19 +1881,26 @@ a {
 
 .activity-location {
 
-    display: grid;
+    display: block;
 
-    grid-template-columns:
-        58%
-        42%;
+    min-height: 58vh;
 
-    min-height: 80vh;
-
-    background: #050505;
+    background:
+        radial-gradient(
+            circle at 72% 50%,
+            #141414 0%,
+            #090909 42%,
+            #050505 72%
+        );
 }
 
 
 .location-content {
+
+    width:
+        min(980px, 100%);
+
+    min-height: 58vh;
 
     display: flex;
 
@@ -1901,7 +1908,8 @@ a {
 
     justify-content: center;
 
-    padding: 8%;
+    padding:
+        90px 8%;
 
     transform:
         translateX(-30px);
@@ -1944,6 +1952,21 @@ a {
 .location-content p strong {
 
     color: rgba(255, 255, 255, 0.95);
+}
+
+
+.stadium-contact-intro {
+
+    max-width: 620px;
+
+    margin-top: 18px !important;
+
+    font-size: 16px !important;
+
+    line-height: 1.7 !important;
+
+    color:
+        rgba(255, 255, 255, 0.58) !important;
 }
 
 
@@ -3091,4 +3114,724 @@ a {
         translateX(-8px);
 
     pointer-events: none;
+}
+
+/* =========================================================
+   MOBILE — POSIZIONE "TORNA ALLA HOME"
+   Il logo resta in alto a sinistra; il testo passa sotto
+   al logo per non sovrapporsi ai pulsanti di contatto.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .global-home-link {
+        top:
+            max(9px, env(safe-area-inset-top));
+
+        left:
+            max(9px, env(safe-area-inset-left));
+
+        width: 78px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 4px;
+    }
+
+
+    .global-home-link img {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .global-home-link span {
+        width: 78px;
+        max-width: 78px;
+
+        overflow: hidden;
+
+        font-size: 6.5px;
+
+        line-height: 1.15;
+
+        letter-spacing: 0.75px;
+
+        text-align: center;
+
+        white-space: nowrap;
+    }
+
+
+    .global-home-link.home-label-hidden {
+        gap: 0;
+    }
+
+
+    .global-home-link.home-label-hidden span {
+        width: 0;
+        max-width: 0;
+
+        opacity: 0;
+
+        transform:
+            translateY(-4px);
+
+        pointer-events: none;
+    }
+}
+
+/* =========================================================
+   MOBILE — HOME LINK COMPATTO
+   Evita qualsiasi sovrapposizione con i pulsanti contatto.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .global-home-link {
+        top:
+            max(8px, env(safe-area-inset-top));
+
+        left:
+            max(8px, env(safe-area-inset-left));
+
+        width: 46px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 3px;
+    }
+
+
+    .global-home-link img {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .global-home-link span {
+        width: 46px;
+        max-width: 46px;
+
+        overflow: hidden;
+
+        font-size: 6px;
+
+        line-height: 1.05;
+
+        letter-spacing: 0.45px;
+
+        text-align: center;
+
+        white-space: normal;
+
+        text-wrap: balance;
+    }
+
+
+    .global-home-link.home-label-hidden {
+        gap: 0;
+    }
+
+
+    .global-home-link.home-label-hidden span {
+        width: 0;
+        max-width: 0;
+
+        opacity: 0;
+
+        transform:
+            translateY(-3px);
+
+        pointer-events: none;
+    }
+}
+
+/* =========================================================
+   MOBILE — STAFF / "CHI TI ACCOMPAGNERÀ"
+   Centra correttamente il blocco e impedisce al titolo
+   di arrivare troppo vicino al bordo destro.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .activity-people {
+        padding-left: 23px;
+        padding-right: 23px;
+    }
+
+
+    .people-heading {
+        width: 100%;
+        max-width: none;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 45px;
+
+        text-align: center;
+    }
+
+
+    .people-heading h2 {
+        width: 100%;
+        max-width: 370px;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+
+        font-size:
+            clamp(35px, 9.5vw, 42px);
+
+        line-height: 1;
+
+        letter-spacing: -1.5px;
+
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+
+    .people-intro {
+        max-width: 360px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: center;
+    }
+
+
+    .people-heading .story-number,
+    .people-heading .story-label {
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   PAGINE ATTIVITÀ — MAPPA DISATTIVATA
+   La mappa è presente esclusivamente nella homepage.
+========================================================= */
+
+.activity-location .location-map,
+.activity-location .map-placeholder,
+.activity-location .map-image {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MOBILE — CONTATTI STADIO
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .activity-location {
+        min-height: auto;
+    }
+
+
+    .location-content {
+        width: 100%;
+
+        min-height: auto;
+
+        padding:
+            75px 23px;
+    }
+
+
+    .stadium-contact-intro {
+        max-width: 100%;
+
+        font-size: 14px !important;
+
+        line-height: 1.65 !important;
+    }
+
+
+    .location-contacts {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 9px;
+    }
+
+
+    .location-contacts a {
+        width: 100%;
+
+        min-height: 46px;
+
+        padding:
+            12px 14px;
+
+        text-align: center;
+    }
+
+}
+
+/* =========================================================
+   COME CONTATTARCI — CARD
+========================================================= */
+
+.activity-contact-grid {
+
+    width: 100%;
+    max-width: 1040px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 38px;
+}
+
+
+.activity-contact-card {
+
+    min-height: 155px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding:
+        24px 25px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.activity-contact-card:hover {
+
+    border-color:
+        rgba(255, 255, 255, 0.24);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.activity-contact-label {
+
+    margin-bottom: 13px;
+
+    font-size: 8px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: 2.2px;
+
+    text-transform: uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+}
+
+
+.activity-contact-name {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 17px;
+
+    line-height: 1.35;
+
+    color: #fff;
+}
+
+
+.activity-contact-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 28px;
+
+    padding-bottom: 3px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.26);
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+
+    letter-spacing: 0.25px;
+
+    text-transform: none;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.activity-contact-link:hover {
+
+    color: #fff;
+
+    border-color:
+        rgba(255, 255, 255, 0.75);
+}
+
+
+.activity-contact-link.is-placeholder {
+
+    color:
+        rgba(255, 255, 255, 0.30);
+
+    border-bottom-style: dashed;
+
+    cursor: default;
+
+    pointer-events: none;
+}
+
+
+@media (max-width: 760px) {
+
+    .activity-contact-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 10px;
+
+        margin-top: 30px;
+    }
+
+
+    .activity-contact-card {
+
+        min-height: 130px;
+
+        padding:
+            20px 18px;
+    }
+
+
+    .activity-contact-name {
+
+        font-size: 16px;
+    }
+
+
+    .activity-contact-link {
+
+        max-width: 100%;
+
+        overflow-wrap: anywhere;
+
+        font-size: 11px;
+    }
+
+}
+
+/* =========================================================
+   HERO — SOCIETÀ SPORTIVA
+========================================================= */
+
+.activity-society {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin:
+        14px 0 18px;
+
+    padding:
+        8px 12px;
+
+    border-left:
+        2px solid rgba(255, 255, 255, 0.70);
+
+    background:
+        rgba(0, 0, 0, 0.22);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+
+.activity-society[hidden] {
+
+    display: none !important;
+}
+
+
+.activity-society span {
+
+    font-size: 8px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255, 255, 255, 0.52);
+}
+
+
+.activity-society strong {
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    color: #fff;
+}
+
+
+@media (max-width: 650px) {
+
+    .activity-society {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+
+        max-width: 100%;
+
+        margin:
+            11px 0 15px;
+
+        padding:
+            7px 9px;
+    }
+
+
+    .activity-society span {
+
+        font-size: 6px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .activity-society strong {
+
+        font-size: 11px;
+
+        letter-spacing: 0.4px;
+    }
+
+}
+
+/* =========================================================
+   COME CONTATTARCI — ICONE
+========================================================= */
+
+.activity-contact-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 13px;
+}
+
+
+.activity-contact-heading
+.activity-contact-label {
+
+    margin-bottom: 0;
+}
+
+
+.activity-contact-icon {
+
+    width: 31px;
+    height: 31px;
+
+    flex: 0 0 31px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #fff;
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.22);
+}
+
+
+.activity-contact-icon svg {
+
+    width: 16px;
+    height: 16px;
+
+    display: block;
+}
+
+
+/* WHATSAPP */
+
+.activity-contact-icon-whatsapp {
+
+    background:
+        #1F9D55;
+}
+
+
+.activity-contact-icon-whatsapp svg {
+
+    fill: currentColor;
+}
+
+
+/* EMAIL */
+
+.activity-contact-icon-email {
+
+    background:
+        #5A9CCB;
+}
+
+
+.activity-contact-icon-email svg {
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* INSTAGRAM */
+
+.activity-contact-icon-instagram {
+
+    background:
+        linear-gradient(
+            135deg,
+            #C9A35A 0%,
+            #C26A34 30%,
+            #A83E70 58%,
+            #713E91 78%,
+            #465A9E 100%
+        );
+}
+
+
+.activity-contact-icon-instagram svg {
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+}
+
+
+/* FACEBOOK */
+
+.activity-contact-icon-facebook {
+
+    background:
+        #4267B2;
+}
+
+
+.activity-contact-icon-facebook svg {
+
+    width: 15px;
+    height: 15px;
+
+    fill: currentColor;
+}
+
+
+@media (max-width: 760px) {
+
+    .activity-contact-heading {
+
+        gap: 9px;
+
+        margin-bottom: 11px;
+    }
+
+
+    .activity-contact-icon {
+
+        width: 29px;
+        height: 29px;
+
+        flex-basis: 29px;
+    }
+
+
+    .activity-contact-icon svg {
+
+        width: 15px;
+        height: 15px;
+    }
+
 }
