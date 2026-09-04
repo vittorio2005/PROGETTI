@@ -2941,3 +2941,154 @@ a {
     }
 
 }
+
+/* =========================================================
+   LINK GLOBALE — TORNA ALLA HOME
+========================================================= */
+
+.global-home-link {
+    position: fixed;
+
+    top:
+        max(16px, env(safe-area-inset-top));
+
+    left:
+        max(18px, env(safe-area-inset-left));
+
+    z-index: 10000;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.global-home-link img {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 auto;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.72))
+        drop-shadow(0 0 12px rgba(0, 0, 0, 0.42));
+}
+
+
+.global-home-link span {
+    font-size: 10px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    color: #fff;
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 1),
+        0 0 8px rgba(0, 0, 0, 0.95),
+        0 0 16px rgba(0, 0, 0, 0.75);
+}
+
+
+.global-home-link:hover {
+    transform:
+        translateX(3px);
+}
+
+
+.global-home-link:hover img {
+    filter:
+        drop-shadow(0 4px 7px rgba(0, 0, 0, 0.78))
+        drop-shadow(0 0 15px rgba(255, 255, 255, 0.10));
+}
+
+
+@media (max-width: 600px) {
+
+    .global-home-link {
+        top:
+            max(11px, env(safe-area-inset-top));
+
+        left:
+            max(11px, env(safe-area-inset-left));
+
+        gap: 8px;
+    }
+
+
+    .global-home-link img {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .global-home-link span {
+        font-size: 8px;
+
+        letter-spacing: 1.25px;
+    }
+}
+
+/* Testo "Torna alla Home":
+   visibile solo mentre il logo si trova nel range della hero iniziale. */
+
+.global-home-link {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        gap 0.28s ease;
+}
+
+.global-home-link span {
+    display: block;
+
+    max-width: 180px;
+
+    overflow: hidden;
+
+    opacity: 1;
+
+    transform:
+        translateX(0);
+
+    transition:
+        max-width 0.28s ease,
+        opacity 0.20s ease,
+        transform 0.28s ease;
+}
+
+.global-home-link.home-label-hidden {
+    gap: 0;
+}
+
+.global-home-link.home-label-hidden span {
+    max-width: 0;
+
+    opacity: 0;
+
+    transform:
+        translateX(-8px);
+
+    pointer-events: none;
+}

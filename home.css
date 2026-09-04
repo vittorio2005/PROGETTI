@@ -1,0 +1,1991 @@
+/* =========================================================
+   STADIO ARTURO COLLANA
+   NUOVA HOMEPAGE — HOME.CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+::selection {
+    background: #fff;
+    color: #000;
+}
+
+
+/* =========================================================
+   HEADER ISTITUZIONALE
+========================================================= */
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    min-height: 118px;
+
+    z-index: 20;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        20px 4vw;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.82),
+            rgba(0, 0, 0, 0.35) 72%,
+            rgba(0, 0, 0, 0)
+        );
+}
+
+
+/* =========================================================
+   AREA SINISTRA HEADER
+========================================================= */
+
+.header-left {
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    margin:
+        0 auto;
+}
+
+
+.brand {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+
+.brand img {
+    width: 78px;
+    height: 78px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 7px 18px rgba(0, 0, 0, 0.42));
+}
+
+
+.brand span {
+    max-width: 150px;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+
+    font-weight: 800;
+
+    letter-spacing: 2.7px;
+}
+
+
+/* =========================================================
+   CONTATTI RAPIDI HEADER
+========================================================= */
+
+.header-contacts {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    flex-wrap: wrap;
+}
+
+
+.header-contact {
+    min-height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.25px;
+
+    text-transform: uppercase;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.header-contact svg {
+    width: 17px;
+    height: 17px;
+
+    flex: 0 0 auto;
+
+    fill: currentColor;
+
+    stroke: currentColor;
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.header-contact span {
+    color: #fff;
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.22);
+}
+
+
+.header-contact-whatsapp svg {
+    stroke: none;
+}
+
+
+.header-contact-instagram svg,
+.header-contact-email svg {
+    fill: none;
+}
+
+
+.header-contact:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    border-color:
+        rgba(255, 255, 255, 0.35);
+
+    color: #fff;
+
+    box-shadow:
+        0 9px 25px rgba(0, 0, 0, 0.24);
+}
+
+
+.header-contact-whatsapp {
+    background:
+        #1F9D55;
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+
+    color: #fff;
+
+    box-shadow:
+        0 6px 18px rgba(31, 157, 85, 0.14);
+}
+
+
+.header-contact-instagram {
+    background:
+        linear-gradient(
+            135deg,
+            #C9A35A 0%,
+            #C26A34 30%,
+            #A83E70 58%,
+            #713E91 78%,
+            #465A9E 100%
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+
+    color: #fff;
+
+    box-shadow:
+        0 6px 18px rgba(113, 62, 145, 0.14);
+}
+
+
+.header-contact-email {
+    background:
+        #5A9CCB;
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+
+    color: #07131c;
+
+    box-shadow:
+        0 6px 18px rgba(90, 156, 203, 0.14);
+}
+
+
+.header-contact-email span {
+    color: #07131c;
+
+    text-shadow:
+        0 1px 1px rgba(255, 255, 255, 0.18);
+}
+
+
+.header-contact-whatsapp:hover {
+    background:
+        #24AD61;
+
+    border-color:
+        rgba(255, 255, 255, 0.20);
+}
+
+
+.header-contact-instagram:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #D3AF67 0%,
+            #D1763D 30%,
+            #B84A7C 58%,
+            #80489D 78%,
+            #5368AE 100%
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.22);
+}
+
+
+.header-contact-email:hover {
+    background:
+        #6AA8D2;
+
+    border-color:
+        rgba(255, 255, 255, 0.20);
+
+    color: #061018;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.home-hero {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.82) 38%,
+            rgba(0, 0, 0, 0.42) 72%,
+            rgba(0, 0, 0, 0.5) 100%
+        ),
+        url("home-collana.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.home-hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 72% 42%,
+            rgba(48, 148, 201, 0.10),
+            transparent 42%
+        );
+}
+
+
+.home-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(1050px, 88%);
+
+    margin-left: 9vw;
+
+    padding-top: 100px;
+}
+
+
+.eyebrow,
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 22px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(255, 255, 255, 0.62);
+}
+
+
+.home-hero h1 {
+    max-width: 1050px;
+
+    font-size:
+        clamp(68px, 10vw, 150px);
+
+    line-height: 0.84;
+
+    letter-spacing: -6px;
+
+    text-transform: uppercase;
+}
+
+
+.home-hero p {
+    max-width: 690px;
+
+    margin-top: 32px;
+
+    font-size:
+        clamp(17px, 1.55vw, 22px);
+
+    line-height: 1.6;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+}
+
+
+/* =========================================================
+   PULSANTI
+========================================================= */
+
+.hero-actions,
+.location-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 38px;
+}
+
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    min-height: 52px;
+
+    padding:
+        14px 23px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.28);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.primary-btn {
+    background: #fff;
+    color: #000;
+
+    border-color: #fff;
+}
+
+
+.secondary-btn {
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color: #fff;
+}
+
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform:
+        translateY(-3px);
+}
+
+
+.secondary-btn:hover {
+    background: #fff;
+    color: #000;
+
+    border-color: #fff;
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+.scroll-cue {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    bottom: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 9px;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+}
+
+
+.scroll-cue-line {
+    width: 1px;
+    height: 34px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fff,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   FASCIA ENTI ISTITUZIONALI
+========================================================= */
+
+.institutional-strip {
+    position: relative;
+
+    z-index: 6;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding:
+        22px 6vw 24px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #050505 100%
+        );
+}
+
+
+.institutional-strip-inner {
+    width:
+        min(1380px, 100%);
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(230px, 0.72fr)
+        minmax(520px, 1.28fr);
+
+    align-items: center;
+
+    gap:
+        clamp(40px, 7vw, 110px);
+}
+
+
+.institutional-strip-copy {
+    max-width: 370px;
+}
+
+
+.institutional-kicker {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 3.2px;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+}
+
+
+.institutional-strip-copy p {
+    font-size:
+        clamp(14px, 1.15vw, 17px);
+
+    line-height: 1.55;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+}
+
+
+.institutional-links {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        1px
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap:
+        clamp(24px, 3vw, 46px);
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+.institutional-divider {
+    width: 1px;
+    height: 94px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.16),
+            transparent
+        );
+}
+
+
+.institutional-partner {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #fff;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+.institutional-partner-logo {
+    width:
+        min(295px, 100%);
+
+    height: 128px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: transparent;
+}
+
+
+.institutional-partner-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transform:
+        scale(1);
+
+    filter:
+        contrast(1.03)
+        saturate(1.02);
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+.institutional-partner-action {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.38);
+
+    transition:
+        color 0.3s ease;
+}
+
+
+.institutional-partner:hover {
+    transform:
+        translateY(-3px);
+}
+
+
+.institutional-partner:hover
+.institutional-partner-logo img {
+    transform:
+        scale(1.035);
+
+    filter:
+        contrast(1.06)
+        saturate(1.05);
+}
+
+
+.institutional-partner:hover
+.institutional-partner-action {
+    color:
+        rgba(255, 255, 255, 0.82);
+}
+
+
+/* =========================================================
+   SEZIONI GENERALI
+========================================================= */
+
+.home-section {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 85vh;
+
+    padding:
+        120px 8vw;
+
+    overflow: hidden;
+}
+
+
+.section-number {
+    position: absolute;
+
+    top: 120px;
+    right: 8vw;
+
+    font-size:
+        clamp(70px, 10vw, 150px);
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    color:
+        rgba(255, 255, 255, 0.035);
+}
+
+
+.section-copy {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 780px;
+}
+
+
+.home-section h2 {
+    font-size:
+        clamp(50px, 7.5vw, 110px);
+
+    line-height: 0.9;
+
+    letter-spacing: -4px;
+}
+
+
+.home-section p {
+    max-width: 650px;
+
+    margin-top: 30px;
+
+    font-size:
+        clamp(16px, 1.4vw, 20px);
+
+    line-height: 1.7;
+
+    color:
+        rgba(255, 255, 255, 0.62);
+}
+
+
+.text-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   IL COLLANA OGGI
+========================================================= */
+
+.intro-section {
+    display: flex;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            #181818 0%,
+            #090909 45%,
+            #050505 75%
+        );
+}
+
+
+/* =========================================================
+   STORIA
+========================================================= */
+
+.history-section {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.82) 43%,
+            rgba(0, 0, 0, 0.52) 72%,
+            rgba(0, 0, 0, 0.38) 100%
+        ),
+        url("fotoCollana.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.history-content {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(1050px, 92%);
+}
+
+
+.history-section-number {
+    z-index: 2;
+}
+
+
+.history-years {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 1px;
+
+    margin-top: 48px;
+    margin-bottom: 36px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+}
+
+
+.history-years article {
+    min-height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px;
+
+    background:
+        rgba(8, 8, 8, 0.93);
+}
+
+
+.history-years strong {
+    font-size: 30px;
+}
+
+
+.history-years span {
+    max-width: 180px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+}
+
+
+/* =========================================================
+   ATTIVITÀ
+========================================================= */
+
+.activities-section {
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.78) 34%,
+            rgba(0, 0, 0, 0.48) 62%,
+            rgba(0, 0, 0, 0.28) 100%
+        ),
+        url("fotoattivita.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.activities-section .primary-btn {
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   DOVE SIAMO
+========================================================= */
+
+.location-section {
+    min-height: 80vh;
+
+    display: grid;
+
+    grid-template-columns:
+        55% 45%;
+
+    padding: 0;
+
+    background: #050505;
+}
+
+
+/* FOTO PIAZZA QUATTRO GIORNATE */
+
+.location-photo {
+    position: relative;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        url("piazza-quattro-giornate.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.location-photo::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.90) 0%,
+            rgba(0, 0, 0, 0.78) 35%,
+            rgba(0, 0, 0, 0.58) 68%,
+            rgba(0, 0, 0, 0.46) 100%
+        );
+}
+
+
+.location-copy {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    width:
+        min(720px, 88%);
+
+    padding:
+        100px 7vw;
+}
+
+
+.location-copy h2 {
+    font-size:
+        clamp(55px, 7vw, 95px);
+}
+
+
+.location-copy p {
+    max-width: 520px;
+}
+
+
+/* FOTO / SCREENSHOT GOOGLE MAPS */
+
+.location-map-card {
+    position: relative;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    display: block;
+
+    background: #0a0a0a;
+
+    border-left:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.location-map-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.35s ease;
+}
+
+
+.location-map-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.34) 0%,
+            rgba(0, 0, 0, 0.04) 34%,
+            rgba(0, 0, 0, 0) 58%
+        );
+
+    pointer-events: none;
+}
+
+
+.location-map-label {
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        11px 15px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.24);
+
+    background:
+        rgba(0, 0, 0, 0.60);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    color: #fff;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.location-map-card:hover img {
+    transform:
+        scale(1.02);
+
+    filter:
+        brightness(1.04);
+}
+
+
+.location-map-card:hover
+.location-map-label {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(0, 0, 0, 0.76);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    display: grid;
+
+    grid-template-columns:
+        auto
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding:
+        35px 5vw;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background: #020202;
+}
+
+
+.footer-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.footer-brand img {
+    width: 65px;
+    height: 65px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+}
+
+
+.footer-brand div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.footer-brand strong {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+.footer-brand span {
+    font-size: 11px;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+}
+
+
+.footer-contacts {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 9px;
+
+    flex-wrap: wrap;
+
+    margin-left: 6px;
+}
+
+
+.footer-contacts .header-contact {
+    min-height: 40px;
+
+    padding:
+        9px 13px;
+}
+
+
+.footer-logos {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 18px;
+
+    padding: 0;
+
+    margin-left: auto;
+
+    background: transparent;
+}
+
+
+.footer-logo-link {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: visible;
+
+    width: 155px;
+    height: 68px;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+.footer-logo-link img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transform:
+        scale(1);
+}
+
+
+.footer-logo-link:hover {
+    transform:
+        translateY(-2px);
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .site-header {
+        min-height: 96px;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding:
+            16px 22px;
+    }
+
+    .header-left {
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 15px;
+    }
+
+    .brand span {
+        display: none;
+    }
+
+    .brand img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .header-contacts {
+        max-width: 310px;
+
+        gap: 7px;
+    }
+
+    .header-contact {
+        min-height: 38px;
+
+        padding:
+            8px 11px;
+
+        font-size: 8px;
+    }
+
+    .institutional-strip {
+        padding:
+            34px 25px;
+    }
+
+    .institutional-strip-inner {
+        grid-template-columns:
+            1fr;
+
+        gap: 28px;
+    }
+
+    .institutional-strip-copy {
+        max-width: 520px;
+    }
+
+    .institutional-links {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .institutional-partner-logo {
+        width:
+            min(275px, 100%);
+
+        height: 118px;
+    }
+
+    .home-hero-content {
+        margin-left: 7vw;
+    }
+
+    .history-years {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .location-section {
+        grid-template-columns:
+            1fr;
+    }
+
+    .location-photo,
+    .location-map-card {
+        min-height: 520px;
+    }
+
+    .location-copy {
+        width:
+            min(720px, calc(100% - 50px));
+
+        padding:
+            80px 25px;
+    }
+
+    .site-footer {
+        grid-template-columns:
+            auto
+            1fr;
+
+        gap:
+            20px 18px;
+    }
+
+    .footer-contacts {
+        justify-content: flex-start;
+    }
+
+    .footer-logos {
+        grid-column:
+            1 / -1;
+
+        justify-content: flex-end;
+    }
+
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .site-header {
+        position: absolute;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 100%;
+
+        padding:
+            12px 14px;
+    }
+
+    .header-left {
+        min-width: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        margin:
+            0 auto;
+    }
+
+    .brand img {
+        width: 54px;
+        height: 54px;
+    }
+
+    .header-contacts {
+        justify-content: center;
+
+        gap: 6px;
+    }
+
+    .header-contact {
+        min-height: 34px;
+
+        gap: 6px;
+
+        padding:
+            7px 9px;
+
+        font-size: 7px;
+
+        letter-spacing: 0.9px;
+    }
+
+    .header-contact svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .institutional-strip {
+        padding:
+            32px 22px;
+    }
+
+    .institutional-strip-inner {
+        gap: 24px;
+    }
+
+    .institutional-strip-copy {
+        text-align: center;
+
+        margin:
+            0 auto;
+    }
+
+    .institutional-links {
+        grid-template-columns:
+            1fr;
+
+        gap: 20px;
+    }
+
+    .institutional-divider {
+        width: 70%;
+        height: 1px;
+
+        margin:
+            0 auto;
+
+        background:
+            linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.16),
+                transparent
+            );
+    }
+
+    .institutional-links {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .institutional-partner-logo {
+        width:
+            min(255px, 82vw);
+
+        height: 108px;
+    }
+
+    .institutional-partner-action {
+        font-size: 7px;
+    }
+
+    .home-hero {
+        align-items: flex-end;
+
+        background-position:
+            58% center;
+    }
+
+    .home-hero-content {
+        width:
+            calc(100% - 44px);
+
+        margin:
+            0 22px 105px;
+
+        padding-top: 150px;
+    }
+
+    .home-hero h1 {
+        font-size:
+            clamp(52px, 16vw, 78px);
+
+        line-height: 0.88;
+
+        letter-spacing: -3px;
+    }
+
+    .home-hero p {
+        margin-top: 23px;
+
+        font-size: 15px;
+
+        line-height: 1.55;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+    .home-section {
+        min-height: auto;
+
+        padding:
+            90px 25px;
+    }
+
+    .section-number {
+        top: 55px;
+        right: 20px;
+    }
+
+    .home-section h2 {
+        font-size:
+            clamp(45px, 13vw, 65px);
+
+        letter-spacing: -2px;
+    }
+
+    .history-section {
+        min-height: auto;
+
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .activities-section {
+        background-position:
+            58% center;
+    }
+
+
+    .history-years {
+        grid-template-columns:
+            1fr;
+
+        margin-top: 35px;
+    }
+
+    .history-years article {
+        min-height: 120px;
+    }
+
+    .location-copy {
+        width:
+            calc(100% - 44px);
+
+        padding:
+            80px 22px;
+    }
+
+    .location-photo {
+        min-height: 520px;
+
+        background-position:
+            58% center;
+    }
+
+    .location-map-card {
+        min-height: 400px;
+    }
+
+    .location-map-label {
+        left: 16px;
+        bottom: 16px;
+
+        padding:
+            10px 13px;
+
+        font-size: 8px;
+    }
+
+    .site-footer {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 16px;
+
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-brand div {
+        align-items: center;
+    }
+
+    .footer-contacts {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 7px;
+    }
+
+    .footer-contacts .header-contact {
+        min-height: 36px;
+
+        padding:
+            8px 10px;
+
+        font-size: 7px;
+    }
+
+    .footer-logos {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .footer-logo-link {
+        width: 145px;
+        height: 62px;
+    }
+
+}
+
+
+/* =========================================================
+   RIDUZIONE ANIMAZIONI
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration:
+            0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
+    }
+
+}
+
+/* =========================================================
+   LINK GLOBALE — TORNA ALLA HOME
+========================================================= */
+
+.global-home-link {
+    position: fixed;
+
+    top:
+        max(16px, env(safe-area-inset-top));
+
+    left:
+        max(18px, env(safe-area-inset-left));
+
+    z-index: 10000;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.global-home-link img {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 auto;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.72))
+        drop-shadow(0 0 12px rgba(0, 0, 0, 0.42));
+}
+
+
+.global-home-link span {
+    font-size: 10px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    color: #fff;
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 1),
+        0 0 8px rgba(0, 0, 0, 0.95),
+        0 0 16px rgba(0, 0, 0, 0.75);
+}
+
+
+.global-home-link:hover {
+    transform:
+        translateX(3px);
+}
+
+
+.global-home-link:hover img {
+    filter:
+        drop-shadow(0 4px 7px rgba(0, 0, 0, 0.78))
+        drop-shadow(0 0 15px rgba(255, 255, 255, 0.10));
+}
+
+
+@media (max-width: 600px) {
+
+    .global-home-link {
+        top:
+            max(11px, env(safe-area-inset-top));
+
+        left:
+            max(11px, env(safe-area-inset-left));
+
+        gap: 8px;
+    }
+
+
+    .global-home-link img {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .global-home-link span {
+        font-size: 8px;
+
+        letter-spacing: 1.25px;
+    }
+}
+
+/* Testo "Torna alla Home":
+   visibile solo mentre il logo si trova nel range della hero iniziale. */
+
+.global-home-link {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        gap 0.28s ease;
+}
+
+.global-home-link span {
+    display: block;
+
+    max-width: 180px;
+
+    overflow: hidden;
+
+    opacity: 1;
+
+    transform:
+        translateX(0);
+
+    transition:
+        max-width 0.28s ease,
+        opacity 0.20s ease,
+        transform 0.28s ease;
+}
+
+.global-home-link.home-label-hidden {
+    gap: 0;
+}
+
+.global-home-link.home-label-hidden span {
+    max-width: 0;
+
+    opacity: 0;
+
+    transform:
+        translateX(-8px);
+
+    pointer-events: none;
+}

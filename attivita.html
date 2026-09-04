@@ -19,6 +19,22 @@
 
 <body>
 
+    <a
+        class="global-home-link"
+        href="index.html"
+        aria-label="Torna alla Home">
+
+        <img
+            src="logocollana.jpg"
+            alt="Stadio Arturo Collana">
+
+        <span>
+            Torna alla Home
+        </span>
+
+    </a>
+
+
 
 <main class="activity-page">
 
@@ -27,7 +43,7 @@
          HERO
          ===================================================== -->
 
-    <section class="activity-hero">
+    <section class="activity-hero" data-home-link-range>
 
         <div class="activity-hero-image"></div>
 
@@ -444,22 +460,22 @@
         <div class="location-map">
 
             <a
-    class="map-placeholder"
-    href="https://maps.app.goo.gl/FSNZKndsXrzMiEN69"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Apri lo Stadio Arturo Collana su Google Maps">
+                class="map-placeholder"
+                href="https://www.google.com/maps/search/?api=1&query=40.8452654, 14.2239417"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Apri lo Stadio Arturo Collana su Google Maps">
 
-    <img
-        class="map-image"
-        src="mappa-collana.jpg"
-        alt="Mappa della posizione dello Stadio Arturo Collana">
+                <img
+                    class="map-image"
+                    src="mappa-collana.jpg"
+                    alt="Mappa della posizione dello Stadio Arturo Collana">
 
-    <span>
-        APRI SU GOOGLE MAPS →
-    </span>
+                <span>
+                    APRI SU GOOGLE MAPS →
+                </span>
 
-</a>
+            </a>
 
         </div>
 
@@ -475,6 +491,50 @@
      ========================================================= -->
 
 <script src="attivita.js"></script>
+
+
+
+<script>
+(function () {
+    const homeLink = document.querySelector(".global-home-link");
+    const range = document.querySelector("[data-home-link-range]");
+
+    if (!homeLink || !range) {
+        return;
+    }
+
+    function updateHomeLinkLabel() {
+        const rangeRect = range.getBoundingClientRect();
+        const linkRect = homeLink.getBoundingClientRect();
+
+        /*
+         * Il testo resta visibile finché il punto occupato dal link
+         * si trova ancora dentro la hero iniziale.
+         * Appena la hero scorre sopra il logo, il testo si richiude.
+         */
+        const isInsideInitialHero =
+            rangeRect.bottom > linkRect.top + linkRect.height;
+
+        homeLink.classList.toggle(
+            "home-label-hidden",
+            !isInsideInitialHero
+        );
+    }
+
+    updateHomeLinkLabel();
+
+    window.addEventListener(
+        "scroll",
+        updateHomeLinkLabel,
+        { passive: true }
+    );
+
+    window.addEventListener(
+        "resize",
+        updateHomeLinkLabel
+    );
+})();
+</script>
 
 
 </body>
