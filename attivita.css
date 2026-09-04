@@ -3996,9 +3996,11 @@ a {
 }
 
 /* =========================================================
-   MOBILE — INQUADRATURA FOTO PAGINE DETTAGLIO
-   Su smartphone mostriamo tutta la larghezza della foto
-   invece di usare "cover", che taglia molto i lati.
+   MOBILE — FOTO DEDICATE NEL DETTAGLIO ATTIVITÀ
+   ---------------------------------------------------------
+   Hero, sezione descrizione e sezione corsi utilizzano
+   la stessa fotografia verticale dedicata della disciplina.
+   Nessuno stretching e nessuno zoom artificiale.
 ========================================================= */
 
 @media (max-width: 700px) {
@@ -4007,25 +4009,20 @@ a {
     .story-image,
     .courses-background {
 
-        /*
-         * Mantiene le proporzioni originali.
-         * Tutta la larghezza entra nello schermo e,
-         * quando necessario, viene sacrificata soprattutto
-         * la parte inferiore invece dei lati.
-         */
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
         background-size:
-            100% auto !important;
+            cover !important;
 
         background-position:
-            center top !important;
+            center center !important;
 
         background-repeat:
             no-repeat !important;
 
-        /*
-         * Il parallax desktop applicava anche scale(1.05),
-         * causando un ulteriore taglio laterale.
-         */
         transform:
             none !important;
 
@@ -4035,8 +4032,8 @@ a {
 
 
     /*
-     * Rendiamo più naturale il passaggio tra la fotografia
-     * superiore e la parte scura della pagina.
+     * Hero: immagine leggibile in alto e contrasto
+     * progressivo nella zona occupata dai testi.
      */
 
     .activity-hero-overlay {
@@ -4045,11 +4042,24 @@ a {
             linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.08) 0%,
-                rgba(0, 0, 0, 0.18) 28%,
-                rgba(0, 0, 0, 0.52) 55%,
-                rgba(0, 0, 0, 0.88) 78%,
-                #000 100%
+                rgba(0, 0, 0, 0.14) 30%,
+                rgba(0, 0, 0, 0.38) 55%,
+                rgba(0, 0, 0, 0.72) 78%,
+                rgba(0, 0, 0, 0.90) 100%
             ) !important;
+    }
+
+
+    /*
+     * Sezione "L'attività":
+     * lasciamo visibile il soggetto e proteggiamo
+     * la leggibilità del testo nella parte bassa.
+     */
+
+    .story-image {
+
+        opacity:
+            0.72;
     }
 
 
@@ -4058,11 +4068,54 @@ a {
         background:
             linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.05) 0%,
-                rgba(0, 0, 0, 0.22) 32%,
-                rgba(0, 0, 0, 0.72) 65%,
-                rgba(0, 0, 0, 0.97) 100%
+                rgba(0, 0, 0, 0.08) 0%,
+                rgba(0, 0, 0, 0.24) 34%,
+                rgba(0, 0, 0, 0.66) 67%,
+                rgba(0, 0, 0, 0.96) 100%
             ) !important;
+    }
+
+
+    /*
+     * Corsi e orari:
+     * la foto resta presente ma leggermente più
+     * attenuata per non disturbare le card.
+     */
+
+    .courses-background {
+
+        opacity:
+            0.42;
+    }
+
+}
+
+/* =========================================================
+   MOBILE — FIX TITOLI HERO LUNGHI
+   Evita che titoli come "TENNISTAVOLO" escano dallo schermo.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .activity-hero h1 {
+
+        width: 100%;
+        max-width: 100%;
+
+        font-size:
+            clamp(40px, 11vw, 52px);
+
+        line-height:
+            0.94;
+
+        letter-spacing:
+            -2px;
+
+        overflow-wrap:
+            normal;
+
+        word-break:
+            normal;
     }
 
 }

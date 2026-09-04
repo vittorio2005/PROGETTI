@@ -123,6 +123,75 @@ const defaultActivityContacts = {
    DATI ATTIVITÀ
    ========================================================= */
 
+
+
+/* =========================================================
+   IMMAGINI DEDICATE MOBILE
+   ---------------------------------------------------------
+   Le pagine attività singole usano le stesse immagini
+   verticali già preparate per l'elenco attività.
+   La Piscina mantiene la fotografia desktop originale.
+========================================================= */
+
+const mobileActivityImages = {
+
+    atletica:
+        "atletica-mobile.jpg",
+
+    arti:
+        "artimarziali-mobile.jpg",
+
+    taekwondo:
+        "taekwondo-mobile.jpg",
+
+    kickboxing:
+        "kickboxing-mobile.jpg",
+
+    mma:
+        "mma-mobile.jpg",
+
+    pugilato:
+        "pugilato-mobile.jpg",
+
+    ginnastica:
+        "ginnastica-mobile.jpg",
+
+    tennistavolo:
+        "tennistavolo-mobile.jpg",
+
+    danza:
+        "danza-mobile.jpg"
+
+};
+
+
+function isActivityMobile() {
+
+    return window.matchMedia(
+        "(max-width: 700px)"
+    ).matches;
+
+}
+
+
+function getActivityResponsiveImage(
+    desktopImage
+) {
+
+    if (
+        isActivityMobile() &&
+        mobileActivityImages[sport]
+    ) {
+
+        return mobileActivityImages[sport];
+
+    }
+
+    return desktopImage;
+
+}
+
+
 const activities = {
 
     atletica: {
@@ -2348,13 +2417,39 @@ function setupActivityContacts(
    PARALLAX
    ========================================================= */
 
-
-   /* ========================================================= */
-
 let ticking = false;
 
 
 function updateParallax() {
+
+    /*
+     * Le fotografie verticali mobile sono già composte
+     * appositamente per lo schermo del telefono.
+     * Evitiamo quindi zoom/parallax che ne altererebbero
+     * nuovamente l'inquadratura.
+     */
+
+    if (isActivityMobile()) {
+
+        if (heroImage) {
+            heroImage.style.transform =
+                "none";
+        }
+
+        if (storyImage) {
+            storyImage.style.transform =
+                "none";
+        }
+
+        if (coursesBackground) {
+            coursesBackground.style.transform =
+                "none";
+        }
+
+        ticking = false;
+        return;
+    }
+
 
     const scrollY =
         window.scrollY;
@@ -2605,37 +2700,56 @@ function initActivityPage() {
      * Immagini
      */
 
-    if (heroImage && activity.heroImage) {
-
-        heroImage.style.backgroundImage =
-            `url("${activity.heroImage}")`;
-
-        preloadImage(
+    const responsiveHeroImage =
+        getActivityResponsiveImage(
             activity.heroImage
         );
 
-    }
+    const responsiveStoryImage =
+        getActivityResponsiveImage(
+            activity.storyImage
+        );
+
+    const responsiveCoursesImage =
+        getActivityResponsiveImage(
+            activity.coursesImage
+        );
 
 
-    if (storyImage && activity.storyImage) {
+    if (heroImage && responsiveHeroImage) {
 
-        storyImage.style.backgroundImage =
-            `url("${activity.storyImage}")`;
+        heroImage.style.backgroundImage =
+            `url("${responsiveHeroImage}")`;
 
         preloadImage(
-            activity.storyImage
+            responsiveHeroImage
         );
 
     }
 
 
-    if (coursesBackground && activity.coursesImage) {
+    if (storyImage && responsiveStoryImage) {
 
-        coursesBackground.style.backgroundImage =
-            `url("${activity.coursesImage}")`;
+        storyImage.style.backgroundImage =
+            `url("${responsiveStoryImage}")`;
 
         preloadImage(
-            activity.coursesImage
+            responsiveStoryImage
+        );
+
+    }
+
+
+    if (
+        coursesBackground &&
+        responsiveCoursesImage
+    ) {
+
+        coursesBackground.style.backgroundImage =
+            `url("${responsiveCoursesImage}")`;
+
+        preloadImage(
+            responsiveCoursesImage
         );
 
     }
