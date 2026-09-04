@@ -3995,3 +3995,74 @@ a {
     }
 }
 
+/* =========================================================
+   MOBILE — INQUADRATURA FOTO PAGINE DETTAGLIO
+   Su smartphone mostriamo tutta la larghezza della foto
+   invece di usare "cover", che taglia molto i lati.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .activity-hero-image,
+    .story-image,
+    .courses-background {
+
+        /*
+         * Mantiene le proporzioni originali.
+         * Tutta la larghezza entra nello schermo e,
+         * quando necessario, viene sacrificata soprattutto
+         * la parte inferiore invece dei lati.
+         */
+        background-size:
+            100% auto !important;
+
+        background-position:
+            center top !important;
+
+        background-repeat:
+            no-repeat !important;
+
+        /*
+         * Il parallax desktop applicava anche scale(1.05),
+         * causando un ulteriore taglio laterale.
+         */
+        transform:
+            none !important;
+
+        will-change:
+            auto !important;
+    }
+
+
+    /*
+     * Rendiamo più naturale il passaggio tra la fotografia
+     * superiore e la parte scura della pagina.
+     */
+
+    .activity-hero-overlay {
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.08) 0%,
+                rgba(0, 0, 0, 0.18) 28%,
+                rgba(0, 0, 0, 0.52) 55%,
+                rgba(0, 0, 0, 0.88) 78%,
+                #000 100%
+            ) !important;
+    }
+
+
+    .activity-story::after {
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.05) 0%,
+                rgba(0, 0, 0, 0.22) 32%,
+                rgba(0, 0, 0, 0.72) 65%,
+                rgba(0, 0, 0, 0.97) 100%
+            ) !important;
+    }
+
+}

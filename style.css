@@ -1018,3 +1018,69 @@ button {
         pointer-events: none;
     }
 }
+
+/* =========================================================
+   MOBILE — INQUADRATURA IMMAGINI ATTIVITÀ
+   Mantiene visibili i lati delle foto senza deformarle.
+   L'immagine viene adattata alla larghezza dello schermo;
+   l'eventuale parte eccedente viene assorbita verso il basso.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .sport-bg {
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        /*
+         * A differenza di "cover", 100% auto mantiene
+         * visibile tutta la larghezza della fotografia.
+         */
+        background-size:
+            100% auto !important;
+
+        background-position:
+            center top !important;
+
+        background-repeat:
+            no-repeat !important;
+
+        /*
+         * Su mobile eliminiamo lo zoom che tagliava
+         * ulteriormente i lati.
+         */
+        transform:
+            none !important;
+    }
+
+
+    .sport-section.active .sport-bg {
+
+        transform:
+            none !important;
+    }
+
+
+    /*
+     * La parte inferiore sfuma nel nero, così se la foto
+     * termina prima del fondo dello schermo il passaggio
+     * rimane naturale e il testo resta leggibile.
+     */
+
+    .overlay {
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.10) 0%,
+                rgba(0, 0, 0, 0.20) 30%,
+                rgba(0, 0, 0, 0.58) 58%,
+                rgba(0, 0, 0, 0.92) 82%,
+                #000 100%
+            ) !important;
+    }
+
+}
