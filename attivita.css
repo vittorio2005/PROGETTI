@@ -4119,3 +4119,485 @@ a {
     }
 
 }
+
+/* =========================================================
+   FEDERAZIONE / FEDERAZIONI — HERO
+   ---------------------------------------------------------
+   I JPG possono avere misure e proporzioni differenti:
+   vengono adattati senza deformazioni con object-fit: contain.
+========================================================= */
+
+.activity-federations-hero {
+
+    width:
+        fit-content;
+
+    max-width:
+        520px;
+
+    margin:
+        0 0 22px 0;
+}
+
+
+.activity-federations-hero[hidden] {
+
+    display:
+        none !important;
+}
+
+
+.activity-federations-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+}
+
+
+.activity-federations-logos {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    align-items:
+        flex-end;
+
+    gap:
+        10px;
+}
+
+
+/* Riquadro uniforme, logo sempre proporzionato */
+.federation-logo-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        168px;
+
+    height:
+        108px;
+
+    padding:
+        8px 10px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius:
+        12px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.24);
+
+    overflow:
+        hidden;
+}
+
+
+.federation-logo {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    max-width:
+        148px;
+
+    max-height:
+        88px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        center;
+
+    filter:
+        none !important;
+
+    opacity:
+        1 !important;
+
+    mix-blend-mode:
+        normal !important;
+}
+
+
+/* Piscina: due federazioni nello stesso blocco */
+.has-multiple-federations
+.federation-logo-card {
+
+    width:
+        154px;
+
+    height:
+        106px;
+}
+
+
+.has-multiple-federations
+.federation-logo {
+
+    max-width:
+        134px;
+
+    max-height:
+        76px;
+}
+
+
+.federation-logo-name {
+
+    flex:
+        0 0 auto;
+
+    margin-top:
+        4px;
+
+    font-size:
+        8px;
+
+    line-height:
+        1;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.2px;
+
+    color:
+        #111;
+
+    text-align:
+        center;
+}
+
+
+/* Il nome società resta tra federazione e attività */
+.activity-federations-hero
++ .activity-society {
+
+    margin-top:
+        2px;
+}
+
+
+@media (max-width: 700px) {
+
+    .activity-federations-hero {
+
+        max-width:
+            100%;
+
+        margin-bottom:
+            16px;
+    }
+
+
+    .activity-federations-label {
+
+        margin-bottom:
+            8px;
+
+        font-size:
+            8px;
+
+        letter-spacing:
+            2.2px;
+    }
+
+
+    .activity-federations-logos {
+
+        gap:
+            8px;
+    }
+
+
+    .federation-logo-card {
+
+        width:
+            118px;
+
+        height:
+            78px;
+
+        padding:
+            6px 7px;
+
+        border-radius:
+            9px;
+    }
+
+
+    .federation-logo {
+
+        max-width:
+            104px;
+
+        max-height:
+            64px;
+    }
+
+
+    .has-multiple-federations
+    .federation-logo-card {
+
+        width:
+            108px;
+
+        height:
+            78px;
+    }
+
+
+    .has-multiple-federations
+    .federation-logo {
+
+        max-width:
+            94px;
+
+        max-height:
+            56px;
+    }
+
+
+    .federation-logo-name {
+
+        margin-top:
+            3px;
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            0.9px;
+    }
+
+
+    /*
+     * Con il logo nella HERO lasciamo più respiro
+     * e impediamo che il contenuto finisca fuori schermo.
+     */
+    .activity-hero-content {
+
+        margin-bottom:
+            48px;
+    }
+
+
+    .activity-scroll {
+
+        margin-top:
+            28px;
+    }
+
+}
+
+/* =========================================================
+   PULSANTE GLOBALE — INDIETRO
+   ---------------------------------------------------------
+   Torna alla pagina precedente senza obbligare l'utente
+   a passare dalla Home.
+========================================================= */
+
+.global-back-button {
+
+    position:
+        fixed;
+
+    top:
+        max(18px, env(safe-area-inset-top));
+
+    right:
+        max(18px, env(safe-area-inset-right));
+
+    z-index:
+        10000;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        9px;
+
+    min-height:
+        44px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(8, 8, 8, 0.48);
+
+    color:
+        #fff;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.28);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    font-family:
+        inherit;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.global-back-button:hover {
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    border-color:
+        rgba(255, 255, 255, 0.55);
+
+    transform:
+        translateX(-2px);
+}
+
+
+.global-back-button:focus-visible {
+
+    outline:
+        2px solid #fff;
+
+    outline-offset:
+        3px;
+}
+
+
+.global-back-button-arrow {
+
+    font-size:
+        20px;
+
+    line-height:
+        1;
+
+    font-weight:
+        400;
+}
+
+
+.global-back-button-label {
+
+    font-size:
+        10px;
+
+    line-height:
+        1;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+}
+
+
+@media (max-width: 650px) {
+
+    .global-back-button {
+
+        top:
+            max(9px, env(safe-area-inset-top));
+
+        right:
+            max(9px, env(safe-area-inset-right));
+
+        min-height:
+            38px;
+
+        padding:
+            0 11px;
+
+        gap:
+            6px;
+
+        background:
+            rgba(8, 8, 8, 0.56);
+    }
+
+
+    .global-back-button-arrow {
+
+        font-size:
+            18px;
+    }
+
+
+    .global-back-button-label {
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            1px;
+    }
+
+}

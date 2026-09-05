@@ -33,6 +33,21 @@ const description = document.getElementById(
     "activity-description"
 );
 
+const activityFederations =
+    document.getElementById(
+        "activity-federations"
+    );
+
+const activityFederationsLabel =
+    document.getElementById(
+        "activity-federations-label"
+    );
+
+const activityFederationsLogos =
+    document.getElementById(
+        "activity-federations-logos"
+    );
+
 const coursesContainer = document.getElementById(
     "courses-container"
 );
@@ -103,6 +118,195 @@ const sport = params.get("sport") || "arti";
  *     facebook: "https://facebook.com/..."
  * }
  */
+
+
+
+/* =========================================================
+   FEDERAZIONI DI RIFERIMENTO
+   ---------------------------------------------------------
+   Gli SVG vengono caricati come immagini esterne:
+   in questo modo mantengono i colori originali del file.
+   Non viene applicato alcun filtro CSS.
+========================================================= */
+
+const federationLogosByActivity = {
+
+    atletica: [
+        {
+            src: "federazione-atletica.jpg",
+            alt: "Federazione di riferimento per l'Atletica"
+        }
+    ],
+
+    arti: [
+        {
+            src: "federazione-artimarziali.jpg",
+            alt: "Federazione di riferimento per le Arti Marziali"
+        }
+    ],
+
+    taekwondo: [
+        {
+            src: "federazione-taekwondo.jpg",
+            alt: "Federazione di riferimento per il Taekwondo"
+        }
+    ],
+
+    kickboxing: [
+        {
+            src: "federazione-kickboxing.jpg",
+            alt: "Federazione di riferimento per la Kickboxing"
+        }
+    ],
+
+    mma: [
+        {
+            src: "federazione-mma.jpg",
+            fallback: "federazione-kickboxing.jpg",
+            alt: "Federazione di riferimento per le MMA"
+        }
+    ],
+
+    pugilato: [
+        {
+            src: "federazione-pugilato.jpg",
+            alt: "Federazione di riferimento per il Pugilato"
+        }
+    ],
+
+    ginnastica: [
+        {
+            src: "federazione-ginnastica.jpg",
+            alt: "Federazione di riferimento per la Ginnastica"
+        }
+    ],
+
+    tennistavolo: [
+        {
+            src: "federazione-tennistavolo.jpg",
+            alt: "Federazione di riferimento per il Tennistavolo"
+        }
+    ],
+
+    piscina: [
+        {
+            src: "federazione-piscina1.jpg",
+            fallback: "federazione-piscina.jpg",
+            alt: "Federazione di riferimento per il Triathlon",
+            label: "TRIATHLON"
+        },
+        {
+            src: "federazione-piscina2.jpg",
+            alt: "Federazione di riferimento per il Pentathlon",
+            label: "PENTATHLON"
+        }
+    ],
+
+    danza: [
+        {
+            src: "federazione-danza.jpg",
+            alt: "Federazione di riferimento per la Danza"
+        }
+    ]
+
+};
+
+function renderFederationLogos() {
+
+    if (
+        !activityFederations ||
+        !activityFederationsLogos
+    ) {
+        return;
+    }
+
+    const logos =
+        federationLogosByActivity[sport] || [];
+
+    activityFederationsLogos.innerHTML = "";
+
+    activityFederations.classList.toggle(
+        "has-multiple-federations",
+        logos.length > 1
+    );
+
+    if (!logos.length) {
+
+        activityFederations.hidden = true;
+        return;
+
+    }
+
+    if (activityFederationsLabel) {
+
+        activityFederationsLabel.textContent =
+            logos.length > 1
+                ? "FEDERAZIONI DI RIFERIMENTO"
+                : "FEDERAZIONE DI RIFERIMENTO";
+
+    }
+
+    activityFederationsLogos.innerHTML =
+        logos.map(logo => `
+
+            <div class="federation-logo-card">
+
+                <img
+                    class="federation-logo"
+                    src="${logo.src}"
+                    alt="${logo.alt}"
+                    loading="eager"
+                    decoding="async"
+                    ${logo.fallback ? `data-fallback="${logo.fallback}"` : ""}>
+
+                ${
+                    logo.label
+                        ? `
+                            <span class="federation-logo-name">
+                                ${logo.label}
+                            </span>
+                        `
+                        : ""
+                }
+
+            </div>
+
+        `).join("");
+
+    activityFederationsLogos
+        .querySelectorAll(
+            ".federation-logo[data-fallback]"
+        )
+        .forEach(image => {
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    const fallback =
+                        image.dataset.fallback;
+
+                    if (
+                        fallback &&
+                        !image.dataset.fallbackUsed
+                    ) {
+
+                        image.dataset.fallbackUsed =
+                            "true";
+
+                        image.src =
+                            fallback;
+
+                    }
+
+                }
+            );
+
+        });
+
+    activityFederations.hidden = false;
+
+}
 
 const defaultActivityContacts = {
 
@@ -2697,6 +2901,12 @@ function initActivityPage() {
 
 
     /*
+     * Federazione / Federazioni di riferimento
+     */
+    renderFederationLogos();
+
+
+    /*
      * Immagini
      */
 
@@ -2868,6 +3078,72 @@ window.addEventListener(
 
     }
 );
+
+
+
+
+/* =========================================================
+   PULSANTE — TORNA ALLA PAGINA PRECEDENTE
+   ---------------------------------------------------------
+   Se l'utente arriva da una pagina dello stesso sito,
+   torna realmente indietro nella cronologia.
+   Se la pagina è stata aperta direttamente, torna
+   all'elenco delle attività sportive.
+========================================================= */
+
+const globalBackButton =
+    document.getElementById(
+        "global-back-button"
+    );
+
+
+if (globalBackButton) {
+
+    globalBackButton.addEventListener(
+        "click",
+        () => {
+
+            let canGoBackInsideSite =
+                false;
+
+            if (document.referrer) {
+
+                try {
+
+                    const previousPage =
+                        new URL(
+                            document.referrer
+                        );
+
+                    canGoBackInsideSite =
+                        previousPage.origin ===
+                        window.location.origin;
+
+                } catch (error) {
+
+                    canGoBackInsideSite =
+                        false;
+
+                }
+
+            }
+
+
+            if (canGoBackInsideSite) {
+
+                window.history.back();
+
+            } else {
+
+                window.location.href =
+                    "attivita_sportive.html";
+
+            }
+
+        }
+    );
+
+}
 
 
 /* =========================================================
