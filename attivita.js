@@ -867,6 +867,15 @@ const activities = {
         storyImage: "kickboxing.jpg",
         coursesImage: "kickboxing.jpg",
 
+        people: [
+            {
+                firstName: "Gianluca",
+                lastName: "Amato",
+                role: "Dirigente Tecnico",
+                photo: "fotostaff-kickboxing.jpg"
+            }
+        ],
+
         courses: [
 
             {
@@ -905,6 +914,10 @@ const activities = {
     mma: {
 
         title: "MMA",
+
+        societyName:
+            "A.P.D. Il Falco Gym",
+
         subtitle: "Tecnica completa. Mentalità da combattente.",
         descriptionTitle: "Combatti con intelligenza.",
         description:
@@ -913,6 +926,15 @@ const activities = {
         heroImage: "mma.jpg",
         storyImage: "mma.jpg",
         coursesImage: "mma.jpg",
+
+        people: [
+            {
+                firstName: "Gianluca",
+                lastName: "Amato",
+                role: "Dirigente Tecnico",
+                photo: "fotostaff-kickboxing.jpg"
+            }
+        ],
 
         courses: [
 
@@ -1318,18 +1340,60 @@ function renderPerson(person) {
         return "";
     }
 
-    const phone = person.phone
-        ? `
-            <a
-                class="person-contact"
-                href="${phoneLink(person.phone)}"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Contatta ${escapeHTML(person.name || person.contactName || "il referente")} su WhatsApp">
-                ${escapeHTML(person.phone)}
-            </a>
-        `
-        : "";
+    /*
+     * Lo staff viene mostrato in modo essenziale:
+     * FOTO
+     * NOME
+     * COGNOME
+     * QUALIFICA / RUOLO
+     *
+     * I contatti restano nelle sezioni dedicate e non
+     * vengono ripetuti sotto alla fotografia.
+     */
+
+    const fullName =
+        String(
+            person.name ||
+            person.contactName ||
+            ""
+        ).trim();
+
+    let firstName =
+        String(
+            person.firstName || ""
+        ).trim();
+
+    let lastName =
+        String(
+            person.lastName || ""
+        ).trim();
+
+
+    /*
+     * Compatibilità con gli staff già presenti nel sito:
+     * se nome e cognome non sono stati ancora separati,
+     * li ricaviamo automaticamente dal nome completo.
+     */
+
+    if (!firstName && !lastName && fullName) {
+
+        const nameParts =
+            fullName.split(/\s+/);
+
+        firstName =
+            nameParts.shift() || "";
+
+        lastName =
+            nameParts.join(" ");
+
+    }
+
+
+    const photoStyle =
+        person.photo
+            ? `style="background-image: url('${escapeHTML(person.photo)}');"`
+            : "";
+
 
     return `
 
@@ -1337,26 +1401,34 @@ function renderPerson(person) {
 
             <div
                 class="person-photo"
-                aria-hidden="true">
+                ${photoStyle}
+                role="img"
+                aria-label="Foto di ${escapeHTML(`${firstName} ${lastName}`.trim() || "membro dello staff")}">
             </div>
 
             <div class="person-info">
 
+                <h3 class="person-name">
+
+                    <span class="person-first-name">
+                        ${escapeHTML(firstName)}
+                    </span>
+
+                    ${
+                        lastName
+                            ? `
+                                <span class="person-last-name">
+                                    ${escapeHTML(lastName)}
+                                </span>
+                            `
+                            : ""
+                    }
+
+                </h3>
+
                 <span class="person-role">
                     ${escapeHTML(person.role || person.contactRole || "Staff")}
                 </span>
-
-                <h3>
-                    ${escapeHTML(person.name || person.contactName)}
-                </h3>
-
-                ${
-                    person.activity
-                        ? `<p>${escapeHTML(person.activity)}</p>`
-                        : ""
-                }
-
-                ${phone}
 
             </div>
 
@@ -1376,16 +1448,321 @@ function renderPeople(people) {
         return;
     }
 
+    const prevButton =
+        document.querySelector(
+            ".people-carousel-prev"
+        );
+
+    const nextButton =
+        document.querySelector(
+            ".people-carousel-next"
+        );
+
+
     if (!people || !people.length) {
 
         peopleGrid.innerHTML = "";
 
+        if (prevButton) {
+            prevButton.classList.add(
+                "is-hidden"
+            );
+        }
+
+        if (nextButton) {
+            nextButton.classList.add(
+                "is-hidden"
+            );
+        }
+
         return;
     }
+
 
     peopleGrid.innerHTML = people
         .map(renderPerson)
         .join("");
+
+
+    const cards =
+        Array.from(
+            peopleGrid.querySelectorAll(
+                ".person-card"
+            )
+        );
+
+
+    /*
+     * Con un solo membro dello staff la fotografia
+     * resta semplicemente centrata. Le frecce vengono
+     * nascoste finché non arriveranno altre foto.
+     */
+
+    const hasCarousel =
+        cards.length > 1;
+
+    if (prevButton) {
+
+        prevButton.classList.toggle(
+            "is-hidden",
+            !hasCarousel
+        );
+
+    }
+
+    if (nextButton) {
+
+        nextButton.classList.toggle(
+            "is-hidden",
+            !hasCarousel
+        );
+
+    }
+
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    function normalizeOffset(index) {
+
+        let offset =
+            index - currentIndex;
+
+        const half =
+            Math.floor(
+                cards.length / 2
+            );
+
+
+        if (offset > half) {
+
+            offset -=
+                cards.length;
+
+        }
+
+
+        if (offset < -half) {
+
+            offset +=
+                cards.length;
+
+        }
+
+
+        /*
+         * Con 2 sole card evitiamo che la seconda
+         * finisca in una posizione ambigua.
+         */
+
+        if (
+            cards.length === 2 &&
+            offset !== 0
+        ) {
+
+            offset =
+                index > currentIndex
+                    ? 1
+                    : -1;
+
+        }
+
+
+        return offset;
+
+    }
+
+
+    function updatePeopleCarousel() {
+
+        cards.forEach(
+            (card, index) => {
+
+                const offset =
+                    normalizeOffset(index);
+
+                card.dataset.position =
+                    String(offset);
+
+                card.classList.toggle(
+                    "is-active",
+                    offset === 0
+                );
+
+                card.setAttribute(
+                    "aria-hidden",
+                    offset === 0
+                        ? "false"
+                        : "true"
+                );
+
+                card.tabIndex =
+                    offset === 0
+                        ? 0
+                        : -1;
+
+            }
+        );
+
+    }
+
+
+    function goTo(index) {
+
+        currentIndex =
+            (
+                index +
+                cards.length
+            ) % cards.length;
+
+        updatePeopleCarousel();
+
+    }
+
+
+    function goNext() {
+
+        if (!hasCarousel) {
+            return;
+        }
+
+        goTo(
+            currentIndex + 1
+        );
+
+    }
+
+
+    function goPrev() {
+
+        if (!hasCarousel) {
+            return;
+        }
+
+        goTo(
+            currentIndex - 1
+        );
+
+    }
+
+
+    if (prevButton) {
+
+        prevButton.onclick =
+            goPrev;
+
+    }
+
+
+    if (nextButton) {
+
+        nextButton.onclick =
+            goNext;
+
+    }
+
+
+    cards.forEach(
+        (card, index) => {
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        index !==
+                        currentIndex
+                    ) {
+
+                        goTo(index);
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    peopleGrid.addEventListener(
+        "touchstart",
+        event => {
+
+            touchStartX =
+                event.changedTouches[0]
+                    .screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    peopleGrid.addEventListener(
+        "touchend",
+        event => {
+
+            touchEndX =
+                event.changedTouches[0]
+                    .screenX;
+
+            const distance =
+                touchEndX -
+                touchStartX;
+
+            if (
+                Math.abs(distance) < 45
+            ) {
+                return;
+            }
+
+            if (distance < 0) {
+
+                goNext();
+
+            } else {
+
+                goPrev();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    peopleGrid.onkeydown =
+        event => {
+
+            if (
+                event.key ===
+                "ArrowRight"
+            ) {
+
+                goNext();
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowLeft"
+            ) {
+
+                goPrev();
+
+            }
+
+        };
+
+
+    updatePeopleCarousel();
 
 }
 

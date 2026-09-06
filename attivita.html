@@ -368,17 +368,40 @@
         </div>
 
 
-        <div id="people-grid"
-             class="people-grid">
+        <div
+            class="people-carousel-shell"
+            aria-label="Carosello staff">
 
-            <!--
-                Lo staff viene generato
-                dinamicamente da attivita.js.
+            <button
+                class="people-carousel-arrow people-carousel-prev"
+                type="button"
+                aria-label="Staff precedente">
+                ‹
+            </button>
 
-                Per l'Atletica verranno gestite
-                separatamente le 6 società sportive
-                con i rispettivi referenti e recapiti.
-            -->
+
+            <div
+                id="people-grid"
+                class="people-grid people-carousel-track">
+
+                <!--
+                    Lo staff viene generato
+                    dinamicamente da attivita.js.
+
+                    La card centrale è la persona protagonista;
+                    le precedenti e successive rimangono ai lati,
+                    più piccole e scure.
+                -->
+
+            </div>
+
+
+            <button
+                class="people-carousel-arrow people-carousel-next"
+                type="button"
+                aria-label="Staff successivo">
+                ›
+            </button>
 
         </div>
 

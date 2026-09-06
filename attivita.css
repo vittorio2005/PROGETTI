@@ -1621,152 +1621,628 @@ a {
 }
 
 
-.people-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        );
-
-    gap: 30px;
-}
-
-
-.person-card {
+.people-carousel-shell {
 
     position: relative;
 
+    width: 100%;
+
+    min-height: 670px;
+
+    margin-top: 18px;
+
+    overflow: hidden;
+}
+
+
+.people-grid,
+.people-carousel-track {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 650px;
+
     overflow: hidden;
 
-    background: #111;
+    touch-action:
+        pan-y;
 
-    transform:
-        translateY(30px);
+    user-select: none;
+}
+
+
+/* =========================================================
+   CARD STAFF — FORMATO 2:3
+========================================================= */
+
+.person-card {
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width:
+        clamp(310px, 24vw, 370px);
+
+    margin: 0;
+
+    overflow: hidden;
+
+    background: #0d0d0d;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 24px 65px rgba(0, 0, 0, 0.42);
+
+    cursor: pointer;
 
     opacity: 0;
 
-    transition:
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.8s ease;
-}
-
-
-.activity-people.in-view .person-card {
+    pointer-events: none;
 
     transform:
-        translateY(0);
+        translateX(-50%)
+        scale(0.68);
 
-    opacity: 1;
+    transition:
+        left 0.55s cubic-bezier(.22,.61,.36,1),
+        transform 0.55s cubic-bezier(.22,.61,.36,1),
+        opacity 0.42s ease,
+        filter 0.42s ease;
+
+    will-change:
+        left,
+        transform,
+        opacity,
+        filter;
 }
 
 
-.activity-people.in-view
-.person-card:nth-child(2) {
-    transition-delay: 0.1s;
-}
-
-
-.activity-people.in-view
-.person-card:nth-child(3) {
-    transition-delay: 0.2s;
-}
-
-
-.activity-people.in-view
-.person-card:nth-child(4) {
-    transition-delay: 0.3s;
-}
-
+/*
+ * La fotografia mantiene esattamente il rapporto 2:3.
+ * File consigliati: 1000x1500 oppure 800x1200.
+ */
 
 .person-photo {
 
     width: 100%;
 
-    height: 500px;
+    aspect-ratio:
+        2 / 3;
 
     background-image:
         url("maestro.jpg");
 
-    background-size: cover;
+    background-size:
+        cover;
 
-    background-position: center;
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
 
     transition:
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-.person-card:hover .person-photo {
-
-    transform:
-        scale(1.035);
+        transform 0.55s ease,
+        filter 0.42s ease;
 }
 
 
 .person-info {
 
-    padding: 25px;
+    min-height: 108px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding:
+        20px 24px 22px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    background:
+        #0b0b0b;
+
+    transition:
+        opacity 0.42s ease;
 }
 
 
-.person-info span {
+.person-info .person-name {
 
-    display: block;
+    margin:
+        0;
 
-    font-size: 10px;
+    font-size:
+        25px;
 
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    color: rgba(255, 255, 255, 0.5);
+    line-height:
+        1.02;
 }
 
 
-.person-info h3 {
+.person-info .person-name span {
 
-    margin-top: 10px;
+    display:
+        block;
 
-    font-size: 25px;
+    font-size:
+        inherit;
 
-    line-height: 1.15;
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.6px;
+
+    color:
+        #fff;
 }
 
 
-.person-info p {
+.person-info .person-role {
 
-    margin-top: 8px;
+    display:
+        block;
 
-    font-size: 14px;
+    margin-top:
+        14px;
 
-    line-height: 1.5;
+    font-size:
+        10px;
 
-    color: rgba(255, 255, 255, 0.55);
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.5);
 }
 
 
-.person-contact {
+/* =========================================================
+   CARD CENTRALE — PROTAGONISTA
+========================================================= */
 
-    display: inline-block;
+.person-card[data-position="0"] {
 
-    margin-top: 12px;
+    left: 50%;
 
-    font-size: 13px;
+    z-index: 5;
 
-    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
 
-    text-decoration: none;
+    pointer-events: auto;
+
+    cursor: default;
+
+    filter:
+        brightness(1);
+
+    transform:
+        translateX(-50%)
+        scale(1);
 }
 
 
-.person-contact:hover {
+.person-card[data-position="0"] .person-photo {
+
+    filter:
+        brightness(0.98)
+        contrast(1.02);
+
+    transform:
+        scale(1.005);
+}
+
+
+/* =========================================================
+   CARD PRECEDENTE / SUCCESSIVA
+========================================================= */
+
+.person-card[data-position="-1"] {
+
+    left: 19%;
+
+    z-index: 3;
+
+    opacity: 0.66;
+
+    pointer-events: auto;
+
+    filter:
+        brightness(0.54)
+        saturate(0.78);
+
+    transform:
+        translateX(-50%)
+        scale(0.78);
+}
+
+
+.person-card[data-position="1"] {
+
+    left: 81%;
+
+    z-index: 3;
+
+    opacity: 0.66;
+
+    pointer-events: auto;
+
+    filter:
+        brightness(0.54)
+        saturate(0.78);
+
+    transform:
+        translateX(-50%)
+        scale(0.78);
+}
+
+
+.person-card[data-position="-1"] .person-info,
+.person-card[data-position="1"] .person-info {
+
+    opacity: 0.42;
+}
+
+
+/* =========================================================
+   CARD PIÙ LONTANE
+========================================================= */
+
+.person-card[data-position="-2"] {
+
+    left: -2%;
+
+    z-index: 1;
+
+    opacity: 0.14;
+
+    filter:
+        brightness(0.38)
+        saturate(0.65);
+
+    transform:
+        translateX(-50%)
+        scale(0.58);
+}
+
+
+.person-card[data-position="2"] {
+
+    left: 102%;
+
+    z-index: 1;
+
+    opacity: 0.14;
+
+    filter:
+        brightness(0.38)
+        saturate(0.65);
+
+    transform:
+        translateX(-50%)
+        scale(0.58);
+}
+
+
+/* =========================================================
+   FRECCE CAROSELLO STAFF
+========================================================= */
+
+.people-carousel-arrow {
+
+    position: absolute;
+
+    top: 282px;
+
+    z-index: 10;
+
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.22);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.68);
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
 
     color: #fff;
 
-    text-decoration: underline;
+    font-family: inherit;
+
+    font-size: 31px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.people-carousel-prev {
+
+    left:
+        clamp(18px, 5vw, 74px);
+}
+
+
+.people-carousel-next {
+
+    right:
+        clamp(18px, 5vw, 74px);
+}
+
+
+.people-carousel-arrow:hover {
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-color:
+        rgba(255, 255, 255, 0.42);
+}
+
+
+.people-carousel-prev:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(-2px);
+}
+
+
+.people-carousel-next:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(2px);
+}
+
+
+.people-carousel-arrow.is-hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ENTRATA SEZIONE
+========================================================= */
+
+.activity-people:not(.in-view) .person-card[data-position="0"] {
+
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        translateY(26px)
+        scale(0.96);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .people-carousel-shell {
+
+        min-height:
+            620px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+
+        height:
+            600px;
+    }
+
+
+    .person-card {
+
+        width:
+            clamp(285px, 38vw, 340px);
+    }
+
+
+    .person-card[data-position="-1"] {
+
+        left: 13%;
+    }
+
+
+    .person-card[data-position="1"] {
+
+        left: 87%;
+    }
+
+
+    .people-carousel-arrow {
+
+        top:
+            258px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .people-carousel-shell {
+
+        width:
+            calc(100% + 48px);
+
+        min-height:
+            548px;
+
+        margin-left:
+            -24px;
+
+        margin-right:
+            -24px;
+
+        overflow:
+            hidden;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+
+        height:
+            532px;
+    }
+
+
+    .person-card {
+
+        width:
+            min(68vw, 290px);
+    }
+
+
+    .person-info {
+
+        min-height:
+            92px;
+
+        padding:
+            17px 19px 19px;
+    }
+
+
+    .person-info .person-name {
+
+        font-size:
+            22px;
+    }
+
+
+    .person-info .person-role {
+
+        margin-top:
+            10px;
+
+        font-size:
+            8px;
+
+        letter-spacing:
+            2.4px;
+    }
+
+
+    .person-card[data-position="-1"] {
+
+        left: -1%;
+
+        opacity:
+            0.48;
+
+        transform:
+            translateX(-50%)
+            scale(0.72);
+    }
+
+
+    .person-card[data-position="1"] {
+
+        left: 101%;
+
+        opacity:
+            0.48;
+
+        transform:
+            translateX(-50%)
+            scale(0.72);
+    }
+
+
+    .person-card[data-position="-2"],
+    .person-card[data-position="2"] {
+
+        opacity: 0;
+    }
+
+
+    .people-carousel-arrow {
+
+        top:
+            218px;
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        font-size:
+            27px;
+    }
+
+
+    .people-carousel-prev {
+
+        left:
+            17px;
+    }
+
+
+    .people-carousel-next {
+
+        right:
+            17px;
+    }
+
 }
 
 
@@ -4598,6 +5074,320 @@ a {
 
         letter-spacing:
             1px;
+    }
+
+}
+
+/* =========================================================
+   STAFF CAROUSEL — CARD PIÙ LARGA E PIÙ ALTA
+   ---------------------------------------------------------
+   Aumenta leggermente la larghezza della card e lascia
+   più respiro sotto al ruolo, soprattutto su mobile.
+========================================================= */
+
+.person-card {
+    width:
+        clamp(335px, 26vw, 405px);
+}
+
+
+.person-info {
+    min-height:
+        128px;
+
+    padding:
+        22px 26px 30px;
+}
+
+
+.people-carousel-shell {
+    min-height:
+        710px;
+}
+
+
+.people-grid,
+.people-carousel-track {
+    height:
+        690px;
+}
+
+
+@media (max-width: 1000px) {
+
+    .people-carousel-shell {
+        min-height:
+            660px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            640px;
+    }
+
+
+    .person-card {
+        width:
+            clamp(310px, 42vw, 365px);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .people-carousel-shell {
+        min-height:
+            600px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            582px;
+    }
+
+
+    .person-card {
+        width:
+            min(74vw, 315px);
+    }
+
+
+    .person-info {
+        min-height:
+            118px;
+
+        padding:
+            19px 22px 28px;
+    }
+
+}
+
+/* =========================================================
+   STAFF CAROUSEL — FIX RUOLO TAGLIATO
+   ---------------------------------------------------------
+   La card 2:3, essendo stata allargata, è diventata anche
+   più alta. Aumentiamo quindi lo spazio del track affinché
+   Nome, Cognome e Ruolo restino sempre completamente visibili.
+========================================================= */
+
+.people-carousel-shell {
+    min-height:
+        770px;
+}
+
+
+.people-grid,
+.people-carousel-track {
+    height:
+        750px;
+}
+
+
+@media (max-width: 1000px) {
+
+    .people-carousel-shell {
+        min-height:
+            710px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            690px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .people-carousel-shell {
+        min-height:
+            650px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            630px;
+    }
+
+
+    .person-info {
+        min-height:
+            118px;
+
+        padding:
+            19px 22px 30px;
+    }
+
+}
+
+/* =========================================================
+   STAFF CAROUSEL — CARD PIÙ AMPIA (4:5)
+   ---------------------------------------------------------
+   La card centrale viene resa visivamente più larga.
+   Non serve modificare di nuovo il file immagine:
+   object/background cover si occupa del ritaglio proporzionale.
+========================================================= */
+
+.person-card {
+    width:
+        clamp(400px, 31vw, 500px);
+}
+
+
+.person-photo {
+    aspect-ratio:
+        4 / 5;
+}
+
+
+.people-carousel-shell {
+    min-height:
+        720px;
+}
+
+
+.people-grid,
+.people-carousel-track {
+    height:
+        700px;
+}
+
+
+.person-info {
+    min-height:
+        126px;
+
+    padding:
+        22px 28px 30px;
+}
+
+
+.person-card[data-position="-1"] {
+    left:
+        17%;
+}
+
+
+.person-card[data-position="1"] {
+    left:
+        83%;
+}
+
+
+@media (max-width: 1000px) {
+
+    .person-card {
+        width:
+            clamp(360px, 50vw, 440px);
+    }
+
+
+    .people-carousel-shell {
+        min-height:
+            665px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            645px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .person-card {
+        width:
+            min(82vw, 350px);
+    }
+
+
+    .people-carousel-shell {
+        min-height:
+            575px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            555px;
+    }
+
+
+    .person-info {
+        min-height:
+            112px;
+
+        padding:
+            18px 22px 26px;
+    }
+
+}
+
+/* =========================================================
+   STAFF CAROUSEL — FIX RUOLO VISIBILE CON CARD 4:5
+   ---------------------------------------------------------
+   La card 4:5 è più larga e quindi anche più alta:
+   aumentiamo lo spazio verticale del carosello per evitare
+   che il ruolo venga tagliato in fondo.
+========================================================= */
+
+.people-carousel-shell {
+    min-height:
+        800px;
+}
+
+
+.people-grid,
+.people-carousel-track {
+    height:
+        780px;
+}
+
+
+@media (max-width: 1000px) {
+
+    .people-carousel-shell {
+        min-height:
+            730px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            710px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .people-carousel-shell {
+        min-height:
+            610px;
+    }
+
+
+    .people-grid,
+    .people-carousel-track {
+        height:
+            590px;
     }
 
 }
