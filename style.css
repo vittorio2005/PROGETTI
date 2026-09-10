@@ -113,7 +113,11 @@ body {
 }
 
 .arti-bg {
-    background-image: url("artimarziali.jpg");
+    background-image: url("arti-marziale.jpg");
+}
+
+.federkombat-bg {
+    background-image: url("kickboxing.jpg");
 }
 
 .kickboxing-bg {
@@ -154,6 +158,7 @@ body {
 @media (min-width: 901px) {
 
     .taekwondo-bg,
+    .federkombat-bg,
     .kickboxing-bg,
     .mma-bg,
     .pugilato-bg,
@@ -166,6 +171,7 @@ body {
     }
 
     .sport-section.active .taekwondo-bg,
+    .sport-section.active .federkombat-bg,
     .sport-section.active .kickboxing-bg,
     .sport-section.active .mma-bg,
     .sport-section.active .pugilato-bg,
@@ -177,6 +183,7 @@ body {
         background-position: 66% center;
     }
 
+    .federkombat-bg,
     .kickboxing-bg {
         background-position: 50% 18%;
     }
@@ -729,485 +736,42 @@ button {
     }
 }
 
-/* =========================================================
-   LINK GLOBALE — TORNA ALLA HOME
-========================================================= */
-
-.global-home-link {
-    position: fixed;
-
-    top:
-        max(16px, env(safe-area-inset-top));
-
-    left:
-        max(18px, env(safe-area-inset-left));
-
-    z-index: 10000;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    color: #fff;
-
-    text-decoration: none;
-
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
-}
-
-
-.global-home-link img {
-    width: 48px;
-    height: 48px;
-
-    flex: 0 0 auto;
-
-    object-fit: contain;
-
-    border-radius: 50%;
-
-    filter:
-        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.72))
-        drop-shadow(0 0 12px rgba(0, 0, 0, 0.42));
-}
-
-
-.global-home-link span {
-    font-size: 10px;
-
-    line-height: 1;
-
-    font-weight: 800;
-
-    letter-spacing: 1.7px;
-
-    text-transform: uppercase;
-
-    white-space: nowrap;
-
-    color: #fff;
-
-    text-shadow:
-        0 1px 2px rgba(0, 0, 0, 1),
-        0 0 8px rgba(0, 0, 0, 0.95),
-        0 0 16px rgba(0, 0, 0, 0.75);
-}
-
-
-.global-home-link:hover {
-    transform:
-        translateX(3px);
-}
-
-
-.global-home-link:hover img {
-    filter:
-        drop-shadow(0 4px 7px rgba(0, 0, 0, 0.78))
-        drop-shadow(0 0 15px rgba(255, 255, 255, 0.10));
-}
-
-
-@media (max-width: 600px) {
-
-    .global-home-link {
-        top:
-            max(11px, env(safe-area-inset-top));
-
-        left:
-            max(11px, env(safe-area-inset-left));
-
-        gap: 8px;
-    }
-
-
-    .global-home-link img {
-        width: 40px;
-        height: 40px;
-    }
-
-
-    .global-home-link span {
-        font-size: 8px;
-
-        letter-spacing: 1.25px;
-    }
-}
-
-/* Testo "Torna alla Home":
-   visibile solo mentre il logo si trova nel range della hero iniziale. */
-
-.global-home-link {
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease,
-        gap 0.28s ease;
-}
-
-.global-home-link span {
-    display: block;
-
-    max-width: 180px;
-
-    overflow: hidden;
-
-    opacity: 1;
-
-    transform:
-        translateX(0);
-
-    transition:
-        max-width 0.28s ease,
-        opacity 0.20s ease,
-        transform 0.28s ease;
-}
-
-.global-home-link.home-label-hidden {
-    gap: 0;
-}
-
-.global-home-link.home-label-hidden span {
-    max-width: 0;
-
-    opacity: 0;
-
-    transform:
-        translateX(-8px);
-
-    pointer-events: none;
-}
 
 /* =========================================================
-   MOBILE — POSIZIONE "TORNA ALLA HOME"
-   Il logo resta in alto a sinistra; il testo passa sotto
-   al logo per non sovrapporsi ai pulsanti di contatto.
+   FEDERKOMBAT — IMMAGINE COMPLETA E CENTRATA
+   Evita crop e zoom eccessivo della grafica istituzionale.
 ========================================================= */
 
-@media (max-width: 650px) {
+.federkombat-bg {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
 
-    .global-home-link {
-        top:
-            max(9px, env(safe-area-inset-top));
+    background-color: #ffffff;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: contain !important;
 
-        left:
-            max(9px, env(safe-area-inset-left));
-
-        width: 78px;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        gap: 4px;
-    }
-
-
-    .global-home-link img {
-        width: 38px;
-        height: 38px;
-    }
-
-
-    .global-home-link span {
-        width: 78px;
-        max-width: 78px;
-
-        overflow: hidden;
-
-        font-size: 6.5px;
-
-        line-height: 1.15;
-
-        letter-spacing: 0.75px;
-
-        text-align: center;
-
-        white-space: nowrap;
-    }
-
-
-    .global-home-link.home-label-hidden {
-        gap: 0;
-    }
-
-
-    .global-home-link.home-label-hidden span {
-        width: 0;
-        max-width: 0;
-
-        opacity: 0;
-
-        transform:
-            translateY(-4px);
-
-        pointer-events: none;
-    }
+    transform: none !important;
 }
 
-/* =========================================================
-   MOBILE — HOME LINK COMPATTO
-   Evita qualsiasi sovrapposizione con i pulsanti contatto.
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .global-home-link {
-        top:
-            max(8px, env(safe-area-inset-top));
-
-        left:
-            max(8px, env(safe-area-inset-left));
-
-        width: 46px;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        gap: 3px;
-    }
-
-
-    .global-home-link img {
-        width: 34px;
-        height: 34px;
-    }
-
-
-    .global-home-link span {
-        width: 46px;
-        max-width: 46px;
-
-        overflow: hidden;
-
-        font-size: 6px;
-
-        line-height: 1.05;
-
-        letter-spacing: 0.45px;
-
-        text-align: center;
-
-        white-space: normal;
-
-        text-wrap: balance;
-    }
-
-
-    .global-home-link.home-label-hidden {
-        gap: 0;
-    }
-
-
-    .global-home-link.home-label-hidden span {
-        width: 0;
-        max-width: 0;
-
-        opacity: 0;
-
-        transform:
-            translateY(-3px);
-
-        pointer-events: none;
-    }
+.sport-section.active .federkombat-bg {
+    transform: none !important;
 }
 
-/* =========================================================
-   MOBILE — FOTO DEDICATE FINALI
-   ---------------------------------------------------------
-   Le immagini desktop restano invariate.
-   Su mobile vengono caricati i file "-mobile.jpg".
-   La Piscina NON ha una versione mobile dedicata e mantiene
-   quindi la foto originale e il comportamento precedente.
-========================================================= */
+@media (max-width: 900px) {
+    .federkombat-bg {
+        background-size: contain !important;
+        background-position: center center !important;
+    }
+}
 
 @media (max-width: 700px) {
-
-    /* -----------------------------------------------------
-       FILE MOBILE
-    ----------------------------------------------------- */
-
-    .atletica-bg {
-        background-image:
-            url("atletica-mobile.jpg");
+    .federkombat-bg {
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-size: contain !important;
+        transform: none !important;
     }
-
-    .taekwondo-bg {
-        background-image:
-            url("taekwondo-mobile.jpg");
-    }
-
-    .arti-bg {
-        background-image:
-            url("artimarziali-mobile.jpg");
-    }
-
-    .kickboxing-bg {
-        background-image:
-            url("kickboxing-mobile.jpg");
-    }
-
-    .mma-bg {
-        background-image:
-            url("mma-mobile.jpg");
-    }
-
-    .pugilato-bg {
-        background-image:
-            url("pugilato-mobile.jpg");
-    }
-
-    .ginnastica-bg {
-        background-image:
-            url("ginnastica-mobile.jpg");
-    }
-
-    .tennistavolo-bg {
-        background-image:
-            url("tennistavolo-mobile.jpg");
-    }
-
-    .danza-bg {
-        background-image:
-            url("danza-mobile.jpg");
-    }
-
-
-    /* -----------------------------------------------------
-       INQUADRATURA FOTO VERTICALI
-       Le immagini sono già state preparate in 1080x1920:
-       niente zoom artificiale e niente deformazione.
-    ----------------------------------------------------- */
-
-    .atletica-bg,
-    .taekwondo-bg,
-    .arti-bg,
-    .kickboxing-bg,
-    .mma-bg,
-    .pugilato-bg,
-    .ginnastica-bg,
-    .tennistavolo-bg,
-    .danza-bg {
-
-        inset: 0;
-
-        width: 100%;
-        height: 100%;
-
-        background-size:
-            cover;
-
-        background-repeat:
-            no-repeat;
-
-        background-position:
-            center center;
-
-        transform:
-            none;
-    }
-
-
-    /*
-     * Disattiva lo zoom della slide attiva SOLO per
-     * le nuove immagini verticali.
-     * La Piscina rimane esattamente con il comportamento
-     * precedente.
-     */
-
-    .sport-section.active .atletica-bg,
-    .sport-section.active .taekwondo-bg,
-    .sport-section.active .arti-bg,
-    .sport-section.active .kickboxing-bg,
-    .sport-section.active .mma-bg,
-    .sport-section.active .pugilato-bg,
-    .sport-section.active .ginnastica-bg,
-    .sport-section.active .tennistavolo-bg,
-    .sport-section.active .danza-bg {
-
-        transform:
-            none;
-    }
-
-
-    /* -----------------------------------------------------
-       POSIZIONI INDIVIDUALI
-       Partiamo tutte centrate perché le foto sono state
-       ritagliate appositamente per il mobile.
-       Queste percentuali si possono rifinire singolarmente
-       dopo il test reale su smartphone.
-    ----------------------------------------------------- */
-
-    .atletica-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .taekwondo-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .arti-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .kickboxing-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .mma-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .pugilato-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .ginnastica-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .tennistavolo-bg {
-        background-position:
-            50% 50%;
-    }
-
-    .danza-bg {
-        background-position:
-            50% 50%;
-    }
-
-
-    /* -----------------------------------------------------
-       OVERLAY MOBILE
-       Mantiene la foto ben visibile in alto e aumenta
-       gradualmente il contrasto nella zona del testo.
-    ----------------------------------------------------- */
-
-    .overlay {
-
-        background:
-            linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.08) 0%,
-                rgba(0, 0, 0, 0.12) 30%,
-                rgba(0, 0, 0, 0.34) 52%,
-                rgba(0, 0, 0, 0.68) 76%,
-                rgba(0, 0, 0, 0.88) 100%
-            );
-    }
-
 }

@@ -2181,3 +2181,55 @@ button {
     }
 
 }
+
+/* =========================================================
+   MEMORIA 1929 — TITOLO SEMPRE DENTRO LA PAGINA
+   ---------------------------------------------------------
+   Riduce leggermente il titolo e dà più spazio alla colonna
+   testuale, evitando che "conosciamo oggi." esca a destra.
+========================================================= */
+
+@media (min-width: 1001px) {
+
+    .history-memory {
+        grid-template-columns:
+            55% 45%;
+    }
+
+
+    .history-memory-copy {
+        min-width: 0;
+
+        padding:
+            90px 4.5vw 90px 4vw;
+    }
+
+
+    .history-memory-copy h2 {
+        width: 100%;
+
+        max-width: 100%;
+
+        font-size:
+            clamp(52px, 5vw, 88px);
+
+        line-height:
+            0.92;
+
+        letter-spacing:
+            -4px;
+
+        overflow-wrap:
+            normal;
+
+        word-break:
+            normal;
+    }
+
+
+    .history-memory-copy p {
+        max-width:
+            100%;
+    }
+
+}

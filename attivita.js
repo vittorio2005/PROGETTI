@@ -94,7 +94,16 @@ const params = new URLSearchParams(
     window.location.search
 );
 
-const sport = params.get("sport") || "arti";
+const requestedSport = params.get("sport") || "arti";
+
+/*
+ * FEDERKOMBAT è l'unica attività principale.
+ * I vecchi parametri ?sport=kickboxing e ?sport=mma vengono ricondotti
+ * alla stessa pagina FEDERKOMBAT solo per non interrompere eventuali link esistenti.
+ */
+const sport = ["kickboxing", "mma"].includes(requestedSport)
+    ? "federkombat"
+    : requestedSport;
 
 
 /* =========================================================
@@ -152,18 +161,12 @@ const federationLogosByActivity = {
         }
     ],
 
-    kickboxing: [
+    federkombat: [
         {
             src: "federazione-kickboxing.jpg",
-            alt: "Federazione di riferimento per la Kickboxing"
-        }
-    ],
-
-    mma: [
-        {
-            src: "federazione-mma.jpg",
-            fallback: "federazione-kickboxing.jpg",
-            alt: "Federazione di riferimento per le MMA"
+            alt: "FEDERKOMBAT - Federazione Italiana Kickboxing, Muay Thai, Savate, Shoot Boxe, Sambo e MMA",
+            website: "https://www.federkombat.it/",
+            websiteLabel: "Sito ufficiale FEDERKOMBAT"
         }
     ],
 
@@ -249,22 +252,51 @@ function renderFederationLogos() {
     activityFederationsLogos.innerHTML =
         logos.map(logo => `
 
-            <div class="federation-logo-card">
+            <div class="federation-logo-block">
 
-                <img
-                    class="federation-logo"
-                    src="${logo.src}"
-                    alt="${logo.alt}"
-                    loading="eager"
-                    decoding="async"
-                    ${logo.fallback ? `data-fallback="${logo.fallback}"` : ""}>
+                ${logo.website ? `
+                    <a
+                        class="federation-logo-card federation-logo-card-link"
+                        href="${logo.website}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Apri ${logo.websiteLabel || 'il sito ufficiale della federazione'}">
+                ` : `
+                    <div class="federation-logo-card">
+                `}
+
+                    <img
+                        class="federation-logo"
+                        src="${logo.src}"
+                        alt="${logo.alt}"
+                        loading="eager"
+                        decoding="async"
+                        ${logo.fallback ? `data-fallback="${logo.fallback}"` : ""}>
+
+                    ${
+                        logo.label
+                            ? `
+                                <span class="federation-logo-name">
+                                    ${logo.label}
+                                </span>
+                            `
+                            : ""
+                    }
+
+                ${logo.website ? `</a>` : `</div>`}
 
                 ${
-                    logo.label
+                    logo.website
                         ? `
-                            <span class="federation-logo-name">
-                                ${logo.label}
-                            </span>
+                            <a
+                                class="federation-website-link"
+                                href="${logo.website}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Apri ${logo.websiteLabel || 'il sito ufficiale della federazione'}">
+                                <span>${logo.websiteLabel || 'Sito ufficiale'}</span>
+                                <span class="federation-website-arrow" aria-hidden="true">↗</span>
+                            </a>
                         `
                         : ""
                 }
@@ -348,11 +380,8 @@ const mobileActivityImages = {
     taekwondo:
         "taekwondo-mobile.jpg",
 
-    kickboxing:
+    federkombat:
         "kickboxing-mobile.jpg",
-
-    mma:
-        "mma-mobile.jpg",
 
     pugilato:
         "pugilato-mobile.jpg",
@@ -852,116 +881,255 @@ const activities = {
 
 
     /* =====================================================
-       KICKBOXING
+       FEDERKOMBAT
+       Unica sezione con Kickboxing e MMA
        ===================================================== */
 
-    kickboxing: {
+    federkombat: {
 
-        title: "Kickboxing",
-        subtitle: "Potenza, tecnica e controllo.",
-        descriptionTitle: "Metti alla prova te stesso.",
+        title: "FEDERKOMBAT",
+        subtitle: "Centro Federale · Kickboxing & MMA",
+
+        descriptionTitle:
+            "Centro Federale FEDERKOMBAT",
+
         description:
-            "Allenamento e tecnica per chi vuole avvicinarsi alla kickboxing o migliorare le proprie capacità.",
+            "Un unico centro dedicato alla formazione tecnica, all'attività federale e alla pratica di Kickboxing e MMA.",
 
         heroImage: "kickboxing.jpg",
-        storyImage: "kickboxing.jpg",
+        storyImage: "mma.jpg",
         coursesImage: "kickboxing.jpg",
 
-        people: [
-            {
-                firstName: "Gianluca",
-                lastName: "Amato",
-                role: "Dirigente Tecnico",
-                photo: "fotostaff-kickboxing.jpg"
-            }
-        ],
-
-        courses: [
-
-            {
-                name: "Cadetti",
-                days: "Martedì e Giovedì",
-                time: "17:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
-            },
-
-            {
-                name: "Junior",
-                days: "Martedì e Giovedì",
-                time: "18:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
-            },
-
-            {
-                name: "Senior",
-                days: "Martedì e Giovedì",
-                time: "19:00 – 21:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
-            }
-
-        ]
-
-    },
-
-
-    /* =====================================================
-       MMA
-       ===================================================== */
-
-    mma: {
-
-        title: "MMA",
-
-        societyName:
-            "A.P.D. Il Falco Gym",
-
-        subtitle: "Tecnica completa. Mentalità da combattente.",
-        descriptionTitle: "Combatti con intelligenza.",
-        description:
-            "Un percorso completo che unisce tecniche di combattimento, preparazione atletica e disciplina.",
-
-        heroImage: "mma.jpg",
-        storyImage: "mma.jpg",
-        coursesImage: "mma.jpg",
+        federalCenter: {
+            director: "Gianluca Amato",
+            directorRole: "Direttore Tecnico del Centro Federale FEDERKOMBAT",
+            trainingRole: "Responsabile Scuola Regionale di Formazione",
+            activities: [
+                "Corsi di qualifica tecnica",
+                "Esami di cintura di grado nera e superiore",
+                "Seminari tecnici regionali e nazionali"
+            ]
+        },
 
         people: [
             {
                 firstName: "Gianluca",
                 lastName: "Amato",
-                role: "Dirigente Tecnico",
+                role: "Direttore Tecnico del Centro Federale FEDERKOMBAT",
                 photo: "fotostaff-kickboxing.jpg"
             }
         ],
 
-        courses: [
+        disciplines: [
 
             {
-                name: "Cadetti",
-                days: "Martedì e Giovedì",
-                time: "16:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
+                id: "kickboxing",
+                name: "Kickboxing",
+                label: "Disciplina FEDERKOMBAT",
+                societyId: "gpt-sankaku",
+                societyName: "A.S.D. GPT Sankaku",
+                legalName: "A.S.D. GPT Sankaku",
+                info: "Corsi di Kickboxing della A.S.D. GPT Sankaku presso il Centro Federale FEDERKOMBAT.",
+                courses: [
+                    {
+                        name: "Cadetti",
+                        days: "Martedì e Giovedì",
+                        time: "17:00",
+                        instructor: "Gianluca Amato",
+                        phone: "3485659081"
+                    },
+                    {
+                        name: "Junior",
+                        days: "Martedì e Giovedì",
+                        time: "18:00",
+                        instructor: "Gianluca Amato",
+                        phone: "3485659081"
+                    },
+                    {
+                        name: "Senior",
+                        days: "Martedì e Giovedì",
+                        time: "19:00 – 21:00",
+                        instructor: "Gianluca Amato",
+                        phone: "3485659081"
+                    }
+                ]
             },
 
             {
-                name: "Amatori",
-                days: "Martedì e Giovedì",
-                time: "18:00",
-                extra: "Sabato 10:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
-            },
+                id: "mma",
+                name: "MMA",
+                label: "Disciplina FEDERKOMBAT",
+                societyId: "ground-pressure-team",
+                societyName: "Ground Pressure Team",
+                legalName: "A.P.D. IL FALCO",
+                info: "Ground Pressure Team propone corsi di MMA per bambini, ragazzi, adulti e agonisti presso lo Stadio Arturo Collana.",
 
-            {
-                name: "Agonisti",
-                days: "Lunedì, Mercoledì e Venerdì",
-                time: "20:00",
-                extra: "Martedì e Giovedì 17:00 · Sabato 09:00",
-                instructor: "Gianluca Amato",
-                phone: "3485659081"
+                contacts: {
+                    enrollmentName: "Gianmarco Romeo",
+                    enrollmentPhone: "3313350372",
+                    email: "gptmmanapoli@gmail.com",
+                    instagram: "https://www.instagram.com/ground_pressure_team_mma?stkn=end3czVieWNzbWZy",
+                    instagramLabel: "Ground Pressure MMA Napoli",
+                    facebook: "https://www.facebook.com/share/18Crr1TXKw/",
+                    facebookLabel: "Ground Pressure Team - BJJ MMA Napoli"
+                },
+
+                staff: [
+                    {
+                        name: "Gianmarco Romeo",
+                        role: "Responsabile Tecnico · Tecnico I livello",
+                        courses: "Corso Amatori e Corso Agonisti",
+                        phone: "3313350372",
+                        email: "gptmmanapoli@gmail.com",
+                        photo: "gianmarcoromeo.jpeg",
+                        photoPosition: "center 22%"
+                    },
+                    {
+                        name: "Fabio Condidoro",
+                        role: "Istruttore · Tecnico I livello",
+                        courses: "Corso Young",
+                        phone: "3313350372",
+                        email: "gptmmanapoli@gmail.com",
+                        photo: "fabiocondidoro.jpeg",
+                        photoPosition: "center 22%"
+                    }
+                ],
+
+                courses: [
+                    {
+                        name: "MMA Young",
+                        option: "2 allenamenti/settimana",
+                        audience: "Bambini M/F (10–13 anni)",
+                        days: "Martedì e Giovedì",
+                        time: "16:00–17:00",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Fabio Condidorio",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "10–13 anni"
+                    },
+                    {
+                        name: "MMA Amatori",
+                        option: "2 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Martedì e Giovedì",
+                        time: "18:00–19:00",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "14+ anni"
+                    },
+                    {
+                        name: "MMA Amatori",
+                        option: "2 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Lunedì e Mercoledì",
+                        time: "20:00–21:00",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "14+ anni"
+                    },
+                    {
+                        name: "MMA Amatori",
+                        option: "3 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Martedì, Giovedì e Sabato",
+                        time: "18:00–19:00 (mar/gio) · 10:30–11:30 (sab)",
+                        frequency: "Trisettimanale",
+                        price: "€60",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "14+ anni"
+                    },
+                    {
+                        name: "MMA Amatori",
+                        option: "3 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Lunedì, Mercoledì e Sabato",
+                        time: "20:00–21:00 (lun/mer) · 10:30–11:30 (sab)",
+                        frequency: "Trisettimanale",
+                        price: "€60",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "14+ anni"
+                    },
+                    {
+                        name: "MMA Amatori",
+                        option: "5 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Lunedì, Martedì, Mercoledì, Giovedì e Sabato",
+                        time: "20:00–21:00 (lun/mer) · 18:00–19:00 (mar/gio) · 10:30–11:30 (sab)",
+                        frequency: "Pentasettimanale",
+                        price: "€75",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico o non agonistico",
+                        age: "14+ anni"
+                    },
+                    {
+                        name: "MMA Agonisti",
+                        option: "6 allenamenti/settimana",
+                        audience: "Ragazzi/Adulti M/F (+13 anni)",
+                        days: "Lunedì, Martedì, Mercoledì, Giovedì, Venerdì e Sabato",
+                        time: "20:00–21:00 (lun/mer/ven) · 17:00–18:00 (mar/gio) · 09:30–10:30 (sab)",
+                        frequency: "Esasettimanale",
+                        price: "€60",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Gianmarco Romeo",
+                        technicalManager: "Gianmarco Romeo",
+                        phone: "3313350372",
+                        medical: "Agonistico",
+                        age: "14–55 anni"
+                    }
+                ]
             }
 
         ]
@@ -1391,7 +1559,7 @@ function renderPerson(person) {
 
     const photoStyle =
         person.photo
-            ? `style="background-image: url('${escapeHTML(person.photo)}');"`
+            ? `style="background-image: url('${escapeHTML(person.photo)}');${person.photoPosition ? ` background-position: ${escapeHTML(person.photoPosition)};` : ""}"`
             : "";
 
 
@@ -1448,321 +1616,16 @@ function renderPeople(people) {
         return;
     }
 
-    const prevButton =
-        document.querySelector(
-            ".people-carousel-prev"
-        );
-
-    const nextButton =
-        document.querySelector(
-            ".people-carousel-next"
-        );
-
-
     if (!people || !people.length) {
 
         peopleGrid.innerHTML = "";
 
-        if (prevButton) {
-            prevButton.classList.add(
-                "is-hidden"
-            );
-        }
-
-        if (nextButton) {
-            nextButton.classList.add(
-                "is-hidden"
-            );
-        }
-
         return;
     }
-
 
     peopleGrid.innerHTML = people
         .map(renderPerson)
         .join("");
-
-
-    const cards =
-        Array.from(
-            peopleGrid.querySelectorAll(
-                ".person-card"
-            )
-        );
-
-
-    /*
-     * Con un solo membro dello staff la fotografia
-     * resta semplicemente centrata. Le frecce vengono
-     * nascoste finché non arriveranno altre foto.
-     */
-
-    const hasCarousel =
-        cards.length > 1;
-
-    if (prevButton) {
-
-        prevButton.classList.toggle(
-            "is-hidden",
-            !hasCarousel
-        );
-
-    }
-
-    if (nextButton) {
-
-        nextButton.classList.toggle(
-            "is-hidden",
-            !hasCarousel
-        );
-
-    }
-
-
-    let currentIndex = 0;
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-
-    function normalizeOffset(index) {
-
-        let offset =
-            index - currentIndex;
-
-        const half =
-            Math.floor(
-                cards.length / 2
-            );
-
-
-        if (offset > half) {
-
-            offset -=
-                cards.length;
-
-        }
-
-
-        if (offset < -half) {
-
-            offset +=
-                cards.length;
-
-        }
-
-
-        /*
-         * Con 2 sole card evitiamo che la seconda
-         * finisca in una posizione ambigua.
-         */
-
-        if (
-            cards.length === 2 &&
-            offset !== 0
-        ) {
-
-            offset =
-                index > currentIndex
-                    ? 1
-                    : -1;
-
-        }
-
-
-        return offset;
-
-    }
-
-
-    function updatePeopleCarousel() {
-
-        cards.forEach(
-            (card, index) => {
-
-                const offset =
-                    normalizeOffset(index);
-
-                card.dataset.position =
-                    String(offset);
-
-                card.classList.toggle(
-                    "is-active",
-                    offset === 0
-                );
-
-                card.setAttribute(
-                    "aria-hidden",
-                    offset === 0
-                        ? "false"
-                        : "true"
-                );
-
-                card.tabIndex =
-                    offset === 0
-                        ? 0
-                        : -1;
-
-            }
-        );
-
-    }
-
-
-    function goTo(index) {
-
-        currentIndex =
-            (
-                index +
-                cards.length
-            ) % cards.length;
-
-        updatePeopleCarousel();
-
-    }
-
-
-    function goNext() {
-
-        if (!hasCarousel) {
-            return;
-        }
-
-        goTo(
-            currentIndex + 1
-        );
-
-    }
-
-
-    function goPrev() {
-
-        if (!hasCarousel) {
-            return;
-        }
-
-        goTo(
-            currentIndex - 1
-        );
-
-    }
-
-
-    if (prevButton) {
-
-        prevButton.onclick =
-            goPrev;
-
-    }
-
-
-    if (nextButton) {
-
-        nextButton.onclick =
-            goNext;
-
-    }
-
-
-    cards.forEach(
-        (card, index) => {
-
-            card.addEventListener(
-                "click",
-                () => {
-
-                    if (
-                        index !==
-                        currentIndex
-                    ) {
-
-                        goTo(index);
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    peopleGrid.addEventListener(
-        "touchstart",
-        event => {
-
-            touchStartX =
-                event.changedTouches[0]
-                    .screenX;
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    peopleGrid.addEventListener(
-        "touchend",
-        event => {
-
-            touchEndX =
-                event.changedTouches[0]
-                    .screenX;
-
-            const distance =
-                touchEndX -
-                touchStartX;
-
-            if (
-                Math.abs(distance) < 45
-            ) {
-                return;
-            }
-
-            if (distance < 0) {
-
-                goNext();
-
-            } else {
-
-                goPrev();
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    peopleGrid.onkeydown =
-        event => {
-
-            if (
-                event.key ===
-                "ArrowRight"
-            ) {
-
-                goNext();
-
-            }
-
-
-            if (
-                event.key ===
-                "ArrowLeft"
-            ) {
-
-                goPrev();
-
-            }
-
-        };
-
-
-    updatePeopleCarousel();
 
 }
 
@@ -2179,6 +2042,229 @@ function renderAthleticsSocietyDetail(society) {
 
 }
 
+
+/* =========================================================
+   RENDER FEDERKOMBAT
+   ========================================================= */
+
+function renderFederkombat(activity) {
+
+    if (!coursesContainer || !activity?.disciplines) {
+        return;
+    }
+
+    const center = activity.federalCenter || {};
+
+    coursesContainer.innerHTML = `
+        <div class="federkombat-wrapper">
+
+            <section class="federkombat-center-card">
+                <p class="federkombat-eyebrow">Centro Federale FEDERKOMBAT</p>
+                <h2 class="federkombat-center-title">${escapeHTML(center.director || "Gianluca Amato")}</h2>
+                <p class="federkombat-center-role">${escapeHTML(center.directorRole || "")}</p>
+                ${center.trainingRole ? `<p class="federkombat-center-subrole">${escapeHTML(center.trainingRole)}</p>` : ""}
+
+                ${center.activities?.length ? `
+                    <div class="federkombat-center-divider"></div>
+                    <h3 class="federkombat-federal-title">Attività federale</h3>
+                    <ul class="federkombat-federal-list">
+                        ${center.activities.map(item => `<li>${escapeHTML(item)}</li>`).join("")}
+                    </ul>
+                ` : ""}
+            </section>
+
+            <div class="federkombat-disciplines">
+                ${activity.disciplines.map(discipline => `
+                    <section class="federkombat-discipline federkombat-${escapeHTML(discipline.id)}">
+                        <header class="federkombat-discipline-header">
+                            <span class="federkombat-discipline-label">${escapeHTML(discipline.label || "Disciplina")}</span>
+                            <h2 class="federkombat-discipline-title">${escapeHTML(discipline.name)}</h2>
+                            <p class="federkombat-society">${escapeHTML(discipline.societyName)}</p>
+                        </header>
+
+                        <a
+                            class="federkombat-society-link"
+                            href="${window.location.pathname}?sport=federkombat&societa=${encodeURIComponent(discipline.societyId)}">
+                            <span>Scopri di più</span>
+                            <span class="federkombat-more-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </section>
+                `).join("")}
+            </div>
+        </div>
+    `;
+}
+
+
+/* =========================================================
+   DETTAGLIO SOCIETÀ FEDERKOMBAT
+   ========================================================= */
+
+function renderFederkombatSocietyDetail(activity, societyId) {
+
+    if (!activity?.disciplines || !coursesContainer) {
+        return null;
+    }
+
+    const discipline = activity.disciplines.find(
+        item => item.societyId === societyId
+    );
+
+    if (!discipline) {
+        renderFederkombat(activity);
+        return null;
+    }
+
+    if (title) title.textContent = discipline.societyName;
+    if (subtitle) subtitle.textContent = `${discipline.name} · FEDERKOMBAT`;
+    if (descriptionTitle) descriptionTitle.textContent = discipline.societyName;
+    if (description) description.textContent = discipline.info || `Scopri attività, corsi, orari e informazioni della ${discipline.societyName}.`;
+
+    if (activitySociety && activitySocietyName) {
+        activitySocietyName.textContent = discipline.legalName || discipline.societyName;
+        activitySociety.hidden = false;
+    }
+
+    const renderDetailRow = (label, value) => value ? `
+        <div class="federkombat-detail-row">
+            <span>${escapeHTML(label)}</span>
+            <strong>${escapeHTML(value)}</strong>
+        </div>
+    ` : "";
+
+    const renderSocietyCourse = course => `
+        <article class="federkombat-society-course">
+            <div class="federkombat-course-heading">
+                <div>
+                    <span class="federkombat-course-kicker">${escapeHTML(course.option || course.frequency || "Corso")}</span>
+                    <h3>${escapeHTML(course.name)}</h3>
+                    ${course.audience ? `<p>${escapeHTML(course.audience)}</p>` : ""}
+                </div>
+                ${course.price ? `
+                    <div class="federkombat-course-price-main">
+                        <strong>${escapeHTML(course.price)}</strong>
+                        <span>${escapeHTML(course.periodicity || "")}</span>
+                    </div>
+                ` : ""}
+            </div>
+
+            <div class="federkombat-schedule-box">
+                ${renderDetailRow("Giorni", course.days)}
+                ${renderDetailRow("Orari", course.time)}
+                ${renderDetailRow("Frequenza", course.frequency)}
+            </div>
+
+            <div class="federkombat-course-details-grid">
+                ${renderDetailRow("Istruttore / Maestro", course.instructor)}
+                ${renderDetailRow("Responsabile tecnico", course.technicalManager)}
+                ${renderDetailRow("Certificato medico", course.medical)}
+                ${renderDetailRow("Età", course.age)}
+            </div>
+
+            ${(course.registration || course.membership || course.insurance || course.badge) ? `
+                <div class="federkombat-fees-line">
+                    ${course.registration ? `<span><b>Iscrizione:</b> ${escapeHTML(course.registration)}</span>` : ""}
+                    ${course.membership ? `<span><b>Tesseramento:</b> ${escapeHTML(course.membership)}</span>` : ""}
+                    ${course.insurance ? `<span><b>Assicurazione:</b> ${escapeHTML(course.insurance)}</span>` : ""}
+                    ${course.badge ? `<span><b>Badge:</b> ${escapeHTML(course.badge)}</span>` : ""}
+                </div>
+            ` : ""}
+        </article>
+    `;
+
+    coursesContainer.innerHTML = `
+        <div class="federkombat-wrapper federkombat-society-page">
+            <a class="society-back federkombat-back-link" href="${window.location.pathname}?sport=federkombat">← Torna a FEDERKOMBAT</a>
+
+            <section class="federkombat-society-hero-card">
+                <div>
+                    <p class="federkombat-eyebrow">Società sportiva · ${escapeHTML(discipline.name)}</p>
+                    <h2>${escapeHTML(discipline.societyName)}</h2>
+                    ${discipline.legalName && discipline.legalName !== discipline.societyName ? `<p class="federkombat-legal-name">Società di Riferimento: ${escapeHTML(discipline.legalName)}</p>` : ""}
+                    <p class="federkombat-society-description">${escapeHTML(discipline.info || "")}</p>
+                </div>
+                ${discipline.website ? `<a class="federkombat-site-link" href="https://${escapeHTML(discipline.website.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a>` : ""}
+            </section>
+
+            <div class="federkombat-section-heading">
+                <span class="story-label">CORSI E PREZZI</span>
+                <h3>Scegli il percorso più adatto.</h3>
+                <p>Quote, giorni, orari e requisiti sono riportati direttamente nelle singole formule.</p>
+            </div>
+
+            <div class="federkombat-society-courses">
+                ${(discipline.courses || []).map(renderSocietyCourse).join("")}
+            </div>
+
+            <div class="course-medical-note federkombat-medical-note">
+                <span class="course-medical-note-label">N.B.</span>
+                <p><strong>Quota di iscrizione:</strong> €50 · <strong>Tesseramento:</strong> compreso · <strong>Assicurazione:</strong> compresa · <strong>Badge:</strong> €5.</p>
+            </div>
+        </div>
+    `;
+
+    return discipline;
+}
+
+
+function renderFederkombatSocietyPrices(discipline) {
+    if (!priceContainer || !discipline) return;
+
+    const unique = [];
+    (discipline.courses || []).forEach(course => {
+        const key = `${course.name}|${course.option}|${course.price}|${course.periodicity}`;
+        if (course.price && !unique.some(item => item.key === key)) {
+            unique.push({ key, course });
+        }
+    });
+
+    priceContainer.innerHTML = unique.length ? unique.map(({ course }) => `
+        <div class="price-box federkombat-price-box">
+            <span>${escapeHTML(course.name)}${course.option ? ` · ${escapeHTML(course.option)}` : ""}</span>
+            <strong>${escapeHTML(course.price)}</strong>
+            <small class="price-extra">${escapeHTML(course.periodicity || "")}</small>
+        </div>
+    `).join("") : `
+        <div class="price-box"><span>QUOTA</span><strong>—</strong></div>
+    `;
+}
+
+
+function renderFederkombatSocietyStaff(discipline) {
+    if (!discipline) return;
+
+    const staff = discipline.staff || [];
+
+    renderPeople(staff.map(person => ({
+        name: person.name,
+        role: person.role,
+        photo: person.photo || "",
+        photoPosition: person.photoPosition || "center"
+    })));
+
+    /*
+     * Con soli due tecnici non serve il carosello:
+     * nascondiamo completamente le frecce laterali.
+     */
+    const carouselShell = document.querySelector(".people-carousel-shell");
+    const carouselArrows = document.querySelectorAll(".people-carousel-arrow");
+    const isStaticStaff = staff.length <= 2;
+
+    if (carouselShell) {
+        carouselShell.classList.toggle("is-static-staff", isStaticStaff);
+        carouselShell.setAttribute(
+            "aria-label",
+            isStaticStaff ? "Staff tecnico" : "Carosello staff"
+        );
+    }
+
+    carouselArrows.forEach(arrow => {
+        arrow.hidden = isStaticStaff;
+        arrow.style.display = isStaticStaff ? "none" : "";
+        arrow.setAttribute("aria-hidden", isStaticStaff ? "true" : "false");
+        arrow.tabIndex = isStaticStaff ? -1 : 0;
+    });
+}
 
 /* =========================================================
    RENDER CORSI
@@ -3380,36 +3466,35 @@ function initActivityPage() {
     } else {
 
         /*
-         * Attività normali
+         * FEDERKOMBAT usa un layout dedicato a due discipline
+         * affiancate: Kickboxing e MMA.
          */
 
-        renderCourses(
-            activity.courses
-        );
+        if (sport === "federkombat") {
 
-        renderPrices(
-            activity
-        );
+            const selectedFederkombatSociety = params.get("societa");
 
+            if (selectedFederkombatSociety) {
+                const selectedDiscipline = renderFederkombatSocietyDetail(
+                    activity,
+                    selectedFederkombatSociety
+                );
 
-        /*
-         * Staff
-         *
-         * Il prossimo passaggio permetterà di
-         * definire separatamente lo staff completo
-         * di ogni attività.
-         */
-
-        if (activity.people) {
-
-            renderPeople(
-                activity.people
-            );
+                if (selectedDiscipline) {
+                    renderFederkombatSocietyPrices(selectedDiscipline);
+                    renderFederkombatSocietyStaff(selectedDiscipline);
+                    setupActivityContacts({ contacts: selectedDiscipline.contacts || {} });
+                }
+            } else {
+                renderFederkombat(activity);
+                renderPrices(activity);
+                renderPeople(activity.people || []);
+            }
 
         } else {
-
-            peopleGrid.innerHTML = "";
-
+            renderCourses(activity.courses);
+            renderPrices(activity);
+            renderPeople(activity.people || []);
         }
 
     }
@@ -3422,9 +3507,9 @@ function initActivityPage() {
      * dati non sono ancora disponibili.
      */
 
-    setupActivityContacts(
-        activity
-    );
+    if (!(sport === "federkombat" && params.get("societa"))) {
+        setupActivityContacts(activity);
+    }
 
 
     /*
