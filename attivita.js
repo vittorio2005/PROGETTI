@@ -94,16 +94,21 @@ const params = new URLSearchParams(
     window.location.search
 );
 
-const requestedSport = params.get("sport") || "arti";
+const requestedSport = String(params.get("sport") || "atletica")
+    .trim()
+    .toLowerCase();
 
 /*
  * FEDERKOMBAT è l'unica attività principale.
  * I vecchi parametri ?sport=kickboxing e ?sport=mma vengono ricondotti
  * alla stessa pagina FEDERKOMBAT solo per non interrompere eventuali link esistenti.
  */
-const sport = ["kickboxing", "mma"].includes(requestedSport)
-    ? "federkombat"
-    : requestedSport;
+const sportAliases = {
+    kickboxing: "federkombat",
+    mma: "federkombat"
+};
+
+const sport = sportAliases[requestedSport] || requestedSport;
 
 
 /* =========================================================
@@ -961,7 +966,7 @@ const activities = {
                 label: "Disciplina FEDERKOMBAT",
                 societyId: "ground-pressure-team",
                 societyName: "Ground Pressure Team",
-                legalName: "A.P.D. IL FALCO",
+                legalName: "APD IL FALCO",
                 info: "Ground Pressure Team propone corsi di MMA per bambini, ragazzi, adulti e agonisti presso lo Stadio Arturo Collana.",
 
                 contacts: {
@@ -985,7 +990,7 @@ const activities = {
                         photoPosition: "center 22%"
                     },
                     {
-                        name: "Fabio Condidoro",
+                        name: "Fabio Condidorio",
                         role: "Istruttore · Tecnico I livello",
                         courses: "Corso Young",
                         phone: "3313350372",
@@ -2180,7 +2185,7 @@ function renderFederkombatSocietyDetail(activity, societyId) {
                 <div>
                     <p class="federkombat-eyebrow">Società sportiva · ${escapeHTML(discipline.name)}</p>
                     <h2>${escapeHTML(discipline.societyName)}</h2>
-                    ${discipline.legalName && discipline.legalName !== discipline.societyName ? `<p class="federkombat-legal-name">Società di Riferimento: ${escapeHTML(discipline.legalName)}</p>` : ""}
+                    ${discipline.legalName && discipline.legalName !== discipline.societyName ? `<p class="federkombat-legal-name">Denominazione: ${escapeHTML(discipline.legalName)}</p>` : ""}
                     <p class="federkombat-society-description">${escapeHTML(discipline.info || "")}</p>
                 </div>
                 ${discipline.website ? `<a class="federkombat-site-link" href="https://${escapeHTML(discipline.website.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a>` : ""}
