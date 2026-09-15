@@ -923,6 +923,20 @@ const activities = {
                 role: "Direttore Tecnico del Centro Federale FEDERKOMBAT",
                 photo: "fotostaff-kickboxing.jpg",
                 photoPosition: "center"
+            },
+            {
+                firstName: "Gianmarco",
+                lastName: "Romeo",
+                role: "Responsabile Tecnico · Tecnico I livello",
+                photo: "gianmarcoromeo.jpeg",
+                photoPosition: "center 22%"
+            },
+            {
+                firstName: "Fabio",
+                lastName: "Condidorio",
+                role: "Istruttore · Tecnico I livello",
+                photo: "fabiocondidoro.jpeg",
+                photoPosition: "center 22%"
             }
         ],
 
