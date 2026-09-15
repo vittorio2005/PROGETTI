@@ -4185,127 +4185,6 @@ a {
 }
 
 
-.federation-logo-block {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        stretch;
-
-    gap:
-        9px;
-}
-
-
-.federation-website-link {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        10px;
-
-    width:
-        168px;
-
-    min-height:
-        38px;
-
-    padding:
-        0 13px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.24);
-
-    border-radius:
-        999px;
-
-    background:
-        rgba(10, 10, 10, 0.48);
-
-    color:
-        #fff;
-
-    text-decoration:
-        none;
-
-    font-size:
-        8px;
-
-    line-height:
-        1.2;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        1.1px;
-
-    text-transform:
-        uppercase;
-
-    box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.22);
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-}
-
-
-.federation-website-link:hover {
-
-    background:
-        rgba(255, 255, 255, 0.14);
-
-    border-color:
-        rgba(255, 255, 255, 0.5);
-
-    transform:
-        translateY(-2px);
-}
-
-
-.federation-website-link:focus-visible {
-
-    outline:
-        2px solid #fff;
-
-    outline-offset:
-        3px;
-}
-
-
-.federation-website-arrow {
-
-    flex:
-        0 0 auto;
-
-    font-size:
-        13px;
-
-    line-height:
-        1;
-}
-
-
 /* Riquadro uniforme, logo sempre proporzionato */
 .federation-logo-card {
 
@@ -4486,32 +4365,6 @@ a {
 
         border-radius:
             9px;
-    }
-
-
-    .federation-logo-block {
-
-        gap:
-            7px;
-    }
-
-
-    .federation-website-link {
-
-        width:
-            118px;
-
-        min-height:
-            34px;
-
-        padding:
-            0 10px;
-
-        font-size:
-            7px;
-
-        letter-spacing:
-            0.8px;
     }
 
 
@@ -4750,12 +4603,1499 @@ a {
 }
 
 /* =========================================================
-   STAFF — FOTO + NOME + COGNOME + RUOLO
+   FEDERKOMBAT — LINK SITO FEDERAZIONE
 ========================================================= */
 
+.federation-logo-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.federation-website-link {
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 14px;
+
+    padding:
+        10px 15px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color:
+        rgba(255, 255, 255, 0.78) !important;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.3px;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.federation-website-link:visited {
+    color:
+        rgba(255, 255, 255, 0.78) !important;
+}
+
+
+.federation-website-link:hover {
+
+    background:
+        #fff;
+
+    color:
+        #000 !important;
+
+    border-color:
+        #fff;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.federation-website-arrow {
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   FEDERKOMBAT — PAGINA PRINCIPALE
+========================================================= */
+
+.federkombat-wrapper {
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+
+.federkombat-center-card {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(260px, 0.75fr);
+
+    column-gap: 52px;
+
+    padding:
+        clamp(28px, 4vw, 52px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.095),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    overflow: hidden;
+}
+
+
+.federkombat-center-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+}
+
+
+.federkombat-eyebrow {
+
+    grid-column:
+        1 / -1;
+
+    margin-bottom: 14px;
+
+    color:
+        rgba(255, 255, 255, 0.52);
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.8px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.federkombat-center-title {
+
+    grid-column: 1;
+
+    margin: 0;
+
+    max-width: 740px;
+
+    font-size:
+        clamp(46px, 6vw, 88px);
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -4px;
+
+    font-weight:
+        800;
+
+    color: #fff;
+}
+
+
+.federkombat-center-role {
+
+    grid-column: 1;
+
+    margin-top: 24px;
+
+    max-width: 650px;
+
+    font-size:
+        clamp(16px, 1.5vw, 21px);
+
+    line-height:
+        1.45;
+
+    font-weight:
+        700;
+
+    color:
+        rgba(255, 255, 255, 0.86);
+}
+
+
+.federkombat-center-subrole {
+
+    grid-column: 1;
+
+    margin-top: 5px;
+
+    max-width: 650px;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.55;
+
+    color:
+        rgba(255, 255, 255, 0.54);
+}
+
+
+.federkombat-center-divider {
+
+    grid-column: 2;
+    grid-row: 2;
+
+    width: 100%;
+    height: 1px;
+
+    margin-bottom: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.16);
+}
+
+
+.federkombat-federal-title {
+
+    grid-column: 2;
+    grid-row: 3;
+
+    margin: 0 0 16px;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        2.3px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.56);
+}
+
+
+.federkombat-federal-list {
+
+    grid-column: 2;
+    grid-row:
+        4 / span 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style:
+        none;
+}
+
+
+.federkombat-federal-list li {
+
+    position: relative;
+
+    padding-left: 19px;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.45;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+}
+
+
+.federkombat-federal-list li::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+    left: 0;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+}
+
+
+.federkombat-disciplines {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+.federkombat-discipline {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    min-height:
+        310px;
+
+    padding:
+        clamp(26px, 3vw, 42px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    background:
+        rgba(0, 0, 0, 0.52);
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.federkombat-discipline::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: auto 0 0 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.75),
+            rgba(255, 255, 255, 0)
+        );
+
+    opacity: 0.45;
+}
+
+
+.federkombat-discipline:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(255, 255, 255, 0.26);
+
+    background:
+        rgba(0, 0, 0, 0.68);
+}
+
+
+.federkombat-discipline-label {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.6px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.48);
+}
+
+
+.federkombat-discipline-title {
+
+    margin: 0;
+
+    font-size:
+        clamp(45px, 5vw, 75px);
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        -3px;
+
+    color: #fff;
+
+    font-weight:
+        800;
+}
+
+
+.federkombat-society {
+
+    margin-top: 18px;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.5;
+
+    color:
+        rgba(255, 255, 255, 0.64);
+}
+
+
+.federkombat-society-link {
+
+    align-self:
+        flex-start;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 32px;
+
+    min-height: 46px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.22);
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color:
+        #fff !important;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.federkombat-society-link:visited {
+    color:
+        #fff !important;
+}
+
+
+.federkombat-society-link:hover {
+
+    background:
+        #fff;
+
+    color:
+        #000 !important;
+
+    border-color:
+        #fff;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.federkombat-more-arrow {
+
+    font-size:
+        17px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   FEDERKOMBAT — DETTAGLIO SOCIETÀ
+========================================================= */
+
+.federkombat-society-page {
+
+    gap:
+        34px;
+}
+
+
+.federkombat-back-link {
+
+    align-self:
+        flex-start;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        42px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+
+    background:
+        rgba(0, 0, 0, 0.48);
+
+    color:
+        rgba(255, 255, 255, 0.74) !important;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.federkombat-back-link:visited {
+    color:
+        rgba(255, 255, 255, 0.74) !important;
+}
+
+
+.federkombat-back-link:hover {
+
+    background:
+        #fff;
+
+    border-color:
+        #fff;
+
+    color:
+        #000 !important;
+}
+
+
+.federkombat-society-hero-card {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    align-items:
+        end;
+
+    gap: 30px;
+
+    padding:
+        clamp(28px, 4vw, 48px);
+
+    border-left:
+        3px solid rgba(255, 255, 255, 0.78);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    backdrop-filter:
+        blur(11px);
+
+    -webkit-backdrop-filter:
+        blur(11px);
+}
+
+
+.federkombat-society-hero-card h2 {
+
+    margin: 0;
+
+    font-size:
+        clamp(42px, 5vw, 72px);
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -3px;
+
+    color:
+        #fff;
+}
+
+
+.federkombat-legal-name {
+
+    margin-top: 16px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+}
+
+
+.federkombat-society-description {
+
+    max-width:
+        760px;
+
+    margin-top:
+        18px;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.65;
+
+    color:
+        rgba(255, 255, 255, 0.66);
+}
+
+
+.federkombat-site-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        46px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.22);
+
+    color:
+        #fff !important;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+
+    white-space:
+        nowrap;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.federkombat-site-link:visited {
+    color:
+        #fff !important;
+}
+
+
+.federkombat-site-link:hover {
+
+    background:
+        #fff;
+
+    color:
+        #000 !important;
+
+    border-color:
+        #fff;
+}
+
+
+.federkombat-section-heading {
+
+    margin-top:
+        12px;
+}
+
+
+.federkombat-section-heading h3 {
+
+    margin: 0;
+
+    max-width:
+        700px;
+
+    font-size:
+        clamp(34px, 4vw, 58px);
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -2px;
+
+    color: #fff;
+}
+
+
+.federkombat-section-heading p {
+
+    max-width:
+        680px;
+
+    margin-top:
+        16px;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.6;
+
+    color:
+        rgba(255, 255, 255, 0.54);
+}
+
+
+.federkombat-society-courses {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        15px;
+}
+
+
+.federkombat-society-course {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        22px;
+
+    padding:
+        27px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    background:
+        rgba(0, 0, 0, 0.62);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+}
+
+
+.federkombat-course-heading {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    gap:
+        22px;
+
+    align-items:
+        start;
+}
+
+
+.federkombat-course-kicker {
+
+    display: block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        rgba(255, 255, 255, 0.44);
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.7px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.federkombat-course-heading h3 {
+
+    margin: 0;
+
+    font-size:
+        27px;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -1px;
+
+    color: #fff;
+}
+
+
+.federkombat-course-heading p {
+
+    margin-top:
+        9px;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+
+    color:
+        rgba(255, 255, 255, 0.52);
+}
+
+
+.federkombat-course-price-main {
+
+    text-align:
+        right;
+}
+
+
+.federkombat-course-price-main strong {
+
+    display: block;
+
+    font-size:
+        27px;
+
+    line-height:
+        1;
+
+    color:
+        #fff;
+}
+
+
+.federkombat-course-price-main span {
+
+    display: block;
+
+    margin-top:
+        7px;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+}
+
+
+.federkombat-schedule-box,
+.federkombat-course-details-grid {
+
+    display:
+        grid;
+
+    gap:
+        1px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.federkombat-course-details-grid {
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+}
+
+
+.federkombat-detail-row {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        5px;
+
+    padding:
+        13px 15px;
+
+    background:
+        rgba(0, 0, 0, 0.88);
+}
+
+
+.federkombat-detail-row span {
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.38);
+}
+
+
+.federkombat-detail-row strong {
+
+    font-size:
+        13px;
+
+    line-height:
+        1.45;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+}
+
+
+.federkombat-fees-line {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px 18px;
+
+    padding-top:
+        18px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+
+    color:
+        rgba(255, 255, 255, 0.54);
+}
+
+
+.federkombat-fees-line b {
+
+    color:
+        rgba(255, 255, 255, 0.82);
+}
+
+
+.federkombat-medical-note {
+
+    margin-top: 0;
+}
+
+
+.federkombat-price-box .price-extra {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+}
+
+
+/* =========================================================
+   FEDERKOMBAT — RIMOZIONE COLORI LINK DEL BROWSER
+========================================================= */
+
+.federkombat-wrapper a,
+.federkombat-wrapper a:visited {
+
+    text-decoration-color:
+        currentColor;
+}
+
+
+/* =========================================================
+   FEDERKOMBAT — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .federkombat-center-card {
+
+        grid-template-columns:
+            1fr;
+
+        row-gap:
+            18px;
+    }
+
+
+    .federkombat-center-divider,
+    .federkombat-federal-title,
+    .federkombat-federal-list {
+
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+
+    .federkombat-center-divider {
+
+        margin-top: 12px;
+    }
+
+
+    .federkombat-disciplines,
+    .federkombat-society-courses {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .federkombat-society-hero-card {
+
+        grid-template-columns:
+            1fr;
+
+        align-items:
+            start;
+    }
+
+
+    .federkombat-site-link {
+
+        justify-self:
+            start;
+    }
+
+}
+
+
+/* =========================================================
+   FEDERKOMBAT — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .federkombat-center-card {
+
+        padding:
+            25px 21px;
+    }
+
+
+    .federkombat-center-title {
+
+        font-size:
+            clamp(42px, 14vw, 60px);
+
+        letter-spacing:
+            -2.5px;
+    }
+
+
+    .federkombat-center-role {
+
+        font-size:
+            15px;
+    }
+
+
+    .federkombat-disciplines {
+
+        gap:
+            12px;
+    }
+
+
+    .federkombat-discipline {
+
+        min-height:
+            250px;
+
+        padding:
+            24px 21px;
+    }
+
+
+    .federkombat-discipline-title {
+
+        font-size:
+            clamp(45px, 15vw, 64px);
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .federkombat-society-link {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+    }
+
+
+    .federkombat-society-hero-card {
+
+        padding:
+            24px 21px;
+    }
+
+
+    .federkombat-society-hero-card h2 {
+
+        font-size:
+            clamp(38px, 12vw, 54px);
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .federkombat-section-heading h3 {
+
+        font-size:
+            37px;
+
+        letter-spacing:
+            -1.5px;
+    }
+
+
+    .federkombat-society-course {
+
+        padding:
+            22px 19px;
+    }
+
+
+    .federkombat-course-heading {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .federkombat-course-price-main {
+
+        text-align:
+            left;
+
+        padding-top:
+            14px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.10);
+    }
+
+
+    .federkombat-course-details-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .federation-website-link {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+    }
+
+}
+
+/* =========================================================
+   STAFF — CAROSELLO 4:5 DEFINITIVO
+   ---------------------------------------------------------
+   Standard immagini:
+   1000 x 1250 px (rapporto 4:5)
+
+   La fotografia NON viene stirata:
+   viene mostrata con background-size: cover dentro una
+   finestra con lo stesso rapporto 4:5.
+
+   Con una sola persona (es. Gianluca Amato) la card resta
+   centrata. Con più persone lo staff diventa un carosello.
+========================================================= */
+
+.people-carousel-shell {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 770px;
+
+    overflow: hidden;
+}
+
+
+.people-carousel-shell.is-empty {
+
+    min-height: 0;
+}
+
+
+.people-grid.people-carousel-track {
+
+    position: relative !important;
+
+    display: block !important;
+
+    width: 100%;
+
+    height: 745px;
+
+    min-height: 745px;
+
+    overflow: hidden;
+
+    touch-action: pan-y;
+
+    user-select: none;
+
+    outline: none;
+}
+
+
+/* ---------------------------------------------------------
+   CARD
+--------------------------------------------------------- */
+
+.people-carousel-track .person-card {
+
+    position: absolute !important;
+
+    top: 0;
+    left: 50%;
+
+    width:
+        clamp(410px, 30vw, 500px);
+
+    max-width:
+        calc(100% - 120px);
+
+    margin: 0;
+
+    background:
+        #0d0d0d;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 28px 75px rgba(0, 0, 0, 0.42);
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    filter:
+        brightness(0.35)
+        saturate(0.75);
+
+    transform:
+        translateX(-50%)
+        scale(0.68) !important;
+
+    transition:
+        left 0.55s cubic-bezier(.22,.61,.36,1),
+        transform 0.55s cubic-bezier(.22,.61,.36,1),
+        opacity 0.42s ease,
+        filter 0.42s ease !important;
+
+    will-change:
+        left,
+        transform,
+        opacity,
+        filter;
+}
+
+
+/* ---------------------------------------------------------
+   FOTO 4:5
+--------------------------------------------------------- */
+
+.people-carousel-track .person-photo {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    aspect-ratio:
+        4 / 5;
+
+    background-size:
+        cover !important;
+
+    background-repeat:
+        no-repeat !important;
+
+    /*
+     * Il valore inline photoPosition eventualmente presente
+     * in attivita.js continua ad avere precedenza.
+     */
+
+    background-position:
+        center;
+
+    transform:
+        none !important;
+}
+
+
+/* ---------------------------------------------------------
+   TESTO
+--------------------------------------------------------- */
+
+.people-carousel-track .person-info {
+
+    min-height: 128px;
+
+    padding:
+        22px 28px 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    background:
+        #0b0b0b;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.people-carousel-track
 .person-info .person-name {
-    margin:
-        0;
+
+    margin: 0;
 
     font-size:
         25px;
@@ -4765,36 +6105,36 @@ a {
 }
 
 
+.people-carousel-track
 .person-info .person-name span {
-    display:
-        block;
 
-    font-size:
-        inherit;
+    display: block;
 
-    font-weight:
-        800;
+    font-size: inherit;
+
+    font-weight: 800;
 
     letter-spacing:
         -0.6px;
 
-    color:
-        #fff;
+    color: #fff;
 }
 
 
+.people-carousel-track
 .person-info .person-role {
-    display:
-        block;
 
-    margin-top:
-        14px;
+    display: block;
+
+    margin-top: 15px;
 
     font-size:
         10px;
 
-    font-weight:
-        700;
+    line-height:
+        1.45;
+
+    font-weight: 700;
 
     letter-spacing:
         3px;
@@ -4803,411 +6143,751 @@ a {
         uppercase;
 
     color:
-        rgba(255, 255, 255, 0.5);
+        rgba(255, 255, 255, 0.52);
 }
 
 
+/* ---------------------------------------------------------
+   CARD CENTRALE
+--------------------------------------------------------- */
+
+.people-carousel-track
+.person-card[data-position="0"] {
+
+    left: 50%;
+
+    z-index: 5;
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    filter:
+        brightness(1)
+        saturate(1);
+
+    transform:
+        translateX(-50%)
+        scale(1) !important;
+
+    cursor: default;
+}
+
+
+/* ---------------------------------------------------------
+   PRECEDENTE / SUCCESSIVA
+--------------------------------------------------------- */
+
+.people-carousel-track
+.person-card[data-position="-1"] {
+
+    left: 17%;
+
+    z-index: 3;
+
+    opacity: 0.50;
+
+    pointer-events: auto;
+
+    filter:
+        brightness(0.46)
+        saturate(0.72);
+
+    transform:
+        translateX(-50%)
+        scale(0.76) !important;
+
+    cursor: pointer;
+}
+
+
+.people-carousel-track
+.person-card[data-position="1"] {
+
+    left: 83%;
+
+    z-index: 3;
+
+    opacity: 0.50;
+
+    pointer-events: auto;
+
+    filter:
+        brightness(0.46)
+        saturate(0.72);
+
+    transform:
+        translateX(-50%)
+        scale(0.76) !important;
+
+    cursor: pointer;
+}
+
+
+.people-carousel-track
+.person-card[data-position="-1"]
+.person-info,
+
+.people-carousel-track
+.person-card[data-position="1"]
+.person-info {
+
+    opacity: 0.48;
+}
+
+
+/* ---------------------------------------------------------
+   CARD PIÙ LONTANE
+--------------------------------------------------------- */
+
+.people-carousel-track
+.person-card[data-position="-2"],
+.people-carousel-track
+.person-card[data-position="2"] {
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   FRECCE
+--------------------------------------------------------- */
+
+.people-carousel-arrow {
+
+    position: absolute;
+
+    top: 300px;
+
+    z-index: 12;
+
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.23);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.people-carousel-arrow[hidden] {
+
+    display: none !important;
+}
+
+
+.people-carousel-prev {
+
+    left:
+        clamp(14px, 5vw, 72px);
+}
+
+
+.people-carousel-next {
+
+    right:
+        clamp(14px, 5vw, 72px);
+}
+
+
+.people-carousel-arrow:hover {
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-color:
+        rgba(255, 255, 255, 0.46);
+}
+
+
+.people-carousel-prev:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(-2px);
+}
+
+
+.people-carousel-next:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(2px);
+}
+
+
+/* ---------------------------------------------------------
+   UNA SOLA PERSONA
+--------------------------------------------------------- */
+
+.people-carousel-shell.has-single-card
+.people-carousel-track {
+
+    cursor: default;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .people-carousel-shell {
+
+        min-height:
+            690px;
+    }
+
+
+    .people-grid.people-carousel-track {
+
+        height:
+            670px;
+
+        min-height:
+            670px;
+    }
+
+
+    .people-carousel-track .person-card {
+
+        width:
+            clamp(350px, 48vw, 430px);
+    }
+
+
+    .people-carousel-track
+    .person-card[data-position="-1"] {
+
+        left: 12%;
+    }
+
+
+    .people-carousel-track
+    .person-card[data-position="1"] {
+
+        left: 88%;
+    }
+
+
+    .people-carousel-arrow {
+
+        top:
+            265px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 650px) {
 
+    .people-carousel-shell {
+
+        width:
+            calc(100% + 60px);
+
+        margin-left:
+            -30px;
+
+        margin-right:
+            -30px;
+
+        min-height:
+            590px;
+    }
+
+
+    .people-grid.people-carousel-track {
+
+        height:
+            570px;
+
+        min-height:
+            570px;
+    }
+
+
+    .people-carousel-track .person-card {
+
+        width:
+            min(82vw, 350px);
+
+        max-width:
+            none;
+    }
+
+
+    .people-carousel-track .person-info {
+
+        min-height:
+            112px;
+
+        padding:
+            18px 22px 26px;
+    }
+
+
+    .people-carousel-track
     .person-info .person-name {
+
         font-size:
             22px;
     }
 
+
+    .people-carousel-track
+    .person-info .person-role {
+
+        margin-top:
+            11px;
+
+        font-size:
+            8px;
+
+        letter-spacing:
+            2.35px;
+    }
+
+
+    /*
+     * Su mobile lasciamo intravedere le card laterali
+     * ai bordi senza rubare spazio alla protagonista.
+     */
+
+    .people-carousel-track
+    .person-card[data-position="-1"] {
+
+        left: -2%;
+
+        opacity:
+            0.40;
+
+        transform:
+            translateX(-50%)
+            scale(0.70) !important;
+    }
+
+
+    .people-carousel-track
+    .person-card[data-position="1"] {
+
+        left: 102%;
+
+        opacity:
+            0.40;
+
+        transform:
+            translateX(-50%)
+            scale(0.70) !important;
+    }
+
+
+    .people-carousel-arrow {
+
+        top:
+            220px;
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        font-size:
+            27px;
+    }
+
+
+    .people-carousel-prev {
+
+        left:
+            13px;
+    }
+
+
+    .people-carousel-next {
+
+        right:
+            13px;
+    }
+
 }
 
-
 /* =========================================================
-   FEDERKOMBAT — PAGINA FEDERALE E SOCIETÀ
+   FIX NAVIGAZIONE GLOBALE — HOME + INDIETRO
+   ---------------------------------------------------------
+   Ripristina le dimensioni del logo Collana e dei controlli
+   fissi della pagina attività.
 ========================================================= */
 
-.federkombat-wrapper {
-    width: min(1180px, 100%);
-    margin: 0 auto;
-}
+.global-home-link {
 
-.federkombat-center-card,
-.federkombat-society-hero-card,
-.federkombat-discipline {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
-    box-shadow: 0 22px 60px rgba(0,0,0,.22);
-    backdrop-filter: blur(12px);
-}
+    position: fixed;
 
-.federkombat-center-card {
-    margin-bottom: clamp(28px, 4vw, 48px);
-    padding: clamp(28px, 4vw, 44px);
-    border-radius: 24px;
-}
+    top:
+        max(16px, env(safe-area-inset-top));
 
-.federkombat-eyebrow,
-.federkombat-discipline-label,
-.federkombat-course-kicker {
-    display: inline-block;
-    margin-bottom: 10px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2.2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.62);
-}
+    left:
+        max(18px, env(safe-area-inset-left));
 
-.federkombat-center-title {
-    margin: 0;
-    font-size: clamp(34px, 4.2vw, 58px);
-    line-height: 1;
-}
+    z-index: 10000;
 
-.federkombat-center-role {
-    margin: 13px 0 0;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.federkombat-center-subrole,
-.federkombat-society-description,
-.federkombat-legal-name {
-    color: rgba(255,255,255,.66);
-}
-
-.federkombat-center-divider {
-    height: 1px;
-    margin: 26px 0;
-    background: rgba(255,255,255,.13);
-}
-
-.federkombat-federal-title {
-    margin: 0 0 14px;
-    font-size: 13px;
-    letter-spacing: 1.7px;
-    text-transform: uppercase;
-}
-
-.federkombat-federal-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.federkombat-federal-list li {
-    padding: 15px 17px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 14px;
-    background: rgba(255,255,255,.035);
-    line-height: 1.45;
-}
-
-.federkombat-disciplines {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(20px, 3vw, 34px);
-    align-items: stretch;
-}
-
-.federkombat-discipline {
-    min-width: 0;
-    min-height: 330px;
-    padding: clamp(24px, 3vw, 34px);
-    border-radius: 22px;
-    display: flex;
-    flex-direction: column;
-}
-
-.federkombat-discipline-header {
-    padding-bottom: 22px;
-    border-bottom: 1px solid rgba(255,255,255,.14);
-}
-
-.federkombat-discipline-title {
-    margin: 0;
-    font-size: clamp(38px, 4.2vw, 64px);
-    line-height: .95;
-    letter-spacing: -1.5px;
-    text-transform: uppercase;
-}
-
-.federkombat-kickboxing .federkombat-discipline-title {
-    font-size: clamp(34px, 3.65vw, 56px);
-}
-
-.federkombat-society {
-    margin: 18px 0 0;
-    font-size: 18px;
-    font-weight: 700;
-    color: rgba(255,255,255,.82);
-}
-
-.federkombat-society-link,
-.federkombat-site-link,
-.federkombat-back-link {
     display: inline-flex;
+
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+
+    gap: 11px;
+
+    color: #fff;
+
     text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        gap 0.28s ease;
 }
 
-.federkombat-society-link {
-    width: 100%;
-    margin-top: auto;
-    padding: 16px 18px;
-    border: 1px solid rgba(255,255,255,.18);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: background .25s ease, color .25s ease, transform .25s ease;
+
+.global-home-link img {
+
+    display: block !important;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    max-width: 48px !important;
+    max-height: 48px !important;
+
+    flex: 0 0 48px !important;
+
+    object-fit: contain !important;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.72))
+        drop-shadow(0 0 12px rgba(0, 0, 0, 0.42));
 }
 
-.federkombat-society-link:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-2px);
-}
 
-.federkombat-more-arrow {
-    font-size: 22px;
-}
+.global-home-link span {
 
-.federkombat-society-page {
-    display: grid;
-    gap: 34px;
-}
-
-.federkombat-back-link {
-    width: max-content;
-    color: rgba(255,255,255,.7);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-}
-
-.federkombat-back-link:hover {
-    color: #fff;
-}
-
-.federkombat-society-hero-card {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 30px;
-    padding: clamp(30px, 5vw, 54px);
-    border-radius: 24px;
-}
-
-.federkombat-society-hero-card h2 {
-    margin: 0 0 14px;
-    font-size: clamp(38px, 5vw, 72px);
-    line-height: .95;
-    letter-spacing: -2px;
-}
-
-.federkombat-society-description {
-    max-width: 760px;
-    margin: 18px 0 0;
-    font-size: 17px;
-    line-height: 1.6;
-}
-
-.federkombat-site-link {
-    flex: 0 0 auto;
-    padding: 14px 18px;
-    border: 1px solid rgba(255,255,255,.18);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-}
-
-.federkombat-section-heading {
-    max-width: 760px;
-}
-
-.federkombat-section-heading h3 {
-    margin: 8px 0 10px;
-    font-size: clamp(30px, 4vw, 50px);
-}
-
-.federkombat-section-heading p {
-    color: rgba(255,255,255,.62);
-    line-height: 1.6;
-}
-
-.federkombat-society-courses {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.federkombat-society-course {
-    padding: 26px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 20px;
-    background: rgba(7,7,7,.72);
-    box-shadow: 0 18px 50px rgba(0,0,0,.16);
-}
-
-.federkombat-course-heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 22px;
-    align-items: start;
-}
-
-.federkombat-course-heading h3 {
-    margin: 0;
-    font-size: 25px;
-}
-
-.federkombat-course-heading p {
-    margin: 8px 0 0;
-    color: rgba(255,255,255,.58);
-    line-height: 1.45;
-}
-
-.federkombat-course-price-main {
-    flex: 0 0 auto;
-    text-align: right;
-}
-
-.federkombat-course-price-main strong {
     display: block;
-    font-size: 31px;
-}
 
-.federkombat-course-price-main span {
+    max-width: 180px;
+
+    overflow: hidden;
+
+    opacity: 1;
+
     font-size: 10px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.52);
-}
 
-.federkombat-schedule-box,
-.federkombat-course-details-grid {
-    display: grid;
-    gap: 10px;
-    margin-top: 22px;
-}
+    line-height: 1;
 
-.federkombat-course-details-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,.10);
-}
-
-.federkombat-detail-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.federkombat-detail-row span {
-    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1.2px;
+
+    letter-spacing: 1.7px;
+
     text-transform: uppercase;
-    color: rgba(255,255,255,.45);
+
+    white-space: nowrap;
+
+    color: #fff;
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 1),
+        0 0 8px rgba(0, 0, 0, 0.95),
+        0 0 16px rgba(0, 0, 0, 0.75);
+
+    transform:
+        translateX(0);
+
+    transition:
+        max-width 0.28s ease,
+        opacity 0.20s ease,
+        transform 0.28s ease;
 }
 
-.federkombat-detail-row strong {
-    font-size: 14px;
-    line-height: 1.45;
+
+.global-home-link:hover {
+
+    transform:
+        translateX(3px);
 }
 
-.federkombat-fees-line {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-top: 20px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255,255,255,.10);
-    font-size: 12px;
-    color: rgba(255,255,255,.64);
+
+.global-home-link.home-label-hidden {
+
+    gap: 0;
 }
 
-.federkombat-price-box span {
-    line-height: 1.35;
-}
 
-@media (max-width: 900px) {
-    .federkombat-federal-list,
-    .federkombat-disciplines,
-    .federkombat-society-courses {
-        grid-template-columns: 1fr;
-    }
+.global-home-link.home-label-hidden span {
 
-    .federkombat-discipline {
-        min-height: 285px;
-    }
+    max-width: 0;
 
-    .federkombat-society-hero-card {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
+    opacity: 0;
 
-@media (max-width: 560px) {
-    .federkombat-center-card,
-    .federkombat-discipline,
-    .federkombat-society-hero-card,
-    .federkombat-society-course {
-        border-radius: 17px;
-    }
+    transform:
+        translateX(-8px);
 
-    .federkombat-discipline-title,
-    .federkombat-kickboxing .federkombat-discipline-title {
-        font-size: clamp(34px, 11vw, 46px);
-    }
-
-    .federkombat-course-heading {
-        flex-direction: column;
-    }
-
-    .federkombat-course-price-main {
-        text-align: left;
-    }
-
-    .federkombat-course-details-grid {
-        grid-template-columns: 1fr;
-    }
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   GROUND PRESSURE TEAM — STAFF STATICO (2 TECNICI)
-   ========================================================= */
+   PULSANTE INDIETRO
+========================================================= */
 
-.people-carousel-shell.is-static-staff .people-carousel-arrow {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
+.global-back-button {
 
-.people-carousel-shell.is-static-staff .people-grid,
-.people-carousel-shell.is-static-staff .people-carousel-track {
-    width: 100%;
-}
+    position: fixed;
 
-/* Il link ufficiale FEDERKOMBAT resta sempre sopra agli overlay
-   della hero ed è cliccabile sia dal logo sia dal pulsante. */
-.federation-logo-card-link,
-.federation-website-link {
-    position: relative;
-    z-index: 20;
-    pointer-events: auto;
-}
+    top:
+        max(18px, env(safe-area-inset-top));
 
-.federation-logo-card-link {
-    display: flex;
+    right:
+        max(18px, env(safe-area-inset-right));
+
+    z-index: 10000;
+
+    display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
-    text-decoration: none;
+
+    gap: 9px;
+
+    min-height: 44px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(8, 8, 8, 0.48);
+
+    color: #fff;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.28);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    font-family: inherit;
+
     cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.global-back-button:hover {
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    border-color:
+        rgba(255, 255, 255, 0.55);
+
+    transform:
+        translateX(-2px);
+}
+
+
+.global-back-button:focus-visible {
+
+    outline:
+        2px solid #fff;
+
+    outline-offset:
+        3px;
+}
+
+
+.global-back-button-arrow {
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    font-weight: 400;
+}
+
+
+.global-back-button-label {
+
+    font-size: 10px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .global-home-link {
+
+        top:
+            max(9px, env(safe-area-inset-top));
+
+        left:
+            max(9px, env(safe-area-inset-left));
+
+        width: 78px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 4px;
+    }
+
+
+    .global-home-link img {
+
+        width: 40px !important;
+        height: 40px !important;
+
+        min-width: 40px !important;
+        min-height: 40px !important;
+
+        max-width: 40px !important;
+        max-height: 40px !important;
+
+        flex-basis: 40px !important;
+    }
+
+
+    .global-home-link span {
+
+        width: 78px;
+
+        max-width: 78px;
+
+        text-align: center;
+
+        white-space: normal;
+
+        font-size: 8px;
+
+        line-height: 1.05;
+
+        letter-spacing: 1.15px;
+    }
+
+
+    .global-home-link.home-label-hidden span {
+
+        max-height: 0;
+
+        max-width: 78px;
+
+        opacity: 0;
+
+        overflow: hidden;
+
+        transform:
+            translateY(-5px);
+    }
+
+
+    .global-back-button {
+
+        top:
+            max(9px, env(safe-area-inset-top));
+
+        right:
+            max(9px, env(safe-area-inset-right));
+
+        min-height: 38px;
+
+        padding:
+            0 11px;
+
+        gap: 6px;
+    }
+
+
+    .global-back-button-label {
+
+        font-size: 8px;
+
+        letter-spacing: 1.1px;
+    }
+
+
+    .global-back-button-arrow {
+
+        font-size: 18px;
+    }
+
 }

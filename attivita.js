@@ -610,9 +610,9 @@ const activities = {
         description:
             "Scopri i percorsi di arti marziali presenti allo Stadio Arturo Collana e trova la disciplina più adatta a te.",
 
-        heroImage: "arti.jpg",
-        storyImage: "arti.jpg",
-        coursesImage: "arti.jpg",
+        heroImage: "artimarziali.jpg",
+        storyImage: "artimarziali.jpg",
+        coursesImage: "artimarziali.jpg",
 
         /*
          * CONTATTI A.S.D. IL GAROFANO
@@ -921,7 +921,8 @@ const activities = {
                 firstName: "Gianluca",
                 lastName: "Amato",
                 role: "Direttore Tecnico del Centro Federale FEDERKOMBAT",
-                photo: "fotostaff-kickboxing.jpg"
+                photo: "fotostaff-kickboxing.jpg",
+                photoPosition: "center"
             }
         ],
 
@@ -1615,22 +1616,534 @@ function renderPerson(person) {
    RENDER STAFF NORMALE
    ========================================================= */
 
+function ensurePeopleCarouselShell() {
+
+    if (!peopleGrid) {
+        return null;
+    }
+
+
+    let shell =
+        peopleGrid.closest(
+            ".people-carousel-shell"
+        );
+
+
+    /*
+     * L'HTML della pagina non deve essere modificato:
+     * il contenitore e le frecce vengono creati una sola volta
+     * direttamente da JavaScript.
+     */
+
+    if (!shell) {
+
+        shell =
+            document.createElement(
+                "div"
+            );
+
+        shell.className =
+            "people-carousel-shell";
+
+        shell.setAttribute(
+            "aria-label",
+            "Carosello staff"
+        );
+
+
+        const parent =
+            peopleGrid.parentNode;
+
+        parent.insertBefore(
+            shell,
+            peopleGrid
+        );
+
+
+        const prevButton =
+            document.createElement(
+                "button"
+            );
+
+        prevButton.type =
+            "button";
+
+        prevButton.className =
+            "people-carousel-arrow people-carousel-prev";
+
+        prevButton.setAttribute(
+            "aria-label",
+            "Staff precedente"
+        );
+
+        prevButton.innerHTML =
+            "&#8249;";
+
+
+        const nextButton =
+            document.createElement(
+                "button"
+            );
+
+        nextButton.type =
+            "button";
+
+        nextButton.className =
+            "people-carousel-arrow people-carousel-next";
+
+        nextButton.setAttribute(
+            "aria-label",
+            "Staff successivo"
+        );
+
+        nextButton.innerHTML =
+            "&#8250;";
+
+
+        shell.appendChild(
+            prevButton
+        );
+
+        shell.appendChild(
+            peopleGrid
+        );
+
+        shell.appendChild(
+            nextButton
+        );
+
+    }
+
+
+    peopleGrid.classList.add(
+        "people-carousel-track"
+    );
+
+
+    return shell;
+
+}
+
+
+/* =========================================================
+   RENDER STAFF / CAROSELLO
+   ---------------------------------------------------------
+   Standard immagini staff: 4:5
+   Dimensione consigliata: 1000 x 1250 px.
+
+   - 1 persona: card centrale, nessuna freccia
+   - 2 persone: una centrale + una laterale
+   - 3+ persone: precedente e successiva ai lati
+   - click, frecce, tastiera e swipe mobile
+========================================================= */
+
 function renderPeople(people) {
 
     if (!peopleGrid) {
         return;
     }
 
+
+    const shell =
+        ensurePeopleCarouselShell();
+
+
+    if (!shell) {
+        return;
+    }
+
+
+    const prevButton =
+        shell.querySelector(
+            ".people-carousel-prev"
+        );
+
+    const nextButton =
+        shell.querySelector(
+            ".people-carousel-next"
+        );
+
+
     if (!people || !people.length) {
 
-        peopleGrid.innerHTML = "";
+        peopleGrid.innerHTML =
+            "";
+
+        shell.classList.add(
+            "is-empty"
+        );
+
+        if (prevButton) {
+            prevButton.hidden = true;
+        }
+
+        if (nextButton) {
+            nextButton.hidden = true;
+        }
 
         return;
     }
 
-    peopleGrid.innerHTML = people
-        .map(renderPerson)
-        .join("");
+
+    shell.classList.remove(
+        "is-empty"
+    );
+
+
+    peopleGrid.innerHTML =
+        people
+            .map(renderPerson)
+            .join("");
+
+
+    const cards =
+        Array.from(
+            peopleGrid.querySelectorAll(
+                ".person-card"
+            )
+        );
+
+
+    const hasCarousel =
+        cards.length > 1;
+
+
+    shell.classList.toggle(
+        "has-carousel",
+        hasCarousel
+    );
+
+    shell.classList.toggle(
+        "has-single-card",
+        !hasCarousel
+    );
+
+
+    if (prevButton) {
+
+        prevButton.hidden =
+            !hasCarousel;
+
+        prevButton.setAttribute(
+            "aria-hidden",
+            hasCarousel
+                ? "false"
+                : "true"
+        );
+
+        prevButton.tabIndex =
+            hasCarousel
+                ? 0
+                : -1;
+
+    }
+
+
+    if (nextButton) {
+
+        nextButton.hidden =
+            !hasCarousel;
+
+        nextButton.setAttribute(
+            "aria-hidden",
+            hasCarousel
+                ? "false"
+                : "true"
+        );
+
+        nextButton.tabIndex =
+            hasCarousel
+                ? 0
+                : -1;
+
+    }
+
+
+    let currentIndex =
+        0;
+
+    let touchStartX =
+        0;
+
+    let touchEndX =
+        0;
+
+
+    function getCardOffset(index) {
+
+        if (
+            cards.length === 1
+        ) {
+            return 0;
+        }
+
+
+        /*
+         * Con due tecnici la seconda card viene mostrata
+         * lateralmente. Quando si cambia tecnico, le posizioni
+         * si invertono mantenendo l'effetto carosello.
+         */
+
+        if (
+            cards.length === 2
+        ) {
+
+            if (
+                index === currentIndex
+            ) {
+                return 0;
+            }
+
+            return currentIndex === 0
+                ? 1
+                : -1;
+
+        }
+
+
+        let offset =
+            index - currentIndex;
+
+
+        const half =
+            Math.floor(
+                cards.length / 2
+            );
+
+
+        if (
+            offset > half
+        ) {
+
+            offset -=
+                cards.length;
+
+        }
+
+
+        if (
+            offset < -half
+        ) {
+
+            offset +=
+                cards.length;
+
+        }
+
+
+        return offset;
+
+    }
+
+
+    function updatePeopleCarousel() {
+
+        cards.forEach(
+            (card, index) => {
+
+                const offset =
+                    getCardOffset(
+                        index
+                    );
+
+
+                /*
+                 * Le card oltre la precedente/successiva
+                 * restano nel DOM ma vengono nascoste dal CSS.
+                 */
+
+                card.dataset.position =
+                    String(offset);
+
+
+                const isActive =
+                    offset === 0;
+
+
+                card.classList.toggle(
+                    "is-active",
+                    isActive
+                );
+
+
+                card.setAttribute(
+                    "aria-hidden",
+                    isActive
+                        ? "false"
+                        : "true"
+                );
+
+
+                card.tabIndex =
+                    isActive
+                        ? 0
+                        : -1;
+
+            }
+        );
+
+    }
+
+
+    function goTo(index) {
+
+        currentIndex =
+            (
+                index +
+                cards.length
+            ) %
+            cards.length;
+
+
+        updatePeopleCarousel();
+
+    }
+
+
+    function goNext() {
+
+        if (!hasCarousel) {
+            return;
+        }
+
+        goTo(
+            currentIndex + 1
+        );
+
+    }
+
+
+    function goPrev() {
+
+        if (!hasCarousel) {
+            return;
+        }
+
+        goTo(
+            currentIndex - 1
+        );
+
+    }
+
+
+    /*
+     * onclick / ontouch* vengono assegnati direttamente:
+     * in questo modo un eventuale nuovo render dello staff
+     * non accumula listener duplicati.
+     */
+
+    if (prevButton) {
+        prevButton.onclick =
+            goPrev;
+    }
+
+
+    if (nextButton) {
+        nextButton.onclick =
+            goNext;
+    }
+
+
+    cards.forEach(
+        (card, index) => {
+
+            card.onclick =
+                () => {
+
+                    if (
+                        index !==
+                        currentIndex
+                    ) {
+
+                        goTo(index);
+
+                    }
+
+                };
+
+        }
+    );
+
+
+    peopleGrid.tabIndex =
+        hasCarousel
+            ? 0
+            : -1;
+
+
+    peopleGrid.onkeydown =
+        event => {
+
+            if (
+                event.key ===
+                "ArrowRight"
+            ) {
+
+                event.preventDefault();
+                goNext();
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowLeft"
+            ) {
+
+                event.preventDefault();
+                goPrev();
+
+            }
+
+        };
+
+
+    peopleGrid.ontouchstart =
+        event => {
+
+            touchStartX =
+                event.changedTouches[0]
+                    .clientX;
+
+        };
+
+
+    peopleGrid.ontouchend =
+        event => {
+
+            touchEndX =
+                event.changedTouches[0]
+                    .clientX;
+
+
+            const distance =
+                touchEndX -
+                touchStartX;
+
+
+            if (
+                Math.abs(distance) < 45
+            ) {
+                return;
+            }
+
+
+            if (
+                distance < 0
+            ) {
+
+                goNext();
+
+            } else {
+
+                goPrev();
+
+            }
+
+        };
+
+
+    updatePeopleCarousel();
 
 }
 
@@ -2236,40 +2749,44 @@ function renderFederkombatSocietyPrices(discipline) {
 
 
 function renderFederkombatSocietyStaff(discipline) {
-    if (!discipline) return;
 
-    const staff = discipline.staff || [];
-
-    renderPeople(staff.map(person => ({
-        name: person.name,
-        role: person.role,
-        photo: person.photo || "",
-        photoPosition: person.photoPosition || "center"
-    })));
-
-    /*
-     * Con soli due tecnici non serve il carosello:
-     * nascondiamo completamente le frecce laterali.
-     */
-    const carouselShell = document.querySelector(".people-carousel-shell");
-    const carouselArrows = document.querySelectorAll(".people-carousel-arrow");
-    const isStaticStaff = staff.length <= 2;
-
-    if (carouselShell) {
-        carouselShell.classList.toggle("is-static-staff", isStaticStaff);
-        carouselShell.setAttribute(
-            "aria-label",
-            isStaticStaff ? "Staff tecnico" : "Carosello staff"
-        );
+    if (!discipline) {
+        return;
     }
 
-    carouselArrows.forEach(arrow => {
-        arrow.hidden = isStaticStaff;
-        arrow.style.display = isStaticStaff ? "none" : "";
-        arrow.setAttribute("aria-hidden", isStaticStaff ? "true" : "false");
-        arrow.tabIndex = isStaticStaff ? -1 : 0;
-    });
+
+    const staff =
+        discipline.staff || [];
+
+
+    /*
+     * Lo staff della società MMA usa lo stesso carosello
+     * generale. Gianmarco Romeo e Fabio Condidorio vengono
+     * quindi mostrati come due card 4:5 scorrevoli.
+     */
+
+    renderPeople(
+        staff.map(
+            person => ({
+
+                name:
+                    person.name,
+
+                role:
+                    person.role,
+
+                photo:
+                    person.photo || "",
+
+                photoPosition:
+                    person.photoPosition || "center"
+
+            })
+        )
+    );
+
 }
+
 
 /* =========================================================
    RENDER CORSI
