@@ -2233,3 +2233,15 @@ button {
     }
 
 }
+
+/* =========================================================
+   STORIA — RIMOZIONE LINEA HEADER / HERO
+   ---------------------------------------------------------
+   Elimina la sottile linea orizzontale visibile tra
+   l'header dei contatti e la prima hero della pagina.
+========================================================= */
+
+.site-header {
+    border-bottom:
+        none !important;
+}

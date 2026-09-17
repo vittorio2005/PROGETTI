@@ -1337,3 +1337,56 @@ button {
     }
 
 }
+
+/* =========================================================
+   MOBILE — FEDERKOMBAT SEMPRE DENTRO LO SCHERMO
+   ---------------------------------------------------------
+   Riduce esclusivamente il titolo della slide FEDERKOMBAT.
+   Le altre attività mantengono le dimensioni attuali.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .federkombat-section .sport-content h1 {
+
+        width:
+            auto;
+
+        max-width:
+            calc(100vw - 86px);
+
+        font-size:
+            clamp(31px, 10.5vw, 48px) !important;
+
+        line-height:
+            0.94;
+
+        letter-spacing:
+            -1.5px;
+
+        white-space:
+            nowrap;
+    }
+
+
+    .federkombat-section .federkombat-subtitle {
+
+        max-width:
+            calc(100vw - 76px);
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .federkombat-section .sport-content h1 {
+
+        font-size:
+            clamp(30px, 10vw, 37px) !important;
+
+        max-width:
+            calc(100vw - 70px);
+    }
+
+}

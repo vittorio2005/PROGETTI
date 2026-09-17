@@ -112,6 +112,19 @@ const sport = sportAliases[requestedSport] || requestedSport;
 
 
 /* =========================================================
+   CLASSE ATTIVITÀ SUL BODY
+   Permette correzioni CSS mirate senza influenzare
+   le altre pagine sportive.
+========================================================= */
+
+if (document.body) {
+    document.body.classList.add(
+        `sport-${sport}`
+    );
+}
+
+
+/* =========================================================
    CONTATTI UFFICIALI STADIO ARTURO COLLANA
    ========================================================= */
 
