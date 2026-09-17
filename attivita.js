@@ -961,29 +961,150 @@ const activities = {
                 label: "Disciplina FEDERKOMBAT",
                 societyId: "gpt-sankaku",
                 societyName: "A.S.D. GPT Sankaku",
-                legalName: "A.S.D. GPT Sankaku",
-                info: "Corsi di Kickboxing della A.S.D. GPT Sankaku presso il Centro Federale FEDERKOMBAT.",
+                legalName: "Associazione Sportiva Dilettantistica Grizzly Power Team Sankaku",
+                founded: "30/10/2009",
+                disciplineDescription: "Kickboxing · discipline da tatami e da ring",
+                info: "La Kickboxing Academy Napoli, ospitata nello storico Stadio Arturo Collana, promuove lo sport come percorso di crescita fisica e personale per bambini, ragazzi e adulti, dal livello amatoriale a quello agonistico. Il nostro approccio mette al centro la persona prima dell'atleta attraverso tre pilastri: tecnica e sicurezza, focus mentale e inclusione, con attenzione al rispetto reciproco e alla socializzazione.",
+
+                contacts: {
+                    enrollmentName: "Marco Balestrino",
+                    enrollmentPhone: "3397844216",
+                    email: "asdgptsankaku@gmail.com",
+                    instagram: "https://www.instagram.com/kickboxingacademynapoli/",
+                    instagramLabel: "@kickboxingacademynapoli",
+                    facebook: "https://www.facebook.com/Kickboxingacademynapoli/",
+                    facebookLabel: "Academy Kickboxing Napoli"
+                },
+
+                staff: [
+                    {
+                        name: "Marco Balestrino",
+                        role: "Maestro · 6° dan",
+                        courses: "Cadetti",
+                        phone: "3397844216",
+                        photo: "marcobalestrino.jpg",
+                        photoPosition: "center"
+                    },
+                    {
+                        name: "Giuseppe Angrisani",
+                        role: "Maestro · 5° dan",
+                        courses: "Juniores / Seniores",
+                        phone: "3387598812",
+                        photo: "giuseppeangrisani.jpg",
+                        photoPosition: "center"
+                    }
+                ],
+
                 courses: [
                     {
-                        name: "Cadetti",
+                        name: "Kickboxing Kids",
+                        option: "2 allenamenti/settimana",
+                        audience: "Età 7–10 anni M/F",
                         days: "Martedì e Giovedì",
-                        time: "17:00",
-                        instructor: "Gianluca Amato",
-                        phone: "3485659081"
+                        time: "16:30–17:30",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Stefano Focaccio",
+                        technicalManager: "Marco Balestrino",
+                        phone: "3397844216",
+                        medical: "Agonistico",
+                        age: "7–10 anni",
+                        documents: "Dati anagrafici · Codice fiscale · Indirizzo",
+                        requirements: "Nessuno",
+                        note: "Medico sportivo convenzionato"
                     },
                     {
-                        name: "Junior",
+                        name: "Kickboxing Young Cadet",
+                        option: "2 allenamenti/settimana",
+                        audience: "Età 11–13 anni M/F · Età indicativa, modificabile in accordo con i maestri",
                         days: "Martedì e Giovedì",
-                        time: "18:00",
-                        instructor: "Gianluca Amato",
-                        phone: "3485659081"
+                        time: "17:30–18:30",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Paolo Staiano",
+                        technicalManager: "Marco Balestrino",
+                        phone: "3397844216",
+                        medical: "Agonistico",
+                        age: "11–13 anni",
+                        documents: "Dati anagrafici · Codice fiscale · Indirizzo",
+                        requirements: "Nessuno",
+                        note: "Medico sportivo convenzionato"
                     },
                     {
-                        name: "Senior",
+                        name: "Kickboxing Over Cadet",
+                        option: "2 allenamenti/settimana",
+                        audience: "Età 13–16 anni M/F · Età indicativa, modificabile in accordo con i maestri",
                         days: "Martedì e Giovedì",
-                        time: "19:00 – 21:00",
-                        instructor: "Gianluca Amato",
-                        phone: "3485659081"
+                        time: "18:30–19:30",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Antonio Cardinale",
+                        technicalManager: "Marco Balestrino",
+                        phone: "3397844216",
+                        medical: "Agonistico",
+                        age: "13–16 anni",
+                        documents: "Dati anagrafici · Codice fiscale · Indirizzo",
+                        requirements: "Nessuno",
+                        note: "Medico sportivo convenzionato"
+                    },
+                    {
+                        name: "Kickboxing Juniores",
+                        option: "2 allenamenti/settimana",
+                        audience: "Età 17–21 anni M/F · Età indicativa, modificabile in accordo con i maestri",
+                        days: "Martedì e Giovedì",
+                        time: "19:30–20:30",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Davide Giliberti",
+                        technicalManager: "Giuseppe Angrisani",
+                        phone: "3387598812",
+                        medical: "Agonistico",
+                        age: "17–21 anni",
+                        documents: "Dati anagrafici · Codice fiscale · Indirizzo",
+                        requirements: "Nessuno",
+                        note: "Medico sportivo convenzionato"
+                    },
+                    {
+                        name: "Kickboxing Seniores",
+                        option: "2 allenamenti/settimana",
+                        audience: "Over 21 M/F · Età indicativa, modificabile in accordo con i maestri",
+                        days: "Martedì e Giovedì",
+                        time: "20:30–21:30",
+                        frequency: "Bisettimanale",
+                        price: "€50",
+                        periodicity: "Mensile",
+                        registration: "€50",
+                        membership: "Compreso",
+                        insurance: "Compresa",
+                        badge: "€5",
+                        instructor: "Giuseppe Angrisani",
+                        technicalManager: "Giuseppe Angrisani",
+                        phone: "3387598812",
+                        medical: "Agonistico",
+                        age: "Over 21",
+                        documents: "Dati anagrafici · Codice fiscale · Indirizzo",
+                        requirements: "Nessuno",
+                        note: "Medico sportivo convenzionato"
                     }
                 ]
             },
@@ -2704,6 +2825,9 @@ function renderFederkombatSocietyDetail(activity, societyId) {
                 ${renderDetailRow("Responsabile tecnico", course.technicalManager)}
                 ${renderDetailRow("Certificato medico", course.medical)}
                 ${renderDetailRow("Età", course.age)}
+                ${renderDetailRow("Documenti", course.documents)}
+                ${renderDetailRow("Requisiti", course.requirements)}
+                ${renderDetailRow("Note", course.note)}
             </div>
 
             ${(course.registration || course.membership || course.insurance || course.badge) ? `
@@ -2726,6 +2850,8 @@ function renderFederkombatSocietyDetail(activity, societyId) {
                     <p class="federkombat-eyebrow">Società sportiva · ${escapeHTML(discipline.name)}</p>
                     <h2>${escapeHTML(discipline.societyName)}</h2>
                     ${discipline.legalName && discipline.legalName !== discipline.societyName ? `<p class="federkombat-legal-name">Denominazione: ${escapeHTML(discipline.legalName)}</p>` : ""}
+                    ${discipline.disciplineDescription ? `<p class="federkombat-legal-name">Disciplina: ${escapeHTML(discipline.disciplineDescription)}</p>` : ""}
+                    ${discipline.founded ? `<p class="federkombat-legal-name">Dal ${escapeHTML(discipline.founded)}</p>` : ""}
                     <p class="federkombat-society-description">${escapeHTML(discipline.info || "")}</p>
                 </div>
                 ${discipline.website ? `<a class="federkombat-site-link" href="https://${escapeHTML(discipline.website.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener noreferrer">Sito ufficiale ↗</a>` : ""}
@@ -2783,13 +2909,15 @@ function renderFederkombatSocietyStaff(discipline) {
 
 
     const staff =
-        discipline.staff || [];
+        (discipline.staff || []).filter(
+            person => person.photo
+        );
 
 
     /*
-     * Lo staff della società MMA usa lo stesso carosello
-     * generale. Gianmarco Romeo e Fabio Condidorio vengono
-     * quindi mostrati come due card 4:5 scorrevoli.
+     * Mostriamo nel carosello soltanto i membri per i quali
+     * è stata ricevuta una fotografia. I dati dello staff
+     * restano comunque disponibili nei corsi e nei contatti.
      */
 
     renderPeople(
